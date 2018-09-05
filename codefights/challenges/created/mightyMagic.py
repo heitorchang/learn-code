@@ -1,4 +1,5 @@
 description = """
+
 You are *Nabila*, a brave, aspiring sorceress in the land of *Qod Segnall*. Between you and the fabled *Qantum Staff* are hordes of bloodthirsty monsters.
 
 So far you have learned three elemental spells:
@@ -41,9 +42,9 @@ In your studies, you have classified basic monster types by the following charac
 
 If a monster with multiple types has conflicting elemental attributes, its **Absorbs** characteristic overrides its weakness. For example, **Ghost** is a flying spirit. While flying enemies are normally weak to *Blowah*, spirits absorb *Blowah*, therefore, a **Ghost** will absorb *Blowah*.
 
-As another example, dragons, being flying lizards, are supposed to be weak to *Coldah* and *Blowah*.
+As another example, dragons, being `flying lizard`s, are supposed to be weak to *Coldah* and *Blowah*.
 
-But an **Ice Dragon**, being *frigid*, will absorb *Coldah*, nullifying the normal weakness to this spell. So the **Ice Dragon** will only be weak to *Blowah* and will absorb *Coldah*.
+But an **Ice dragon**, being *frigid*, will absorb *Coldah*, nullifying the *lizard*'s weakness to this spell. So the **Ice dragon** will only be weak to *Blowah* and will absorb *Coldah*.
 
 Each *Test Case* will represent a battle you must win or run away from. Winning battles give you experience, so you will only run if the battle is unwinnable (that is, the enemies are unbeatable, or they will render you unconscious before you can defeat them).
 
@@ -59,9 +60,18 @@ Monsters are given as an array of strings in the following semicolon-separated f
 
 For example:
 
-`"Ice Dragon;dragon,frigid;35"`
+`"Ice dragon;lizard,flying,frigid;35"`
 
 __Example__
+
+* For
+```
+monsters: [`"Ice dragon;lizard,flying,frigid;35"]
+```
+
+The output should be `"BBBBBBB"`. Being a *flying* monster with no additional characteristic to absorb *Blowah*, it will be weak to this spell and receive `5` points of damage each turn. Because you attack first, on the 7th round the dragon will be defeated, after it has dealt 6 rounds of damage to you (at 1 HP each). 
+
+As a side note, you will have 9 HP left, and will rest briefly to fully recover to 15 HP before the next battle begins.
 
 * For 
 ```
@@ -86,9 +96,9 @@ The optimal spell sequence is `""`
 |--|--|--|--|--|
 | (start) | (none) | 0 | 0 | 15 |
 | 1 | Coldah | 0 | 0 | 15 |
-| 1 | monsters attack | 0 | 0 | 13 |
+| 1' | monsters attack | 0 | 0 | 13 |
 | 2 | Hottah | 0 | 0 | 13 |
-| 2 | monsters attack | 0 | 0 | 11 |
+| 2' | monsters attack | 0 | 0 | 11 |
 
 (your HP is the last column and you may have to resize this panel to see it)
 
@@ -108,7 +118,10 @@ monsters: ["Iron golem;humanoid;20",
 You need to cast any spell 10 times to defeat these monsters, but on the 8th round, they would have dealt 16 HP of damage to you. You cannot win and should output `"R"`, saving yourself from defeat.
 
 __Input / Output__
+
+
 """
+
 
 inputoutput = """
 The list of monsters in this particular battle. Each string represents a monster in the format
