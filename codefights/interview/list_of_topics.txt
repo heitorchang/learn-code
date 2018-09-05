@@ -1,0 +1,34 @@
+DATA STRUCTURES (+ 5 6 5 8 7) = 31
+Arrays           (5) ooooo COMPLETE
+Linked Lists     (6) oo....
+Hash Tables      (5) oooo.
+Trees: Basic     (8) ........
+Heap/Stack/Queue (7) .......
+
+SORTING AND SEARCHING (+ 5 5 7) = 17
+Depth/Breadth-First Search (5) .....
+Backtracking               (5) .....
+Sorting                    (7) ooooooo COMPLETE
+
+DYNAMIC PROGRAMMING (+ 5 5) = 10
+Dynamic Programming: Basic    (5) ooo..
+Dynamic Programming: Advanced (5) .....
+
+SPECIAL TOPICS (+ 7 6 5 4) = 22
+Basic Techniques    (7) ooooooo COMPLETE
+Strings             (6) o.....
+Bits                (5) ooooo COMPLETE
+Advanced Techniques (4) ....
+
+MATH (+ 2 6 3) = 11
+Number Theory (2) oo COMPLETE
+Counting      (6) ......
+Geometry      (3) ...
+
+COMING SOON
+Big-O Notation
+Graphs
+Trees: Advanced
+Regex
+
+TOTAL TASKS (+ 31 17 10 22 11) = 91

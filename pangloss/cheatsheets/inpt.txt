@@ -1,0 +1,2 @@
+Inpt file
+Using 'inpt' because input is a built-in function name

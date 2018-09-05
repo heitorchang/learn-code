@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>JavaScript Sandbox</title>
+    </head>
+    <body>
+        <textarea id="console" rows="22" cols="79"></textarea>
+        <script>
+         var cons = document.getElementById("console");
+
+         cons.value = "";
+         
+         function pr(x) {
+             cons.value += x + "\n";
+         }
+         
+        </script>
+        <script src="app.js"></script>
+    </body>
+</html>

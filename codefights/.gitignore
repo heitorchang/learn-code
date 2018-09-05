@@ -1,0 +1,7 @@
+sql/config_ubuntu.py
+*.class
+
+# Emacs
+
+*~
+\#*\#

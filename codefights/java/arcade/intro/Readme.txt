@@ -1,0 +1,9 @@
+1 add
+2 centuryFromYear
+3 checkPalindrome
+4 adjacentElementsProduct
+5 shapeArea
+6 makeArrayConsecutive2
+7 almostIncreasingSequence
+8 matrixElementsSum
+9 allLongestStrings

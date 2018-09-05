@@ -1,0 +1,186 @@
+<!doctype html><html><head><meta charset="utf-8"><title>Python Cheatsheet</title><link rel="stylesheet" href="style.css"></head><body style="margin: 0;">    <pre style="display: none;">
+Contents (will not be shown because it is set to display: none)
+
+Help
+Strings
+Lists
+Tuples
+Queues
+Generators
+Dictionaries
+Sets
+Files
+Decorators
+Classes
+Inheritance
+
+TODO
+
+Regular Expressions p. 202
+Random p. 228
+Calendar, Time (no details in Python Pocket Reference)
+namedtuple
+
+(Lines should not exceed 50 characters)          
+    </pre>
+<pre style="margin: 0;">help(str) : help on class str
+s = "my string"
+help(s) : (nothing useful)
+lst = [1, 2, 3]
+help(lst) : Help on list object
+type(2) -> &lt;class 'int'>
+isinstance(3, int) -> True
+a // b : integer division, a ** b : exponentiation
+Ternary selection: result if a_test else other
+if:  elif:  else:  while:  for i in iterable:
+try:  except:  else:  finally:  raise Error("msg")
+list(map(lambda x: x*x, [1, 2, 3])) -> [1, 4, 9]
+list(filter(lambda n: n > 3, [1,3,5,7])) -> [5, 7]
+ord('c') -> 99   chr(65) -> 'A' (class 'str')
+String literals : """multi-line""", r'raw, for re'
+"{:.2f} {:,.2%}".format(25, 30.35)
+  -> '25.00 3,035.00%'
+s = "  abCdzzz"
+s.strip() -> 'abCdzzz'  s.strip(' dz') -> 'abC'
+s.lower() -> '  abcdzzz'  s.islower() -> False
+s.upper() -> '  ABCDZZZ'  s.isupper() -> False
+s.center(width), s.ljust(width), s.rjust(width)
+s.split("C") -> ['  ab', 'dzzz']
+"H".join(['  ab', 'dzzz']) -> '  abHdzzz'
+'a'.join("bnns") -> 'bananas'
+s.replace('z', 'j', 2) -> '  abCdjjz'
+s.startswith('ab', 2, 5) -> True
+s.endswith('ww') -> False
+s.find('zzz', 0, len(s)) -> 6
+s.find('zzz', 4) -> 6
+s.find('xyz') -> -1 (not found)
+s.index() is like find() but raises ValueError
+  if not found
+parse an int from string : int(s, base=10)
+binary str : bin(12) -> '0b1100', also oct, hex
+format(9, "012b") -> '000000001001'
+
+(...) generator expression, tuple (yield x)
+[...] list comprehension, list
+{...} dictionary comprehension, set comprehension
+Slicing: S[:] shallow copy, S[::-1] reversed
+L = [1, 3, 5]
+L.append(7) -> None (alters L in-place)
+L.pop([i]) deletes and returns last item
+  or at index i, if given
+L.extend([9, 11]) -> None (alters L in-place)
+L += q is like L.extend(q)
+L.sort(key=None, reverse=False) sorts in-place
+L.reverse() reverses in place
+L.index(x, [0, len(L)])
+L.count(x)
+L.insert(inx, x)
+L.remove(x) deletes the first occurrence of x
+L.copy() makes a shallow copy
+del L[i] : deletes item in ith position
+reversed(L) AND sorted(L) do not alter L
+[x ** 2 for x in range(5)]
+  -> [0, 1, 4, 9, 16]
+initialize r x c matrix
+  m = [[0 for i in range(c)] for j in range(r)]
+list(zip([1,2,3],['a','b'])) -> [(1,'a'), (2,'b')]
+from itertools import zip_longest
+list(zip_longest([1,2,3],['a'],fillvalue='_'))
+  -> [(1, 'a'), (2, '_'), (3, '_')]
+(0,) : a one-item tuple, has sequence operations
+
+from queue import Queue   q = Queue()
+check if q is empty: q.qsize() == 0
+q.put(3)   q.get() -> 3
+
+Generator: g = (x + 20 for x in range(5))
+next(g) -> 20
+next(g) -> 21 ... 24 . StopIteration
+
+Dictionary: d = {'a': 1, 'b': 2}
+Return a default value if key is not found
+  d.get('a', 100) -> 1
+  d.get('c', 100) -> 100
+d.setdefault('b', 300) -> 2, like get('b', 300)
+d.setdefault('c', 300) -> 300 (and 'c' is added)
+d.pop('b', 'default value') : removes key
+d.keys() -> dict_keys(['a', 'b'])
+d.values() -> dict_values([1, 2])
+d.items() -> dict_items([('a', 1), ('b', 2)])
+d.copy() -> returns a shallow copy
+d.update(d2) merges d2's items into d, in-place
+dict.fromkeys(d, 'new value, default is None')
+  -> {'b': 'new value...', 'a': 'new value...'}
+'a' in d -> True
+for key in d:
+    print(key)
+sort dict by value: s = sorted(d, key=d.get)
+  -> a list of keys, starting from smallest value
+{x: x * x for x in range(3)}
+  -> {0: 0, 1: 1, 2: 4}
+
+from collections import defaultdict
+dd = defaultdict(int)
+dd = defaultdict(lambda: 'n')
+dd['joe'] -> sets dd['joe'] to 'n'
+
+s = set("banana") -> s refers to {'a', 'b', 'n'}
+fs = frozenset(range(10)) : an immutable set
+s.add('m') -> s = {'a, 'm', 'b', 'n'}
+s.pop() -> removes and returns an arbitrary elem
+a - b : a.difference(b)
+a | b : a.union(b)
+a & b : a.intersection(b)
+a <= b, a < b : issubset, true subset
+a >= b, a > b : issuperset, true superset
+a ^ b : symmetric difference
+a |= b : updates (adds items in b to a)
+
+import os   os.getcwd() -> '/'
+os.chdir('/home/heitor/pangloss/cheatsheets')
+
+with open('input.txt') as input, \ # opt. break
+ open('output.txt', 'w') as output:
+    for line in input:
+        print(line.upper(), file=output, end="")
+
+@decorator            @a
+def f(): OR class C:  @b
+    ...               @c
+is the same as :      def f():
+def f():                  ...
+    return ...        is : f = a(b(c(f)))
+f = decorator(f) OR C = decorator(C)
+
+nonlocal causes a name to be treated as references
+  to a local variable in an enclosing scope.
+shallow copy shares references, alternative is
+  -> from copy import deepcopy
+
+class methods __add__, __mul__, __len__, __iter__
+  __getitem__, __setitem__, __delitem__, __int__,
+  __float__, __complex__, __divmod__, __pow__
+from decimal import Decimal   Decimal('-0.2')
+
+class MyClass(Super, metaclass=M):  class NoSuper:
+    # a class object is a factory of instances
+m = MyClass()
+m.shape = "square"   hasattr(m, 'shape') -> True
+isinstance(m, MyClass) -> True
+issubclass(MyClass, Super) -> True
+
+p = re.compile(r'[a-z]+[0-9]*')
+re.match(r'[a-z]+[0-9]*', s) IS p.match(s)
+expr*?, expr+?, expr?? : nongreedy
+p.match("#abc2") -> None (matches only from start)
+p.match("wow34&") -> &lt;match obj; span=(0,5)&gt;
+p.search("#abc2") -> &lt;match obj; span=(1,5)&gt;
+p.split("#a2$8c9*") -> ['#', '$8', '*']
+p.sub(repl, s [, count=0])  p.subn returns tuple
+p.findall(s)  p.finditer(s)  re.escape(s)
+
+\A, ^ start of str $, \Z end of str \b empty str
+at word boundary \d digit \s whitespc \w alphanum
+capital \B, \D, \S, \W : opposite of lowercase 
+</pre>                <!--LINES SHOULD END HERE-->
+</body></html>

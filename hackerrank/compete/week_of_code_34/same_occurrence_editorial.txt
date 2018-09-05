@@ -1,0 +1,124 @@
+First crucial observation is that it doesent matter if values in the original array are high as because they can be compressed to fit in .
+
+We can make 3 cases to solve the problem-
+
+When x = y or both(x,y) are not present in the original array. In this case, the number of subarrays will be (all the sub-arrays).
+
+When either of x,y is not present in the original array.
+
+In this case, you can break your array from all the positions of presence of either of x or y. After this you can add all the subarrays possible from each of the resultant array.
+
+: If in original array only x is present like - a, b, c, x, e, f, x, g, h, i, x. We can break this array into 3 arrays -[a,b,c],[e,f],[g,h,i] . Now answer for each of this array can be calculated similarly as we calculated in case 1.
+
+When both x and y are present in the original array.
+
+Suppose we are at jth index of the original array and number of occurances of x and y are a, b respectively from starting. Now if we chose ith index (i<=j) such that number of occurances of x and y are c, d respectively from starting till ith index. If we want number of occurance of x and y to be same in the subarray[i,j] then a-c = b-d that is a-b = c-d.
+
+We can precalculate the position of occurances of each number after compressing. Then for each query we can merge the position of occurances of x and y in sorted order efficiently. Now in this merged vector , at each index we can calculate the number of occurances of x and y by a simple linear traversal. We are only concerned with the difference in the number of occurances of x and y . So at a particular index(i) of this merged vector the number of occurances of x and y from starting are and respectively. If at the (i)th index of this merged vector if the position of occurance(of x or y) be and if at the (i+1)th index of this merged vector if the position of occurance(of x or y) be , then the number of times that the difference occurs is r - l. We can simply do . Now answer will be
+over all distinct differences which we encounter during process.
+
+To efficiently calculate answer for all queries we have to store our answer corresponding to each query so that we can immediately return the answer if we encounter that query again.
+
+Set by akshayv3
+
+Problem Setter's code :
+
+#include<bits/stdc++.h>
+#define fi first
+#define se second
+#define av ios_base::sync_with_stdio(0);cin.tie(0)
+#define pb push_back
+using namespace std;
+int i,j,k,n,m,ar[8002],x,y,q,x2;
+vector<int>adj[8002];
+int dp[8002][8002];
+int main()
+{
+    av;
+    cin>>n>>q;
+
+    for(i=0; i<=(n+1); i++)
+        for(j=0; j<=(n+1); j++)
+            dp[i][j]=-1;
+    int cnt=1;
+    unordered_map<int,int>mapp;
+    for(i=0; i<n; i++) {
+        cin>>ar[i];
+        if(mapp[ar[i]]==0)
+            mapp[ar[i]]=cnt++;
+    }
+    for(i=0; i<n; i++) {
+        adj[mapp[ar[i]]].pb(i);
+    }
+    vector<pair<int,int> >temp;
+    unordered_map<int,int>diff;
+    int a1,a2;
+    while(q--) {
+    	cin>>x>>y;
+        a1=mapp[x];
+        a2=mapp[y];
+        temp.clear();
+        i=0;
+        j=0;
+        x=a1;
+        y=a2;
+        if(dp[x][y]!=-1) {
+            cout<<dp[x][y]<<endl;
+            continue;
+        }
+        if(x == y) {
+            dp[x][y]=(n*(n+1))/2;
+            cout<<dp[x][y]<<endl;
+            continue;
+        }
+		while((i<adj[x].size()) && (j<adj[y].size())) {
+			if(adj[x][i]<adj[y][j]){
+            	temp.pb({adj[x][i],0});
+                i++;
+            }
+            else {
+                temp.pb({adj[y][j],1});
+                j++;
+            }
+        }
+        while(i<adj[x].size()) {
+			temp.pb({adj[x][i],0});
+            i++;
+        }
+        while(j<adj[y].size()) {
+       		temp.pb({adj[y][j],1});
+            j++;
+        }
+        int cx = 0,cy = 0;
+        diff.clear();
+        int an = temp.size();
+        diff[0] = 1;
+        if(an >= 1)
+            diff[0]+=temp[0].fi;
+        int cnt1 = 0,cnt2 = 0;
+        an--;
+        for(i=0; i<(an); i++) {
+            if(temp[i].se == 0)
+                cx++;
+            if(temp[i].se == 1)
+                cy++;
+            diff[cx-cy]+=(temp[i+1].fi - temp[i].fi);
+        }
+        if(an+1 >= 1 && i >= 0 && i<n) {
+            if(temp[i].se == 0)
+                cx++;
+            if(temp[i].se == 1)
+                cy++;
+            diff[cx-cy]+=(n - temp[i].fi);
+        }
+        int ans = 0;
+        for(auto x:diff) {
+            x2 = x.se;
+            ans+=(((x2*(x2-1)))/2);
+        }
+        dp[a1][a2] = ans;
+        cout<<dp[a1][a2]<<endl;
+    }
+    return 0;
+}
+

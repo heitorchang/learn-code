@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pangloss Julia</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="external/css/bootstrap.min.css">
+    <link rel="stylesheet" href="external/css/bootstrap-material-design.min.css">
+    <link rel="stylesheet" href="external/css/ripples.min.css">
+
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/layout.css">
+  </head>
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Pangloss</a>
+        </div>
+        <div class="navbar-collapse collapse navbar-inverse-collapse">
+          <ul class="nav navbar-nav">
+            
+            <li class="dropdown">
+              <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Choose a language
+                <b class="caret"></b></a>
+              <ul class="dropdown-menu" id="languageList">
+              </ul>
+            </li>
+
+            <li class="active"><a href="julia.html">Julia</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid main content" style="height: 174px;">
+      <div class="row">
+        <div class="col-xs-2 menu">
+          <ul id="menuList">
+          </ul>
+        </div>
+        <div class="col-xs-3 submenu col-xs-offset-2">
+          <ul id="submenuList">
+          </ul>
+        </div>
+
+        <div class="col-xs-7 col-xs-offset-5 panels" id="panels">
+          <p>
+            <a href="http://www.julialang./" target="_blank"><img src="img/julia.jpg" alt="Julia"></a>
+          </p>
+
+          <p>
+            Julia language
+          </p>
+        </div>
+        
+      </div>
+    </div>
+    
+    <script src="external/js/jquery-2.2.0.min.js"></script>
+    <script src="external/js/underscore.min.js"></script>
+    <script src="external/js/bootstrap.min.js"></script>
+    <script src="external/js/material.min.js"></script>
+    <script src="external/js/ripples.min.js"></script>
+    <script>
+     $.material.init();
+    </script>
+    <script src="js/menu.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/languageDropdown.js"></script>
+
+    <script src="data/julia.js"></script>
+    <script src="js/livedata.js"></script>
+
+    <script>
+     // clean up and set up
+     window.scrollTo(0, 0);
+     menuInteract();
+    </script>
+  </body>
+</html>

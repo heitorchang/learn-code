@@ -1,0 +1,20 @@
+# Emacs
+*~
+\#*\#
+.\#*
+
+*.py[cod]
+*$py.class
+
+db.sqlite3
+geckodriver*
+
+# SECRET_KEY in settings.py
+/PROJECT/secrets.py
+
+# virtualenv
+/django2/
+
+runserver
+makemigrations
+migrate

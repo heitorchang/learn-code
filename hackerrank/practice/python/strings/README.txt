@@ -1,0 +1,17 @@
+https://www.hackerrank.com/domains/python/py-strings/page:1
+
+01_swap_case
+02_string_split_and_join
+03_whats_your_name
+04_mutations
+05_find_a_string
+06_string_validators
+07_text_alignment
+08_text_wrap
+09_designer_door_mat
+10_string_formatting
+
+11_alphabet_rangoli
+12_capitalize
+13_the_minion_game
+14_merge_the_tools

@@ -1,0 +1,5 @@
+Like Pontual Loja Dois
+
+List by date of purchases and sales
+
+Report in each row the time periods when item was less than 100 units

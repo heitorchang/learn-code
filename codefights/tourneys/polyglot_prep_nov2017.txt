@@ -1,0 +1,21 @@
+1 python  : emacs <f5>
+2 js      : edit sandbox-local/js/app.js, open index.html
+3 php     : edit sandbox-local/php/index.php: 127.0.0.1/sandbox-php
+4 java    : edit sandbox-local/java/Code.java, run testjava.py Code.java
+5 commonL : emacs run-lisp, use shift-enter
+6 clojure : emacs shell, java -cp clojure-1.8.0.jar clojure.main
+7 c       : run testc.py hello.c
+8 perl    : edit sandbox-local/perl/hello.pl, run perl hello.pl 
+9 ruby    : ruby code.rb (irb runs interactive ruby)
+10 julia  :
+11 lua    :
+12 coffee :
+
+function: params, return
+types: int, float,
+structures: list, dict, set
+string manipulation: concat, replace
+
+idea: solve in python, then translate
+
+build test framework

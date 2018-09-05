@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+
+# script to compile and run a single Java class with a main function
+
+import os
+import sys
+import subprocess
+
+if __name__ == "__main__":
+    filename = sys.argv[1]
+    classname = filename.split(".")[0]
+
+    compile = subprocess.Popen(["javac", filename], stdout=subprocess.PIPE)
+    compile.wait()
+    compile_ret = compile.returncode
+
+    if compile_ret == 0:
+        # print("Compilation OK, running 'java ", classname, "'", sep="")
+        print()
+        runjava = subprocess.call(["java", classname])
+        print()

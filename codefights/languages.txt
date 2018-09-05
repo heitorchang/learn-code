@@ -1,0 +1,56 @@
+As of 2018-07-13
+
+***** Most experience
+  *** Used somewhat
+    * Barely used
+      Never used
+    X Dislike
+
+    
+   ** Clojure
+    X CoffeeScript
+  *** Common Lisp
+   ** C
+    X C++
+      C#
+      D
+      Dart
+      Elixir
+      Erlang
+      Free Pascal
+      Fortran
+      F#
+    * Go
+      Groovy
+   ** Haskell
+    X Java
+ **** JavaScript
+    * Julia
+      Kotlin
+      Lua
+      Nim
+    X Objective-C
+      OCaml
+      GNU Octave
+    * Perl
+  *** PHP
+    X Python 2
+***** Python 3
+      R
+      Ruby
+      Rust
+      Scala
+      Smalltalk
+      Swift 3
+      Tcl
+      TypeScript
+      Visual Basic
+
+
+***** Python 3
+ **** JavaScript
+  *** Common Lisp, PHP
+   ** Clojure, C, Haskell
+    * Go, Julia, Perl
+
+    X CoffeeScript, C++, Java, Objective-C, Python 2

@@ -1,0 +1,31 @@
+<body style="width: 650px;">
+    <p> By Kirk Pruhs</p>    
+<P>The Halting Problem is: 
+<P>INPUT: A string <I>P</I> and a string <I>I</I>. We will think of <I>P</I> as 
+a program. 
+<P>OUTPUT: 1 (True), if <I>P</I> halts on <I>I</I>, and 0 (False) if <I>P</I> goes into an 
+infinite loop on <I>I</I>. 
+<P>Theorem (Turing circa 1940): There is no program to solve the Halting 
+Problem. 
+<P>Proof: Assume to reach a contradiction that there exists a program 
+Halt(<I>P</I>, <I>I</I>) that solves the halting problem, Halt(<I>P</I>, 
+<I>I</I>) returns True if and only <I>P</I> halts on <I>I</I>. The given this 
+program for the Halting Problem, we could construct the following string/code 
+<I>Z</I>: <PRE>Program (String x)
+
+If Halt(x, x) then
+     Loop Forever
+Else Halt.
+
+End.</PRE>Consider what happens when the program <I>Z</I> is run with input 
+<I>Z</I> 
+<P>Case 1: Program <I>Z</I> halts on input <I>Z</I>. Hence, by the correctness 
+of the Halt program, Halt returns true on input <I>Z</I>, <I>Z</I>. Hence, 
+program <I>Z</I> loops forever on input <I>Z</I>. Contradiction. 
+<P>Case 1: Program <I>Z</I> loops forever on input <I>Z</I>. Hence, by the 
+correctness of the Halt program, Halt returns false on input <I>Z</I>, <I>Z</I>. 
+Hence, program <I>Z</I> halts on input <I>Z</I>. Contradiction. 
+<P>End Proof.
+</P>
+
+</body>

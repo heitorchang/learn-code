@@ -1,0 +1,13 @@
+x Tackbot   2017-04-05
+x Instabot  2017-04-14
+x Botasana  2017-04-16
+x Sigmabot  2017-04-16
+ Uberbot
+ Gobot
+ MZBot
+ Dattobot
+ Kikbot
+ CFBot
+ Quorabot
+ Dropbot
+ Jetbot

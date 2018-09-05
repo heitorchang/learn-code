@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Bootstrap Material</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link rel="stylesheet" href="external/css/bootstrap.min.css">
+        <link rel="stylesheet" href="external/css/bootstrap-material-design.min.css">
+        <link rel="stylesheet" href="external/css/ripples.min.css">
+
+        <link rel="stylesheet" href="css/menu.css">
+    </head>
+    <body>
+        <a href="javascript:void(0)" class="btn btn-raised btn-default">Default</a>
+
+        <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+            <li class="active"><a href="javascript:void(0)">Home</a></li>
+            <li><a href="javascript:void(0)">Profile</a></li>
+            <li class="disabled"><a href="javascript:void(0)">Disabled</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="bootstrap-elements.html" data-target="#">
+                    Dropdown <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0)">Action</a></li>
+                    <li><a href="javascript:void(0)">Another action</a></li>
+                    <li><a href="javascript:void(0)">Something else here</a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0)">Separated link</a></li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="container-fluid main">
+            <div class="row">
+                <nav class="col-xs-3 menu">
+                    <ul>
+                        <li class="withripple" data-target="#about">Material Design for Bootstrap</li>
+                        <li class="withripple" data-target="#getting-started">Getting Started</li>
+                        <li class="withripple" data-target="#checkbox">Checkbox</li>
+                        <li class="withripple" data-target="#radio-button">Radio Button</li>
+                        <li class="withripple" data-target="#toggle-button">Toggle Button</li>
+                        <li class="withripple" data-target="#input">Input</li>
+                        <li class="withripple" data-target="#fileinput">File Input</li>
+                        <li class="withripple" data-target="#navbar">Navbar</li>
+                        <li class="withripple" data-target="#progress-bar">Progress Bar</li>
+                        <li class="withripple" data-target="#slider">Slider</li>
+                        <li class="withripple" data-target="#dropdown">Dropdown (Work in progress)</li>
+                        <li class="withripple" data-target="#dropdown-menu">Dropdown Menu</li>
+                        <li class="withripple" data-target="#dialog">Dialog</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        <script src="external/js/jquery-2.2.0.min.js"></script>
+        <script src="external/js/bootstrap.min.js"></script>
+        <script src="external/js/material.min.js"></script>
+        <script src="external/js/ripples.min.js"></script>
+        <script>
+         $.material.init();
+
+         // Menu
+         $(".menu li").click(function () {
+             if (!$(this).data("target")) return;
+             if ($(this).is(".active")) return;
+             $(".menu li").not($(this)).removeClass("active");
+             $(".page").not(page).removeClass("active").hide();
+             window.page = $(this).data("target");
+             var page = $(window.page);
+             window.location.hash = window.page;
+             $(this).addClass("active");
+
+
+             page.show();
+
+             var totop = setInterval(function () {
+                 $(".pages").animate({scrollTop: 0}, 0);
+             }, 1);
+
+             setTimeout(function () {
+                 page.addClass("active");
+                 setTimeout(function () {
+                     clearInterval(totop);
+                 }, 1000);
+             }, 100);
+         });
+        </script>
+    </body>
+</html>

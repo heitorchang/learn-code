@@ -1,0 +1,23 @@
+DATA STRUCTURES (9)
+[04.jun.18] Arrays: Left Rotation
+[04.jun.18] Strings: Making Anagrams
+[04.jun.18] Hash Tables: Ransom Note
+[06.jun.18] Linked Lists: Detect a Cycle
+[06.jun.18] Stacks: Balanced Brackets
+[06.jun.18] Queues: A Tale of Two Stacks
+[06.jun.18] Trees: Is this a Binary Search Tree?
+[06.jun.18] Heaps: Find the Running Median
+[06.jun.18] Tries: Contacts
+ALGORITHMS (6)
+[04.jun.18] Sorting: Bubble Sort
+[07.jun.18] Sorting: Comparator
+[07.jun.18] Mergesort: Count Inversions (used HackerRank Editorial)
+[07.jun.18] Hash Tables: Ice Cream Parlor
+[07.jun.18] DFS: Connected Cell in a Grid
+[07.jun.18] BFS: Shortest Reach in a Graph
+TECHNIQUES/CONCEPTS (5)
+[06.jun.18] Time Complexity: Primality
+[04.jun.18] Recursion: Fibonacci Numbers
+[07.jun.18] Recursion: Davis' Staircase
+[07.jun.18] DP: Coin Change (used Geeks for Geeks solution)
+[06.jun.18] Bit Manipulation: Lonely Integer

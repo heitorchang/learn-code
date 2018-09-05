@@ -1,0 +1,41 @@
+*** gradeDistribution
+
+ID, Name, Midterm, Final
+3 grading options that produce the highest score
+
+*** bugsInComponent
+
+TABLE Bug
+num, title
+1, quotes don't work
+
+TABLE BugComponent
+bug_num, component_id
+1, 1
+
+TABLE Component
+
+Output: bug_title, component_title, bugsInComponent
+
+*** unluckyEmployees
+
+TABLE Department
+id, name
+1, IT
+2, HR
+
+TABLE Employee
+id, full_name, salary, department
+1, James, 20, 1
+
+Output:
+dep_name, emp_number, total_salary
+
+*** pastEvents
+
+TABLE Events
+id, name, event_date
+
+Output: list of all events you attended over the past 7 days
+name, event_date
+

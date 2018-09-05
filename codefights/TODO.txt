@@ -1,0 +1,40 @@
+Parse a tree representation A (B (C D E) F G (H I))
+B, F, G are children of A
+C, D, E are children of B.
+H, I are children of G
+
+minimal Coin problem, greedy vs. dynamic programming
+
+trouble solving removeDuplicateAdjacent (remove all consecutive letters, not leaving a single one)
+
+trouble solving Excel column number to String: "Z" is a weird edge case that should have been zero, but is actually 26.
+If the remainder (n % 26) equals zero, replace it by 26 and subtract 26 from the overall number
+
+Array max consecutive sum (a window)
+
+Array max subsequence (typical example for a specific algorithm)
+
+Use " for i, elem in enumerate(lst): "
+
+Segment trees for quickly computing sums of ranges in an array
+
+Given an array, produce all Subsequence (a sequence that can be derived from another sequence by deleting some elements (or none) without changing the order of the remaining elements
+
+Swapping keys and values in a dict:
+swapped = {v: k for k, v in original.items()}
+
+GCD: Euclidean algorithm
+
+Properties of exponential and logarithmic functions
+
+Tree BFS
+
+Check Tourney answer when (if) the bug for checking solutions is fixed:
+https://codefights.com/tournaments/sHmJDyfM7MQHTxYva
+
+Question: Consider a piece of straw with a length of strawLength. You want to break it into smaller pieces with pairwise distinct positive integer lengths. What is the maximum possible number of smaller pieces that you can get from breaking the original piece?
+
+Answer by RJ_L1: return (int(sqrt(1 + 8*length)) - 1) // 2
+-- interesting
+
+base / radix conversion to and from arbitrary bases (hex, bin, etc)

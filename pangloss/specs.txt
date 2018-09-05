@@ -1,0 +1,27 @@
+Firebase
+
+User
+
+Lists are collections of entries
+
+Only users can create lists
+
+Visibility: user, group, public
+
+
+
+ENTRY
+
+{
+
+topic: topicName,
+title: "My Entry Title",
+reference: "source and page or URL",
+code: `template
+string
+with
+code`
+
+}
+
+Sort lists alphabetically.

@@ -1,0 +1,3 @@
+Something like pairs of people making bets, in each row the winner and loser is recorded.
+
+Report who was the biggest winner and biggest loser

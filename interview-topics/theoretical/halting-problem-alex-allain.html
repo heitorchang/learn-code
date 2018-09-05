@@ -1,0 +1,95 @@
+<body style="width: 650px;">
+By Alex Allain
+    <br><br>
+One of the most interesting non-programming parts of computer science is the
+study of what can (and cannot) be computed.  For instance, take the question,
+"does this program complete?"  I.e., will it not go into an infinite loop.
+How would you answer this question, given an arbitrary piece of code?  You
+could try running it.  But what if it takes a long time?  How long are you
+willing to wait?  
+<br><br><center>
+
+</center>
+  <br><br>
+Think about whether there is a general solution to this problem -- a method
+that you could apply to any piece of C code in order to demonstrate that it
+will eventually come to a stop.
+<br><br>
+Let's say that you discovered such a solution.  It's a program that takes two
+arguments: the code for a program, and its input.  This solution returns true
+if the program halts on the given input, and false if the program runs
+forever.  Let's call this program DOES-HALT.  We can use DOES-HALT as
+follows: 
+
+<pre class="example">DOES-HALT(program, input)
+</pre>
+
+<br><br>
+Now, given DOES-HALT, let's see what kinds of cool things we can do.  Well, we
+can pass in the code of any program that's been running for a long time and
+ensure that it's working.  This could certainly prove useful for complex
+programs implementing a great deal of recursion or with complicated loop
+conditions.
+
+<br><br>
+We could also use DOES-HALT to quickly compute whether or not a program passes
+its test cases.  This is a little bit trickier.  How could we use DOES-HALT to
+determine if a program produces the correct output for a specific input?  Keep
+in mind that DOES-HALT does just that -- it halts.  So what if we constructed
+a second program, let's call it COMPARE-OUTPUT, that would take three
+arguments: a program, the input to the program, and the expected output.
+Here's the key: COMPARE-OUTPUT will halt when the output of the program is the
+same as the expected output, and it will go into an infinite loop otherwise.
+Now, all we need to do is run DOES-HALT(COMPARE-OUTPUT, [program, input,
+expected output]) to know whether or not program passes the test case, input,
+and outputs the expected output.  If it halts, well, it does; otherwise, it
+doesn't!
+
+<br><br>
+Think of the time such a program might save us for testing complex algorithms!
+
+<br><br>
+Let's look at some of the other consequences.  In particular, what if we
+decided we wanted to write a program that would test what happens when we run
+a program on itself as input.  For instance, the *nix program cat, when run on
+itself, would output the binary executable file.  Some programs might never
+halt when run on themselves, though -- so let's use DOES-HALT to write
+pseudo-code for a program that checks to see what happens when a program is
+given itself as input.  let's call it SELF-HALT, and SELF-HALT will halt if
+the input program would *not* halt on itself. 
+
+<pre class="example">SELF-HALT(program)
+{
+    if(DOES-HALT(program, program))
+        infinite loop
+    else
+        halt
+}
+</pre>
+This code is pretty straightforward: if the program would halt on itself,
+then SELF-HALT goes into an infinite loop.  Otherwise, it halts.
+<br><br>
+This is pretty nifty because we can use it to tell whether a program that is
+designed to analyze other programs (for instance, DOES-HALT) will actually
+halt when given itself as input.
+<br><br>
+In fact, what if we use SELF-HALT to analyze itself?  Well, let's see.
+SELF-HALT(SELF-HALT) should loop forever if DOES-HALT(SELF-HALT, SELF-HALT).
+So if SELF-HALT halts on itself, it should loop forever.
+<br><br>
+That doesn't make sense, so DOES-HALT(SELF-HALT, SELF-HALT) must be false.
+SELF-HALT(SELF-HALT) must not halt.  But if DOES-HALT(SELF-HALT, SELF-HALT) is
+false, SELF-HALT(SELF-HALT) must halt!  A contradiction.
+<br><br>
+So where does this leave us?  There's nothing inherently wrong with our
+SELF-HALT program; its structure is just fine.  Everything we pass as
+an argument is perfectly reasonable as well.  In fact, the only thing that looks
+at all questionable is this DOES-HALT program we've been using.
+<br><br>
+In fact, the above argument is essentially a proof that the halting problem,
+as it is termed, cannot be solved in the general case.  No DOES-HALT program
+exists.  If it did, we would be able to generate contradictions such as the
+above -- a program that halts when it should loop forever, and that loops
+forever when it halts.
+
+</body>
