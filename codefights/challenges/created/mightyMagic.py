@@ -12,7 +12,7 @@ So far you have learned three elemental spells:
 
 Your eagerness and high intelligence come at a cost: you have yet to master the skill to focus your energy on a specific target. All spells you cast will hit everything in front of you. Casting spells use up your willpower, which you may recover after a battle is over (in other words, you can endlessly cast spells). However, you want to save your energy for the grueling road in front of you.
 
-**You have 15 HP** (hit points) and are equipped with the magical **Jaavskrit  Armor**, which reduces all monster damage to just **1 HP per attack**. By standing still for just a minute after completing a battle, the armor will restore you to full health. If your HP drops to zero or below, you will faint and lose the battle.
+You start each battle with **a variable amount of HP** (hit points) and are equipped with the magical **Jaavskrit  Armor**, which reduces all monster damage to just **1 HP per attack**. If your HP drops to zero or below, you will faint and lose the battle.
 
 Monsters are attuned to certain elements, and may have a weakness to none or multiple elements. They may also absorb some elements, which recovers their HP. 
 
@@ -40,15 +40,27 @@ In your studies, you have classified basic monster types by the following charac
 | vortex | (none) | BCH |
 | humanoid | (none) | (none) |
 
+For convenience, these types are available in the following JSON with `[weak to, absorbs]` format:
+
+```
+{"blazing": ["C", "H"],
+"frigid": ["H", "C"],
+"lizard": ["C", ""],
+"flying": ["B", ""],
+"spirit": ["", "B"],
+"vortex": ["", "BCH"],
+"humanoid": ["", ""]}
+```
+
 If a monster with multiple types has conflicting elemental attributes, its **Absorbs** characteristic overrides its weakness. For example, **Ghost** is a flying spirit. While flying enemies are normally weak to *Blowah*, spirits absorb *Blowah*, therefore, a **Ghost** will absorb *Blowah*.
 
 As another example, dragons, being `flying lizard`s, are supposed to be weak to *Coldah* and *Blowah*.
 
-But an **Ice dragon**, being *frigid*, will absorb *Coldah*, nullifying the *lizard*'s weakness to this spell. So the **Ice dragon** will only be weak to *Blowah* and will absorb *Coldah*.
+But an **Ice dragon**, being *frigid*, will absorb *Coldah*, nullifying the *lizard*'s weakness to this spell. So the **Ice dragon** will be weak to *Blowah* and *Hottah* (because it's *frigid*), and will absorb *Coldah*.
 
 Each *Test Case* will represent a battle you must win or run away from. Winning battles give you experience, so you will only run if the battle is unwinnable (that is, the enemies are unbeatable, or they will render you unconscious before you can defeat them).
 
-Battles are turn-based and you will always move first, starting with **15 HP**. You must cast a spell, and may not pass your turn. You win when all monsters' HP drop to zero or below. After your turn, all living monsters will attack you (dealing 1 HP of damage per living monster), and afterward, a new round begins. There is no way to heal yourself during a battle.
+Battles are turn-based and you will always move first, starting with `nabilaHP` Hit Points. You must cast a spell, and may not pass your turn. You win when all monsters' HP drop to zero or below. After your turn, all living monsters will attack you (dealing 1 HP of damage per living monster), and afterward, a new round begins. There is no way to heal yourself during a battle.
 
 Your task is to find the shortest sequence of spells to dispatch the monsters. If there is more than one optimal sequence, output the lexicographically smallest one. You must try and win, but for hopeless battles, output `"R"` (Run). 
 
@@ -60,45 +72,54 @@ Monsters are given as an array of strings in the following semicolon-separated f
 
 For example:
 
-`"Ice dragon;lizard,flying,frigid;35"`
+`"Ice dragon;lizard,flying,frigid;35 
 
 __Example__
 
 * For
 ```
-monsters: [`"Ice dragon;lizard,flying,frigid;35"]
+monsters: ["Ice dragon;lizard,flying,frigid;35"]
+nabilaHP: 15
 ```
 
 The output should be `"BBBBBBB"`. Being a *flying* monster with no additional characteristic to absorb *Blowah*, it will be weak to this spell and receive `5` points of damage each turn. Because you attack first, on the 7th round the dragon will be defeated, after it has dealt 6 rounds of damage to you (at 1 HP each). 
 
-As a side note, you will have 9 HP left, and will rest briefly to fully recover to 15 HP before the next battle begins.
+As a side note, you will have 9 HP left, but this information is not important.
 
 * For 
 ```
 monsters: ["Goblin;humanoid;4",
 "Goblin;humanoid;4",
 "Goblin;humanoid;4"]
+nabilaHP: 5
 ```
 You may cast any spell twice to defeat the three goblins (each spell deals 2 HP of damage because they are weak to nothing and absorb nothing). Remember that any spell hits all monsters at once.
 
-The expected output is `"BB"` (two Blowahs) because it's the shortest and lexicographically smallest sequence of spells.
+The expected output is `"BB"` (two Blowahs) because it's the shortest and lexicographically smallest sequence of spells. Because you move first, the enemies will be defeated before their second wave of attacks.
 
 * For
 ```
-monsters: ["Flame wolf;blazing;12",
-"Ice leopard;frigid;13"]
+monsters: ["Flame wolf;blazing;11",
+"Ice leopard;frigid;10"]
+nabilaHP: 7
 ```
 The wolf is weak to *Coldah* and absorbs *Hottah*, while the opposite holds for the leopard.
 
-The optimal spell sequence is `""`
+The expected spell sequence (output) is `"BCCHH"`. There are other possible winning sequences such as `"HHCCC"` but `"BCCHH"` is lexicographically smaller.
 
 | Turn | Spell | Flame W. | Ice L. | Your HP |
 |--|--|--|--|--|
-| (start) | (none) | 0 | 0 | 15 |
-| 1 | Coldah | 0 | 0 | 15 |
-| 1' | monsters attack | 0 | 0 | 13 |
-| 2 | Hottah | 0 | 0 | 13 |
-| 2' | monsters attack | 0 | 0 | 11 |
+| (start) | (none)          | 11 | 10 | 7 |
+| 1       | Blowah          | 9  | 8  | 7 |
+| 1'      | monsters attack | 9  | 8  | 5 |
+| 2       | Coldah          | 4  | 9  | 5 |
+| 2'      | monsters attack | 4  | 9  | 3 |
+| 3       | Coldah          | -1 | 10 | 3 |
+| 3'      | monsters attack | X  | 10 | 2 |
+| 4       | Hottah          | X  | 5  | 2 |
+| 4'      | monsters attack | X  | 5  | 1 |
+| 5       | Hottah          | X  | 0  | 1 |
+| (win)   | Victory pose    | X  | X  | 1 |
 
 (your HP is the last column and you may have to resize this panel to see it)
 
@@ -106,16 +127,18 @@ The optimal spell sequence is `""`
 ```
 monsters: ["Magic haze;vortex;3",
 "Iguana;lizard;12"]
+nabilaHP: 4
 ```
 the expected output is `"R"` because vortices absorb all spells (resulting in their HP increasing every turn). You will never be able to win this battle, so you must run away.
 
 * For 
 
 ```
-monsters: ["Iron golem;humanoid;20",
-"Iron golem;humanoid;20"]
+monsters: ["Iron golem;humanoid;10",
+"Iron golem;humanoid;10"]
+nabilaHP: 7
 ```
-You need to cast any spell 10 times to defeat these monsters, but on the 8th round, they would have dealt 16 HP of damage to you. You cannot win and should output `"R"`, saving yourself from defeat.
+You need to cast spells for 5 rounds to defeat these monsters, but on the 4th round, they would have dealt 8 HP of damage to you. You cannot win and should output `"R"`, escaping defeat.
 
 __Input / Output__
 
@@ -132,3 +155,169 @@ The shortest sequence of spells you will cast that leads to victory, or `"R"` if
 
 """
 
+from itertools import product
+from copy import deepcopy
+
+type_defs = {
+    "blazing": ["C", "H"],
+    "frigid": ["H", "C"],
+    "lizard": ["C", ""],
+    "flying": ["B", ""],
+    "spirit": ["", "B"],
+    "vortex": ["", "BCH"],
+    "humanoid": ["", ""],
+}
+
+class Monster:
+    
+    def __init__(self, name, types, hp):
+        self.name = name
+        self.weaknesses = set()
+        self.absorbs = set()
+        self.hp = int(hp)
+
+        # build all absorbs
+        for type_name in types:
+            type = type_defs[type_name]
+            type_absorbs = type[1]
+            for a in type_absorbs:
+                self.absorbs.add(a)
+
+        # build weaknesses
+        for type_name in types:
+            type = type_defs[type_name]
+            type_weaknesses = type[0]
+                
+            for w in set(type_weaknesses):
+                if w not in self.absorbs:
+                    self.weaknesses.add(w)
+
+                    
+    def __str__(self):
+        return "{} ({} HP) weak to {}, absorbs {}".format(
+            self.name,
+            self.hp,
+            ''.join(sorted(list(self.weaknesses))).upper(),
+            ''.join(sorted(list(self.absorbs))).upper())
+
+
+    def __repr__(self):
+        return "{};{};{};{}".format(self.name, self.weaknesses, self.absorbs, self.hp)
+
+        
+class Nabila:
+    
+    def __init__(self, hp):
+        self.hp = int(hp)
+
+        
+    def __str__(self):
+        return "Nabila's HP: " + self.hp
+
+        
+def parseMonster(s):
+    # instantiates given monster string as a Monster
+    name, types_csv, hp = s.split(';')
+    types = types_csv.split(',')
+    return Monster(name, types, hp)
+
+    
+def attack(monster, spell):
+    if spell in monster.weaknesses:
+        monster.hp -= 5
+    elif spell in monster.absorbs:
+        monster.hp += 1
+    else:
+        monster.hp -= 2 
+
+
+def summarizeMonsters(monsters):
+    out = ""
+    for m in monsters:
+        out += str(m) + "\n"
+    return out[:-1]
+        
+def simulate(nabila, monsters, spellSeq):
+    # print("\nSimulating monster leader", monsters[0], "magic sequence", spellSeq)
+    round = 1
+    for s in spellSeq:
+        
+        # print("Round", round, "Spell:", spellSeq)
+        
+        # your move
+        for m in monsters:
+            attack(m, s)
+
+        # print(summarizeMonsters(monsters), "; Nabila's HP:", nabila.hp)
+              
+        # check if any was defeated
+        for i in range(len(monsters)-1, -1, -1):
+            if monsters[i].hp <= 0:
+                del monsters[i]
+
+        # check for victory
+        if len(monsters) == 0:
+            # print("Monsters perished")
+            return spellSeq
+            
+        # enemies attack
+        nabila.hp -= len(monsters)
+
+        # check for defeat
+        if nabila.hp <= 0:
+            return "D"
+
+        round += 1
+    return "C"  # continue
+        
+def mightyMagic(monsterList, nabilaHP):
+    nabila = Nabila(nabilaHP)
+    spells = "BCH"
+    monsters = []
+    for monsterStr in monsterList:
+        monsters.append(parseMonster(monsterStr))
+
+    # battle can only last until you run out of HP
+    # assume only one enemy is standing after your first move
+    turnLimit = nabila.hp
+
+    for rounds in range(1, turnLimit+1):
+        combos = product(spells, repeat=rounds)
+        spellSeqs = [''.join(c) for c in combos]
+        for seq in spellSeqs:
+            nCopy = deepcopy(nabila)
+            mCopy = deepcopy(monsters)
+            outcome = simulate(nCopy, mCopy, seq)
+            if outcome == "D":
+                # print("Nabila is defeated with", seq)
+                pass
+            elif outcome == "C":
+                pass
+            else:
+                # print("monsters perished")
+                return outcome
+    return "R"  # could not reach a winning sequence
+
+# print(mightyMagic(["Ice dragon;lizard,flying,frigid;25"]))
+
+"""
+print(mightyMagic([
+"Goblin;humanoid;4",
+"Goblin;humanoid;4",
+"Goblin;humanoid;4"
+]))
+"""
+
+print(mightyMagic(["Ice dragon;lizard,flying,frigid;35"], 15))
+
+print(mightyMagic(["Goblin;humanoid;4",
+                   "Goblin;humanoid;4",
+                   "Goblin;humanoid;4"], 5))
+
+print(mightyMagic(["Flame wolf;blazing;11","Ice leopard;frigid;10"], 7))
+
+print(mightyMagic(["Magic haze;vortex;3",
+                   "Iguana;lizard;12"], 4))
+
+print(mightyMagic(["Iron golem;humanoid;10",
+                   "Iron golem;humanoid;10"], 7))
