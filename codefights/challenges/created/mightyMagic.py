@@ -1,10 +1,10 @@
 description = """
 
-You are *Nabila*, a brave, aspiring sorceress in the land of *Qod Segnall*. Between you and the fabled *Qantum Staff* are hordes of bloodthirsty monsters.
+You are *Nabila*, a brave aspiring sorceress in the land of *Qod Segnall*. Between you and the fabled *Qantum Staff* are groups of bloodthirsty monsters you must defeat with your magic.
 
 So far you have learned three elemental spells:
 
-| Enchantment | Element |
+| Name | Element |
 |--|--|
 |*Blowah*|Wind|
 |*Coldah*|Ice|
@@ -12,9 +12,9 @@ So far you have learned three elemental spells:
 
 Your eagerness and high intelligence come at a cost: you have yet to master the skill to focus your energy on a specific target. All spells you cast will hit everything in front of you. Casting spells use up your willpower, which you may recover after a battle is over (in other words, you can endlessly cast spells). However, you want to save your energy for the grueling road in front of you.
 
-You start each battle with **a variable amount of HP** (hit points) and are equipped with the magical **Jaavskrit  Armor**, which reduces all monster damage to just **1 HP per attack**. If your HP drops to zero or below, you will faint and lose the battle.
+You start each battle with **a variable amount of HP** (hit points) and are equipped with the magical **Jaevskrit  Armor**, which reduces all damage by a single monster to just **1 HP per attack**. If your HP drops to zero or below, you will lose the battle and your quest will end.
 
-Monsters are attuned to certain elements, and may have a weakness to none or multiple elements. They may also absorb some elements, which recovers their HP. 
+Monsters are attuned to certain elements, and may have a weakness to none or multiple elements. They may also absorb some elements, which increases their HP. 
 
 With your Spectral Specs you can always tell how much HP monsters have and what their elemental affinities are. They have no upper limit to their HP. 
 
@@ -58,13 +58,13 @@ As another example, dragons, being `flying lizard`s, are supposed to be weak to 
 
 But an **Ice dragon**, being *frigid*, will absorb *Coldah*, nullifying the *lizard*'s weakness to this spell. So the **Ice dragon** will be weak to *Blowah* and *Hottah* (because it's *frigid*), and will absorb *Coldah*.
 
-Each *Test Case* will represent a battle you must win or run away from. Winning battles give you experience, so you will only run if the battle is unwinnable (that is, the enemies are unbeatable, or they will render you unconscious before you can defeat them).
+Each *Test Case* will represent a battle you must win or run away from. Winning battles give you experience, so you will only run if the battle is unwinnable (that is, there are no possible winning sequences)
 
-Battles are turn-based and you will always move first, starting with `nabilaHP` Hit Points. You must cast a spell, and may not pass your turn. You win when all monsters' HP drop to zero or below. After your turn, all living monsters will attack you (dealing 1 HP of damage per living monster), and afterward, a new round begins. There is no way to heal yourself during a battle.
+Battles are turn-based and you will always move first, starting with `nabilaHP` Hit Points. You win when all monsters' HP drop to zero or below. After your move, all living monsters will attack you (dealing 1 HP of damage per living monster), and afterward, a new round begins. There is no way to heal yourself during a battle.
 
 Your task is to find the shortest sequence of spells to dispatch the monsters. If there is more than one optimal sequence, output the lexicographically smallest one. You must try and win, but for hopeless battles, output `"R"` (Run). 
 
-A valid sequence of spells will be a string of characters made up of any number of `"B", "C"`, and `"H"`, which stand for the first letter of each spell: (B)lowah, (C)oldah and  (H)ottah. Spells should simply be concatenated together without separators.
+A valid sequence of spells will be a string of characters made up of any number of `"B", "C"`, and `"H"`, (the first letter of each spell: (B)lowah, (C)oldah and  (H)ottah). Spells should simply be concatenated together without separators.
 
 Monsters are given as an array of strings in the following semicolon-separated format:
 
@@ -72,7 +72,7 @@ Monsters are given as an array of strings in the following semicolon-separated f
 
 For example:
 
-`"Ice dragon;lizard,flying,frigid;35 
+`"Ice dragon;lizard,flying,frigid;35"`
 
 __Example__
 
@@ -82,9 +82,7 @@ monsters: ["Ice dragon;lizard,flying,frigid;35"]
 nabilaHP: 15
 ```
 
-The output should be `"BBBBBBB"`. Being a *flying* monster with no additional characteristic to absorb *Blowah*, it will be weak to this spell and receive `5` points of damage each turn. Because you attack first, on the 7th round the dragon will be defeated, after it has dealt 6 rounds of damage to you (at 1 HP each). 
-
-As a side note, you will have 9 HP left, but this information is not important.
+The output should be `"BBBBBBB"`. Being a *flying* monster with no additional characteristic to absorb *Blowah*, it will be weak to this spell and receive `5` points of damage every turn. Because you attack first, on the 7th round the dragon will be defeated. You will have received `6` points of damage to you, winning with only `1` HP left. You will begin other battles with an unrelated amount of HP.
 
 * For 
 ```
@@ -115,9 +113,9 @@ The expected spell sequence (output) is `"BCCHH"`. There are other possible winn
 | 2       | Coldah          | 4  | 9  | 5 |
 | 2'      | monsters attack | 4  | 9  | 3 |
 | 3       | Coldah          | -1 | 10 | 3 |
-| 3'      | monsters attack | X  | 10 | 2 |
+| 3'      | monster attack | X  | 10 | 2 |
 | 4       | Hottah          | X  | 5  | 2 |
-| 4'      | monsters attack | X  | 5  | 1 |
+| 4'      | monster attack | X  | 5  | 1 |
 | 5       | Hottah          | X  | 0  | 1 |
 | (win)   | Victory pose    | X  | X  | 1 |
 
@@ -142,16 +140,23 @@ You need to cast spells for 5 rounds to defeat these monsters, but on the 4th ro
 
 __Input / Output__
 
-
 """
 
 
 inputoutput = """
-The list of monsters in this particular battle. Each string represents a monster in the format
+The list of monsters in this particular battle. Each string represents a monster in the format `"NAME;TYPES (comma-separated);HP"`
 
-`"NAME;TYPES (comma-separated);HP"`
+*Guaranteed constraints*:
+<code>1 &le; monsterList.length &le; 10</code>
 
-The shortest sequence of spells you will cast that leads to victory, or `"R"` if you must run away. If more than one optimal sequence exists, output the lexicographically smallest one.
+
+Nabila's HP at the start of the battle
+
+*Guaranteed constraints*:
+<code>1 &le; nabilaHP &le; 100</code>
+
+
+The shortest sequence of spells you will cast that leads to victory, or `"R"` if you must run away. If multiple winning sequences of the shortest length exist, output the lexicographically smallest one.
 
 """
 
@@ -321,3 +326,5 @@ print(mightyMagic(["Magic haze;vortex;3",
 
 print(mightyMagic(["Iron golem;humanoid;10",
                    "Iron golem;humanoid;10"], 7))
+
+print(mightyMagic(["Frost Gecko;frigid,lizard;10"], 9))  # HH
