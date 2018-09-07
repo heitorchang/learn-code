@@ -1,5 +1,5 @@
 def grabThatVine(vines):
-    airplane = 99
+    airplane = 20
     larry = 0
     uglyHack_maxTime = 1000
     
