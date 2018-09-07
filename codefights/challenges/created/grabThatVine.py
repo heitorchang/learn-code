@@ -1,7 +1,8 @@
 def grabThatVine(vines):
     airplane = 99
     larry = 0
-
+    uglyHack_maxTime = 1000
+    
     grid = ["" for _ in range(airplane+1)]
     
     vObj = [{'left': 0, 'leftTimes': None, 'swingTime': 0}
@@ -9,15 +10,13 @@ def grabThatVine(vines):
     
     for i, v in enumerate(vines):
         vObj[i]['left'] = v[0]
-        vObj[i]['leftTimes'] = list(range(0, airplane, v[1] * 2))
+        vObj[i]['leftTimes'] = list(range(0, uglyHack_maxTime, v[1] * 2))
         vObj[i]['swingTime'] = v[1]
         grid[v[0]+1:v[0]+4] = "qqq"
     
     onSolidGround = True
     quicksandPitNum = 0
     timer = 0
-
-    print(vObj)
     
     while True:
         if larry == airplane:
