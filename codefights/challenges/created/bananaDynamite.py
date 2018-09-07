@@ -1,3 +1,5 @@
+# See 'spacePrimates' 
+
 description = """
 QBasic gorillas parody
 
