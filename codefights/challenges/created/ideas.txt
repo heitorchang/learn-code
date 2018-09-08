@@ -1,0 +1,5 @@
+* Puyo puyo clone with given board and sequence of pieces, determine max. amount of cells you can remove
+
+* bacteriaCells.py there is a stack of medicines and you have to pick which of the three dishes to use on
+
+* spacePrimates.py QBasic Gorillas clone, except you're in a cave so you can't throw ridiculously high arcs to hit the opponent
