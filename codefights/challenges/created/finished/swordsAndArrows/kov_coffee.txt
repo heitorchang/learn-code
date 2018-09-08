@@ -1,0 +1,234 @@
+# So, this algorithm use recursive dp search to find the result, but with few optimization and trick
+# it can solve this special cases:
+#  grid: ["KEKEKEKE", 
+#         "EKEKEKEK", 
+#         "KEKEKEKE", 
+#         "EKEKEKEK", 
+#         "KEKEKEKE"]
+# Output: 20
+# time: 3.203ms
+#  
+#  grid: ["------------", 
+#         "-KKKKKKKKKK-", 
+#         "-K--------K-", 
+#         "-K-AAAAAA-K-", 
+#         "-K-A----A-K-", 
+#         "-K-A-EE-A-K-", 
+#         "-K-A-EE-A-K-", 
+#         "-K-A----A-K-", 
+#         "-K-AAAAAA-K-", 
+#         "-K--------K-", 
+#         "-KKKKKKKKKK-", 
+#         "------------"]
+# Output: 4
+# time: 12.854ms 
+#
+# the tricks:
+# - exclude pairs from to searching where enemy has only one attacker or attacker has only one target
+# - calculate the max reachable amount of battles. 
+#   it is the minimum of the two values:
+#     count of attackers has target(s)
+#     count of enemies has attaker(s)
+# - try first the shortest path
+# - and stop searching when reached the possible max battles.
+# 
+
+swordsAndArrows = (g) ->
+    console.time("time")
+    w = g[0].length + 3                        # width of a row 
+    g = g.join"+++".split""                    # join the board to 1d array, 
+                                               # +++ to deny Archers to shoot between rows horizontally
+    K = [   -w,                                # move directions and Knight attacks 
+         -1,    1,
+             w
+        ]          
+    A = [
+                           -w*3,               # Archer attacks
+                     -w*2-1,   -w*2+1, 
+               -w-2,                   -w+2,  
+         -3,                                    3,
+               w-2,                     w+2,
+                    w*2-1,      w*2+1,
+                           w*3
+        ] 
+    Se = g.map (c) -> c = {a: new Set(), p: new Set()} # Set()'s for attackers, places by enemies
+    Sa = g.map (c) -> c = {e: new Set(), p: new Set()} # Set()'s for enemies, places by attackers
+    Sp = g.map (c) -> c = {a: new Set(), e: new Set()} # Set()'s for attackers, enemies by places
+
+    # function for walking q: queue, a: attack map, e: enemies found, v: for already visited positions
+    F = (q, a, e = 0, v = []) ->
+        # process the queue, x: position, d: direction
+        index = 0 
+        while q[index]
+            [x, d] = q[index++] 
+            if !v[x] && "-AK".includes(g[x])
+                v[x] = 1
+                # check enemies from every position
+                e += G(x, a)
+                if d
+                    for X in K
+                        q.push([x + X, d - 1])
+            
+        if e
+            i++
+    
+    # find reachable enemies from this position
+    # x: battle position, a: attack map, e: enemies found
+    G = (x, a, e = 0) ->
+        for X in a
+            if g[x + X] == 'E'
+                # increase e if enemy found 
+                e++
+                # add the pairs to the sets
+                Se[x + X].a.add(i)
+                Se[x + X].p.add(x << 14 | i)
+                Sa[i].e.add(x + X)
+                Sa[i].p.add(x << 14 | x + X)
+                Sp[x].a.add(i) 
+                Sp[x].e.add(x + X)
+            
+        e
+    
+    # walk on the whole map and find attackers. i: attacker id
+    i = 0
+    for x, c of g
+        if 'AK'.includes(c)
+            if c == "A"
+                F([[+x, 4]], A)
+            else
+                F([[+x, 7]], K)
+    # debug:
+    #console.log("enemies:", Se.filter((v) -> v.a.size))
+    #console.log("attackers:", Sa.filter((v) -> v.e.size))
+    #console.log("places:", Sp.filter((v) -> v.e.size))
+
+
+    # we have to find the maximum amout of battles, but first try to simplify the relations
+
+    removeAttackerFromEnemies = (aid) -> 
+        Sa[aid].e.forEach (eid) -> 
+            Se[eid].a.delete(aid)
+            Sa[aid].e.delete(eid)
+        
+    removeEnemyFromAttackers = (eid) -> 
+        Se[eid].a.forEach (aid) -> 
+            Se[eid].a.delete(aid)
+            Sa[aid].e.delete(eid)
+        
+    removeAttackerAndEnemyFromPlaces = (aid, eid) -> 
+        places = new Set()
+        Sa[aid].p.forEach (v) -> 
+            eid = v & 16383
+            pid = v >> 14
+            Sp[pid].a.delete(aid)
+            if Se[eid].a.size == 0
+                Sp[pid].e.delete(eid)
+            places.add(pid)
+        Se[eid].p.forEach (v) -> 
+            aid = v & 16383
+            pid = v >> 14
+            Sp[pid].e.delete(eid)
+            if Sa[aid].e.size == 0
+                Sp[pid].a.delete(aid)
+            places.add(pid)
+        # if places changed, try to find other pairs on them recursive
+        places.forEach (pid) -> 
+            checkPlace(pid)
+    
+    # check places, is there only one enemy and the enemy has one attacker,
+    #            or is there only one attacker and the attacker has only one target
+    #            then these are removable
+    checkPlace = (pid) -> 
+        if Sp[pid].e.size == 1
+            # only one enemy targeted from this place
+            eid = [...Sp[pid].e][0]
+            if Se[eid].a.size == 1
+                # enemy has only one attacker, then choose this battle for them
+                aid = [...Se[eid].a][0]
+                removeAttackerFromEnemies(aid)
+                removeEnemyFromAttackers(eid)
+                removeAttackerAndEnemyFromPlaces(aid, eid)
+                battles++
+            
+        else if Sp[pid].a.size == 1
+            # only one attacker use this place
+            aid = [...Sp[pid].a][0]
+            if Sa[aid].e.size == 1
+                # attacker has only one target, then choose this battle for them
+                eid = [...Sa[aid].e][0]
+                removeAttackerFromEnemies(aid)
+                removeEnemyFromAttackers(eid)
+                removeAttackerAndEnemyFromPlaces(aid, eid)
+                battles++
+    
+    # find places has fixed battles
+    battles = 0
+    for pid of Sp
+        checkPlace(pid)
+
+    # debug
+    # console.log("enemies:", Se.filter((v) -> v.a.size))
+    # console.log("attackers:", Sa.filter((v) -> v.e.size))
+    # console.log("places:", Sp.filter((v) -> v.e.size))
+    
+    # calculate max reachable battles: it's minimum of the attacked enemies or the attackers
+    maxcount = battles + Math.min(Se.filter((v) -> v.a.size).length, Sa.filter((v) -> v.e.size).length)
+    # possible max battles reached
+    maxreach = 0    
+    # filter the available targets
+    E = Se.filter((v) -> v.a.size).map((v) -> [...v.p])
+    # attackers flag array to mark the attacker has already a battle
+    v = Buffer("1".repeat(i)) 
+
+    # find the optimal attack pairs with dp, stop searching, if maxcount reached
+    H = (i, count) -> 
+        key = i + v
+        if !H[key]
+            if E[i]
+                H[key] = Math.max(
+                    # first try the available pairs  
+                    ...E[i].map((j, k) ->
+                        if maxreach
+                            return 1
+                        x = j & 16383            # attacker id
+                        y = j >> 14              # attacker position
+                        a = v[x]                 # flag for attackers, available or already in battle (incl. position).  
+                        p = g[y]                 # game board value, 0 if here was started a battle earlier
+                        m = 0
+                        if p isnt 0 && v[x] > 48
+                            v[x] -= k + 1        # if position and warrior available, set to unavail and go next
+                            g[y] = 0
+                            m = 1 + H(i + 1, count + 1)
+                            g[y] = p
+                            v[x] = a
+                        return m
+                    ),
+                    # second, try to skip this enemy  
+                    ...E[i].map((j, k) -> 
+                        if maxreach
+                            return 1
+                        x = j & 16383            # attacker id
+                        y = j >> 14              # attacker position
+                        a = v[x]                 # flag for attackers, available or already in battle (incl. position).  
+                        p = g[y]                 # game board value, 0 if here was started a battle earlier
+                        m = 0
+                        if p is 0 || v[x] < 49
+                            m = H(i + 1, count)  # if position or warrior not avail, go to next enemy
+                        return m
+                    )) | 0
+            else 
+                if count == maxcount
+                    maxreach = 1
+                H[key] = 1
+        H[key]
+    
+    # call dp search
+    max = H(0, battles) - 1
+    console.log max, maxreach, maxcount
+    
+    console.timeEnd("time")
+    if maxreach
+        # if maximum reached
+        maxcount
+    else 
+        max
