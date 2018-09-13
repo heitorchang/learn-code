@@ -1,0 +1,23 @@
+(defun productionSeriesInfo (ingredients recipe1 recipe2 productionSeriesVec)
+  (labels ((calcing (recipe1 recipe2 productionSeries acc)
+                    (if (null productionSeries)
+                        (reverse acc)
+                      (let ((arr (list 0 recipe1 recipe2)))
+                        (calcing recipe1 recipe2 (cdr productionSeries) (if (or (= 1 (car productionSeries)) (= 2 (car productionSeries)))
+                                                                            (cons (nth (car productionSeries) arr) acc)
+                                                                          (cons (car productionSeries) acc)))))))
+          (let* ((productionSeries (coerce productionSeriesVec 'list))
+                 (arr (list 0 recipe1 recipe2))
+                 (lenser (length productionSeries))
+                 (consume (calcing recipe1 recipe2 productionSeries '()))
+                 (constot (apply #'+ consume))
+                 (canproduce (floor ingredients constot)))
+            (cond ((= 0 canproduce) (list "Out of ingredients!"
+                                          (concatenate 'string "Missing "
+                                                       (write-to-string (- constot ingredients)) " ingredients")))
+                  ((= 1 canproduce) (list "Ok"))
+                  (t (list "Ok" (concatenate 'string "Ingredients for " (write-to-string (- canproduce 1)) " more series")))))))
+
+(productionSeriesInfo 16 2 5 #(1 1 2 1 2))
+(productionSeriesInfo 10 1 10 #(1 2))
+(productionSeriesInfo 10000001 3 5 #(1 1 2 2 2 3 33333 2 1 1 2 292 2 1 1 2 2 2 3 3 2 1 1 2 292 2 1 1 2 2 2 3 3 2 1 1 2 292 2 1 1 2 2 2 3 3 2 1 1 2 292 2 1 1 2 2 2 3 3 2 1 1 2 292 2 1 1 2 2 2 3 3 2 1 1 2 292 2 1 1 2 2 2 3 3 2 1 1 2 292 2 1 1 2 2 2 3 3 2 1 1 2 292 2 2))
