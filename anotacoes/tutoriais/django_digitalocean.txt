@@ -1,0 +1,3 @@
+One-click Django 1.11 on Digital Ocean
+django_digitalocean/install.md
+django_digitalocean/git_project.md

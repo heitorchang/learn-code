@@ -1,0 +1,4 @@
+Teste de tags
+teste_tags/instalacao.md
+teste_tags/hello.md
+teste_tags/templates.md
