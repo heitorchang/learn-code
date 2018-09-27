@@ -40,9 +40,15 @@ def generateSuspiciousTriple():
     for i in range(7):
         if i in cheatIndices:
             pair = choice(pairs)
-            a += pair[0]
-            b += pair[0]
-            c += pair[1]
+            r = randint(1, 2)
+            if r == 1:
+                a += pair[0]
+                b += pair[0]
+                c += pair[1]
+            else:
+                a += pair[1]
+                b += pair[1]
+                c += pair[0]
         else:
             r = randint(1, 2)
             if r == 0:
@@ -137,9 +143,15 @@ def multipleChoiceCheaters(a, b, k):
     return suspiciousAnswersCount > nonSuspiciousAnswersCount
     
 
-print(multipleChoiceCheaters("AAAAADDDDDDDC",
-                             "AAAAADDDDDDDC",
-                             "AAAAABBBBBBBB"
+print(multipleChoiceCheaters("AAABBBBBBBAAA",
+                             "AAABBBBBBBAAA",
+                             "AAAAAAAAAAAAA"
 ))
 
                              
+# t = generateTestCase(100, 11)
+# multipleChoiceCheaters(*t)
+# t[0]
+# t[1]
+# t[2]
+

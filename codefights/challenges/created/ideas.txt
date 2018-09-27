@@ -1,4 +1,4 @@
-* bacteriaCells.py there is a stack of medicines and you have to pick which of the three dishes to use on. Bacteria grow at a specific rate and medicines have effects like reducing a fixed number, halving, or stalling growth
+* School theme: prefixSuffix something about a word being complex, or grouping words with Greek and Latin prefixes and suffixes
 
 * inside a cave there are stalactites and stalagmites, you can knock down 3 of them and try throwing a ball at a target (projectile motion)
 
