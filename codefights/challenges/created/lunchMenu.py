@@ -8,38 +8,49 @@ Given the available choices in this week's menu, output the total number of lunc
 from itertools import product
 
 def lunchMenu(menu):
-    choices = set()
+    def countBeans(seq):
+        return sum(1 for meal in seq if 'bean' in meal)
+
+    acceptable = set()
     count = 0
     
     options = product(*menu)
+    
     for option in options:
-        if len(set(option)) == 5:
-            count += 1
-            print(count, option)
-            f = frozenset(option)
-            if f not in choices:
-                choices.add(frozenset(option))
-            else:
-                print("already added")
-    return len(choices)
+        
+        # conversion to set will exclude repeats
+        f = frozenset(option)
+        if len(f) == 5:
+            if f not in acceptable:
+                if countBeans(f) <= 2:
+                    acceptable.add(frozenset(option))
+    return len(acceptable)
 
 
 """
-test(lunchMenu([["Hot dogs", "Schnitzels", "Spaghetti"],
-                ["Schnitzels", "Hot dogs"],
-                ["Pizza", "Meatballs", "Hot dogs"],
-                ["Beef stroganoff", "Burgers"],
-                ["Curry", "Burgers"]]), 21)
+test(lunchMenu([["hot dogs", "schnitzels", "spaghetti"],
+                ["schnitzels", "hot dogs"],
+                ["pizza", "meatballs", "hot dogs"],
+                ["beef stroganoff", "burgers"],
+                ["curry", "burgers"]]), 21)
 
 test(lunchMenu([["Cream cheese"],
                 ["Cream cheese"],
                 ["Cream cheese"],
                 ["Cream cheese"],
                 ["Cream cheese"]]), 0)
-"""
+
     
-test(lunchMenu([["Corn", "Rice"],
-                ["Rice", "Corn"],
-                ["Beans", "Okra"],
-                ["Beans", "Salad"],
-                ["Pasta", "Corn"]]), 0)
+test(lunchMenu([["corn", "rice"],
+                ["rice", "corn"],
+                ["beans", "okra"],
+                ["beans", "salad"],
+                ["pasta", "corn"]]), 0)
+"""
+
+test(lunchMenu([["bean burrito", "mac and cheese"],
+                ["bean casserole", "chicken pot pie"],
+                ["green beans", "roast beef"],
+                ["bean curd", "mac and cheese"],
+                ["bean soup", "roast beef"]]), 4)
+                 
