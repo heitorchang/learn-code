@@ -1,5 +1,1 @@
-* School theme: prefixSuffix something about a word being complex, or grouping words with Greek and Latin prefixes and suffixes
-
-* inside a cave there are stalactites and stalagmites, you can knock down 3 of them and try throwing a ball at a target (projectile motion)
-
-* black and white "cross" puzzle, touching a square swaps its colors and its up, down, left, right neighbors
+* ghosts stealing letters from a string
