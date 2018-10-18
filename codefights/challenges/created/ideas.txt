@@ -1,1 +1,2 @@
-* ghosts stealing letters from a string
+* invincible bomberman (min. num. of steps and bombs to clear a screen)
+
