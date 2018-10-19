@@ -14,7 +14,7 @@ For example:
 "uo" = wind
 ```
 
-Given an uninterrupted sequence of noise, your task is to determine the maximal number of deciseconds out of the sequence that can be interpreted as ghost wails. **Ghost wails should not overlap.**
+Given an uninterrupted sequence of sounds, your task is to determine whether it can be divided into non-overlapping, contiguous subsequences that all follow the pattern of ghosts' wails. If so return `true`, otherwise, return `false`.
 
 """
 
@@ -86,3 +86,4 @@ ooouooouo
 
 
 
+"""

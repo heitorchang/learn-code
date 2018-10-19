@@ -1,2 +1,5 @@
 * invincible bomberman (min. num. of steps and bombs to clear a screen)
 
+* magical spell of some kind, maybe mix vowels etc and certain combinations create a 'magicalness level' (a positive integer say from 0 to 99999)
+
+* something about carving pumpkins
