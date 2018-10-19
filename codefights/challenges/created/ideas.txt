@@ -1,5 +1,16 @@
 * invincible bomberman (min. num. of steps and bombs to clear a screen)
 
-* magical spell of some kind, maybe mix vowels etc and certain combinations create a 'magicalness level' (a positive integer say from 0 to 99999)
+* magical square with a grid of letters, forms spells by combining certain characters and vowels, etc. Certain combinations create a higher 'magicalness level', compute square's total 'magicalness' (invent a better term)
+
+consecutive number of Xs are exponential? 2 4 8 16 etc
+
+but must form a syllable with at least one vowel before and after the X
+(A E I O U Y)
+
+ABXAM
+CARXA
+DREXA
+MARXA
+XARMA
 
 * something about carving pumpkins
