@@ -1,0 +1,7 @@
+* T-shirts
+
+Read [Announcement Regarding Coins, Items and T-shirts](https://app.codesignal.com/forum/hmLhmmqyvaWre2JoJ)
+
+```
+we will keep the store alive for the U.S. users who signed up on our site prior to August 24, 2018. As we’ve announced previously, the store has been unavailable for all non-US users who've signed up prior to July 30, 2017, and it will remain that way.
+```
