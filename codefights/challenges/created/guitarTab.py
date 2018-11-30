@@ -4,6 +4,27 @@ You will convert C-4 E-4 G#4 etc. to a guitar tab
 
 https://en.wikipedia.org/wiki/ASCII_tab
 
+
+|Fret|E|A|D|G|B|e|
+|--|--|--|--|--|--|--|
+|0|E2|A2|D3|G3|B3|E4|
+|1|F2|A#2|D#3|G#3|C4|F4|
+|2|F#2|B2|E3|A3|C#4|F#4|
+|3|G2|C3|F3|A#3|D4|G4|
+|4|G#2|C#3|F#3|B3|D#4|G#4|
+|5|A2|D3|G3|C4|E4|A4|
+|6|A#2|D#3|G#3|C#4|F4|A#4|
+|7|B2|E3|A3|D4|F#4|B4|
+|8|C3|F3|A#3|D#4|G4|C5|
+|9|C#3|F#3|B3|E4|G#4|C#5|
+|A(10)|D3|G3|C4|F4|A4|D5|
+|B(11)|D#3|G#3|C#4|F#4|A#4|D#5|
+|C(12)|E3|A3|D4|G4|B4|E5|
+|D(13)|F3|A#3|D#4|G#4|C5|F5|
+|E(14)|F#3|B3|E4|A4|C#5|F#5|
+|F(15)|G3|C4|F4|A#4|D5|G5|
+
+
 Standard Guitar Tuning
 
 e 0 (E-4)
