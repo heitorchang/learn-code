@@ -3,3 +3,4 @@ balanced tree, physics, weight on lever
 
 * gift giving graph, find nodes who don't get gifts and find shortest path? (weighted graph with shipping costs?)
 
+* gift giving, determine SCC
