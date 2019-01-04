@@ -1,0 +1,33 @@
+Test with https://repl.it/@heitorpontual/py2sandbox?language=python
+
+# https://sebastianraschka.com/Articles/2014_python_2_3_key_diff.html
+
+
+# integer division
+print 2 / 3  # 0
+print 3 / 2  # 1
+print -2 / 3  # -1
+print -5 / 4  # -2
+
+print 2 / 3.0  # 0.6667
+
+
+# print unicode("já")  # doesn't work
+
+# xrange
+
+for i in xrange(1, 10):
+  print i  # prints 1, 2, 3..., 9
+
+
+# input() in Py3 returns a str
+
+# input() in Py2 is eval(raw_input())
+
+for line in sys.stdin:
+    ab = line.split()
+
+inp = sys.stdin.readlines()
+x = int(inp[0])
+y = int(inp[1])
+rest = map(int, inp[2:])

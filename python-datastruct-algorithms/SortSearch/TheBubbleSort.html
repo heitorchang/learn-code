@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>5.7. The Bubble Sort &#8212; Problem Solving with Algorithms and Data Structures</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/reveal.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/runestonebase.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/codelens.js"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js"></script>
+    <script type="text/javascript" src="../_static/fitb.js"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="../_static/reveal.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/clike.js"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="../_static/mchoice.js"></script>
+    <script type="text/javascript" src="../_static/timedmc.js"></script>
+    <script type="text/javascript" src="../_static/timed.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/clickable.js"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5.8. The Selection Sort" href="TheSelectionSort.html" />
+    <link rel="prev" title="5.6. Sorting" href="sorting.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'https://runestone.academy' ? 'https://runestone.academy' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'pythonds';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "3.6.0";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = true;
+  eBookConfig.python3 = true;
+  eBookConfig.basecourse = 'pythonds';
+  eBookConfig.runestone_version = '3.2.17';
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="https://runestone.academy/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="../index.html">Problem Solving with Algorithms and Data Structures</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="TheBubbleSort.html#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="TheBubbleSort.html#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='../genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        
+        <!-- user account dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="TheBubbleSort.html#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='https://runestone.academy/runestone/default/courses'>Change Course</a></li>
+            <!--
+            <li class="divider"></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li> -->
+			<li class="divider"></li>
+            <li><a href='https://runestone.academy/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='https://runestone.academy/runestone/assignments/index'>Progress Page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://runestone.academy/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="https://runestone.academy/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="https://runestone.academy/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='TheBubbleSort.html#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
+          </ul>
+        </li>
+        <!-- end user account dropdown -->
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="TheBubbleSort.html#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='https://runestone.academy/runestone/static/pythonds/navhelp.html'>Navigation Help</a></li>
+            <li><a href='https://runestone.academy/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='https://runestone.academy/runestone/default/reportabug?course=pythonds&amp;page=TheBubbleSort'>Report A Problem</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          <li class="dropdown globaltoc-container">
+  <a href="../index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Chapters <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Introduction/toctree.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../AlgorithmAnalysis/toctree.html">2. Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../BasicDS/toctree.html">3. Basic Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Recursion/toctree.html">4. Recursion</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="toctree.html">5. Sorting and Searching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Trees/toctree.html">6. Trees and Tree Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Graphs/toctree.html">7. Graphs and Graph Algorithms</a></li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        <!--
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 5.6. Sorting" data-toggle="tooltip">
+    <a href="sorting.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 5.8. The Selection Sort' data-toggle="tooltip" >
+    <a href="TheSelectionSort.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="the-bubble-sort">
+<h1>5.7. The Bubble Sort<a class="headerlink" href="TheBubbleSort.html#the-bubble-sort" title="Permalink to this headline">¶</a></h1>
+<p>The <strong>bubble sort</strong> makes multiple passes through a list. It compares
+adjacent items and exchanges those that are out of order. Each pass
+through the list places the next largest value in its proper place. In
+essence, each item “bubbles” up to the location where it belongs.</p>
+<p><a class="reference internal" href="TheBubbleSort.html#fig-bubblepass"><span class="std std-ref">Figure 1</span></a> shows the first pass of a bubble sort. The shaded
+items are being compared to see if they are out of order. If there are
+<em>n</em> items in the list, then there are <span class="math notranslate nohighlight">\(n-1\)</span> pairs of items that
+need to be compared on the first pass. It is important to note that once
+the largest value in the list is part of a pair, it will continually be
+moved along until the pass is complete.</p>
+<div class="figure align-center" id="id1">
+<span id="fig-bubblepass"></span><img alt="../_images/bubblepass.png" src="../_images/bubblepass.png" />
+<p class="caption"><span class="caption-text">Figure 1: <code class="docutils literal notranslate"><span class="pre">bubbleSort</span></code>: The First Pass</span></p>
+</div>
+<p>At the start of the second pass, the largest value is now in place.
+There are <span class="math notranslate nohighlight">\(n-1\)</span> items left to sort, meaning that there will be
+<span class="math notranslate nohighlight">\(n-2\)</span> pairs. Since each pass places the next largest value in
+place, the total number of passes necessary will be <span class="math notranslate nohighlight">\(n-1\)</span>. After
+completing the <span class="math notranslate nohighlight">\(n-1\)</span> passes, the smallest item must be in the
+correct position with no further processing required. <a class="reference internal" href="TheBubbleSort.html#lst-bubble"><span class="std std-ref">ActiveCode 1</span></a>
+shows the complete <code class="docutils literal notranslate"><span class="pre">bubbleSort</span></code> function. It takes the list as a
+parameter, and modifies it by exchanging items as necessary.</p>
+<p>The exchange operation, sometimes called a “swap,” is slightly different
+in Python than in most other programming languages. Typically, swapping
+two elements in a list requires a temporary storage location (an
+additional memory location). A code fragment such as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="n">alist</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+<span class="n">alist</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+</pre></div>
+</div>
+<p>will exchange the <cite>ith</cite> and <cite>jth</cite> items in the list. Without the
+temporary storage, one of the values would be overwritten.</p>
+<p>In Python, it is possible to perform simultaneous assignment. The
+statement <code class="docutils literal notranslate"><span class="pre">a,b=b,a</span></code> will result in two assignment statements being
+done at the same time (see <a class="reference internal" href="TheBubbleSort.html#fig-pythonswap"><span class="std std-ref">Figure 2</span></a>). Using simultaneous
+assignment, the exchange operation can be done in one statement.</p>
+<p>Lines 5-7 in <a class="reference internal" href="TheBubbleSort.html#lst-bubble"><span class="std std-ref">ActiveCode 1</span></a> perform the exchange of the <span class="math notranslate nohighlight">\(i\)</span> and
+<span class="math notranslate nohighlight">\((i+1)th\)</span> items using the three–step procedure described
+earlier. Note that we could also have used the simultaneous assignment
+to swap the items.</p>
+<div class="figure align-center" id="id2">
+<span id="fig-pythonswap"></span><img alt="../_images/swap.png" src="../_images/swap.png" />
+<p class="caption"><span class="caption-text">Figure 2: Exchanging Two Values in Python</span></p>
+</div>
+<p>The following activecode example shows the complete <code class="docutils literal notranslate"><span class="pre">bubbleSort</span></code> function working on the list
+shown above.</p>
+
+<div data-childcomponent="lst_bubble" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=lst_bubble data-lang="python" 
+      data-timelimit=25000  data-codelens="true"  
+    data-audio=''    
+         data-caption='The Bubble Sort' >
+def bubbleSort(alist):
+    for passnum in range(len(alist)-1,0,-1):
+        for i in range(passnum):
+            if alist[i]>alist[i+1]:
+                temp = alist[i]
+                alist[i] = alist[i+1]
+                alist[i+1] = temp
+
+alist = [54,26,93,17,77,31,44,55,20]
+bubbleSort(alist)
+print(alist)
+</textarea>
+</div>
+<p>The following animation shows <code class="docutils literal notranslate"><span class="pre">bubbleSort</span></code> in action.</p>
+<script type="text/javascript" src="../_static/sortmodels.js"></script>
+<script type="text/javascript" src="../_static/sortviewers.js"></script>
+
+<div id="bubble_anim">
+<canvas id="bubble_anim_canvas" width="400" height="400" style="border:4px solid blue"></canvas>
+<br />
+<button onclick="bubble_anim_anim = bubble_anim_init('bubble_anim')">Initialize</button>
+<button onclick="bubble_anim_anim.run('bubble_anim_anim')">Run</button>
+<button onclick="bubble_anim_anim.stop()">Stop</button> </br>
+<button onclick="bubble_anim_anim.begin()">Beginning</button>
+<button onclick="bubble_anim_anim.forward()">Step Forward</button>
+<button onclick="bubble_anim_anim.backward()">Step Backward</button>
+<button onclick="bubble_anim_anim.end()">End</button>
+
+<script type="text/javascript">
+bubble_anim_init = function(divid)
+{
+   var a = new Animator(new BubbleSortModel(), new BarViewer(), divid)
+   a.init()
+   return a
+}
+</script>
+
+</div>
+<p>To analyze the bubble sort, we should note that regardless of how the
+items are arranged in the initial list, <span class="math notranslate nohighlight">\(n-1\)</span> passes will be
+made to sort a list of size <em>n</em>. <a class="reference internal" href="TheBubbleSort.html#tbl-bubbleanalysis"><span class="std std-ref">Table 1</span></a> shows the number
+of comparisons for each pass. The total number of comparisons is the sum
+of the first <span class="math notranslate nohighlight">\(n-1\)</span> integers. Recall that the sum of the first
+<em>n</em> integers is <span class="math notranslate nohighlight">\(\frac{1}{2}n^{2} + \frac{1}{2}n\)</span>. The sum of
+the first <span class="math notranslate nohighlight">\(n-1\)</span> integers is
+<span class="math notranslate nohighlight">\(\frac{1}{2}n^{2} + \frac{1}{2}n - n\)</span>, which is
+<span class="math notranslate nohighlight">\(\frac{1}{2}n^{2} - \frac{1}{2}n\)</span>. This is still
+<span class="math notranslate nohighlight">\(O(n^{2})\)</span> comparisons. In the best case, if the list is already
+ordered, no exchanges will be made. However, in the worst case, every
+comparison will cause an exchange. On average, we exchange half of the
+time.</p>
+<span id="tbl-bubbleanalysis"></span><table border="1" class="docutils" id="id3">
+<caption><span class="caption-text"><strong>Table 1: Comparisons for Each Pass of Bubble Sort</strong></span><a class="headerlink" href="TheBubbleSort.html#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col width="49%" />
+<col width="51%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Pass</strong></th>
+<th class="head"><strong>Comparisons</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1</td>
+<td><span class="math notranslate nohighlight">\(n-1\)</span></td>
+</tr>
+<tr class="row-odd"><td>2</td>
+<td><span class="math notranslate nohighlight">\(n-2\)</span></td>
+</tr>
+<tr class="row-even"><td>3</td>
+<td><span class="math notranslate nohighlight">\(n-3\)</span></td>
+</tr>
+<tr class="row-odd"><td>…</td>
+<td>…</td>
+</tr>
+<tr class="row-even"><td><span class="math notranslate nohighlight">\(n-1\)</span></td>
+<td><span class="math notranslate nohighlight">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>A bubble sort is often considered the most inefficient sorting method
+since it must exchange items before the final location is known. These
+“wasted” exchange operations are very costly. However, because the
+bubble sort makes passes through the entire unsorted portion of the
+list, it has the capability to do something most sorting algorithms
+cannot. In particular, if during a pass there are no exchanges, then we
+know that the list must be sorted. A bubble sort can be modified to stop
+early if it finds that the list has become sorted. This means that for
+lists that require just a few passes, a bubble sort may have an
+advantage in that it will recognize the sorted list and stop.
+<a class="reference internal" href="TheBubbleSort.html#lst-shortbubble"><span class="std std-ref">ActiveCode 2</span></a> shows this modification, which is often referred
+to as the <strong>short bubble</strong>.</p>
+
+<div data-childcomponent="lst_shortbubble" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=lst_shortbubble data-lang="python" 
+      data-timelimit=25000  data-codelens="true"  
+    data-audio=''    
+         data-caption='The Short Bubble Sort' >
+def shortBubbleSort(alist):
+    exchanges = True
+    passnum = len(alist)-1
+    while passnum > 0 and exchanges:
+       exchanges = False
+       for i in range(passnum):
+           if alist[i]>alist[i+1]:
+               exchanges = True
+               temp = alist[i]
+               alist[i] = alist[i+1]
+               alist[i+1] = temp
+       passnum = passnum-1
+
+alist=[20,30,40,90,50,60,70,80,100,110]
+shortBubbleSort(alist)
+print(alist)
+</textarea>
+</div>
+<div class="admonition-self-check admonition">
+<p class="first admonition-title">Self Check</p>
+
+            <div class="runestone alert alert-warning">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="question_sort_1">
+            Q-2: Suppose you have the following list of numbers to sort: &lt;br&gt;
+[19, 1, 9, 7, 3, 10, 13, 15, 8, 12] which list represents the partially sorted list after three complete passes of bubble sort?
+            <li data-component="answer"  id="question_sort_1_opt_a">[1, 9, 19, 7, 3, 10, 13, 15, 8, 12]</li><li data-component="feedback" id="question_sort_1_opt_a">This answer represents three swaps.  A pass means that you continue swapping all the way to the end of the list.</li>
+            
+            <li data-component="answer" data-correct id="question_sort_1_opt_b">[1, 3, 7, 9, 10, 8, 12, 13, 15, 19]</li><li data-component="feedback" id="question_sort_1_opt_b">Very Good</li>
+            
+            <li data-component="answer"  id="question_sort_1_opt_c">[1, 7, 3, 9, 10, 13, 8, 12, 15, 19]</li><li data-component="feedback" id="question_sort_1_opt_c">A bubble sort contines to swap numbers up to index position passnum.  But remember that passnum starts at the length of the list - 1.</li>
+            
+            <li data-component="answer"  id="question_sort_1_opt_d">[1, 9, 19, 7, 3, 10, 13, 15, 8, 12]</li><li data-component="feedback" id="question_sort_1_opt_d">You have been doing an insertion sort, not a bubble sort.</li>
+            
+
+            </ul>
+            </div>
+            </div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 5.6. Sorting' data-toggle="tooltip">
+    <a href="sorting.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="sorting.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 5.8. The Selection Sort' data-toggle="tooltip" >
+    <a href="TheSelectionSort.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="TheSelectionSort.html" >Next Section - 5.8. The Selection Sort</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span>
+      
+      | <a href="TheBubbleSort.html#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014 Brad Miller, David Ranum.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.17.
+    </p>
+  </div>
+</footer>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript" >
+  {
+    var resizerTimeout = null; 
+    var initialTimerInterval = setInterval(function(){
+      if (window.annotator){ 
+        clearInterval(initialTimerInterval);
+        setInterval(resizeBook, 1000);
+      }
+    },300);
+
+
+    function resizeBook() {
+      setTimeout(function() {
+        var sidebarWidth = $(".annotator-toolbar").width(); 
+        if (window.annotator.isOpen()) {
+          sidebarWidth += $(".annotator-outer").width();
+        }
+
+        var windowWidth = $(window).width();
+        var bookWidth = windowWidth - sidebarWidth;
+
+        $(".navbar-default, .footer").css({width:bookWidth}); 
+        $("#relations-next").css({"right":sidebarWidth+"px"});  
+        // $(".container").css({"max-width": "none !important;"});
+
+        var currentMarginRight = parseInt($("#main-content").css("margin-right")); 
+        if (window.annotator.isOpen() && (currentMarginRight < sidebarWidth+10)) {
+          $("#main-content").css({"margin-right":sidebarWidth+"px"}); 
+        } else {
+          $("#main-content").css({"margin-right":""}); 
+        }
+      }, 100);
+    }
+  }
+</script>
+<script async src="https://hypothes.is/embed.js"></script>
+
+
+
+
+  </body>
+</html>

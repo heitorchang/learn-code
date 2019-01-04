@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>2.4. An Anagram Detection Example &#8212; Problem Solving with Algorithms and Data Structures</title>
+    <link rel="stylesheet" href="../_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-3.0.0/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/parsons.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/js_lib/prettify.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/video.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pytutor.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/modal-basic.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/dragndrop.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/fitb.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webgldemo.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/webglinteractive.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/codemirror.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/datafile.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/tabbedstuff.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/reveal.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/showEval.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/activecode.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/accessibility.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/matrixeq.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/clickable.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/poll.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/jquery-ui-1.10.3.custom.min.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/user-highlights.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/runestone-custom-sphinx-bootstrap.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/runestonebase.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/prettify.js"></script>
+    <script type="text/javascript" src="../_static/js_lib/hammer.min.js"></script>
+    <script type="text/javascript" src="../_static/parsons.js"></script>
+    <script type="text/javascript" src="../_static/timedparsons.js"></script>
+    <script type="text/javascript" src="../_static/runestonevideo.js"></script>
+    <script type="text/javascript" src="../_static/d3.v2.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.ba-bbq.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.jsPlumb-1.3.10-all-min.js"></script>
+    <script type="text/javascript" src="../_static/pytutor.js"></script>
+    <script type="text/javascript" src="../_static/codelens.js"></script>
+    <script type="text/javascript" src="../_static/dragndrop.js"></script>
+    <script type="text/javascript" src="../_static/timeddnd.js"></script>
+    <script type="text/javascript" src="../_static/fitb.js"></script>
+    <script type="text/javascript" src="../_static/timedfitb.js"></script>
+    <script type="text/javascript" src="../_static/codemirror.js"></script>
+    <script type="text/javascript" src="../_static/xml.js"></script>
+    <script type="text/javascript" src="../_static/css.js"></script>
+    <script type="text/javascript" src="../_static/htmlmixed.js"></script>
+    <script type="text/javascript" src="../_static/javascript.js"></script>
+    <script type="text/javascript" src="../_static/webglinteractive.js"></script>
+    <script type="text/javascript" src="../_static/FileSaver.min.js"></script>
+    <script type="text/javascript" src="../_static/Blob.js"></script>
+    <script type="text/javascript" src="../_static/skulpt.min.js"></script>
+    <script type="text/javascript" src="../_static/skulpt-stdlib.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@4.0.0-rc.2/build/vega.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@2.5.0/build/vega-lite.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@3.14.0/build/vega-embed.js"></script>
+    <script type="text/javascript" src="../_static/datafile.js"></script>
+    <script type="text/javascript" src="../_static/shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/timed_shortanswer.js"></script>
+    <script type="text/javascript" src="../_static/tabbedstuff.js"></script>
+    <script type="text/javascript" src="../_static/reveal.js"></script>
+    <script type="text/javascript" src="../_static/showEval.js"></script>
+    <script type="text/javascript" src="../_static/jquery.highlight.js"></script>
+    <script type="text/javascript" src="../_static/bookfuncs.js"></script>
+    <script type="text/javascript" src="../_static/python.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/CLDRPluralRuleParser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.messagestore.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.fallbacks.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.language.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.parser.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.js"></script>
+    <script type="text/javascript" src="../_static/jquery_i18n/jquery.i18n.emitter.bidi.js"></script>
+    <script type="text/javascript" src="../_static/activecode-i18n.en.js"></script>
+    <script type="text/javascript" src="../_static/activecode.js"></script>
+    <script type="text/javascript" src="../_static/clike.js"></script>
+    <script type="text/javascript" src="../_static/timed_activecode.js"></script>
+    <script type="text/javascript" src="../_static/mchoice.js"></script>
+    <script type="text/javascript" src="../_static/timedmc.js"></script>
+    <script type="text/javascript" src="../_static/timed.js"></script>
+    <script type="text/javascript" src="../_static/matrixeq.js"></script>
+    <script type="text/javascript" src="../_static/animationbase.js"></script>
+    <script type="text/javascript" src="../_static/clickable.js"></script>
+    <script type="text/javascript" src="../_static/timedclickable.js"></script>
+    <script type="text/javascript" src="../_static/poll.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/jquery-ui-1.10.3.custom.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery-fix.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+    <script type="text/javascript" src="../_static/waypoints.min.js"></script>
+    <script type="text/javascript" src="../_static/user-highlights.js"></script>
+    <script type="text/javascript" src="../_static/jquery.idle-timer.js"></script>
+    <script type="text/javascript" src="../_static/processing-1.4.1.min.js"></script>
+    <script type="text/javascript" src="../_static/jquery.hotkey.js"></script>
+    <script type="text/javascript" src="../_static/jquery-migrate-1.2.1.min.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.5. Performance of Python Data Structures" href="PerformanceofPythonDataStructures.html" />
+    <link rel="prev" title="2.3. Big-O Notation" href="BigONotation.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<script type="text/javascript">
+  eBookConfig = {};
+  eBookConfig.host = 'https://runestone.academy' ? 'https://runestone.academy' : 'http://127.0.0.1:8000';
+  eBookConfig.app = eBookConfig.host+'/runestone';
+  eBookConfig.ajaxURL = eBookConfig.app+'/ajax/';
+  eBookConfig.course = 'pythonds';
+  eBookConfig.logLevel = 10;
+  eBookConfig.loginRequired = false;
+  eBookConfig.build_info = "3.6.0";
+  eBookConfig.isLoggedIn = false;
+  eBookConfig.useRunestoneServices = true;
+  eBookConfig.python3 = true;
+  eBookConfig.basecourse = 'pythonds';
+  eBookConfig.runestone_version = '3.2.17';
+</script>
+
+<div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&status=0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+  </head><body>
+
+
+<!-- Begin navbar -->
+<div id="navbar" class="navbar navbar-default navbar-fixed-top" role="navigation">
+
+  <div class="container">
+
+    <div class="navbar-header">
+      <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+      <button type='button' class='navbar-toggle' data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <div>
+        <a class="brand-logo" style='background: transparent url("../_static/img/logo_small.png") no-repeat 0px 0px;' href="https://runestone.academy/runestone/default/user/login">&nbsp; </a>
+        <a class="navbar-brand" href="../index.html">Problem Solving with Algorithms and Data Structures</a>
+      </div>
+    </div>
+
+    <div class="navbar-collapse collapse navbar-ex1-collapse">
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="divider-vertical"></li>
+
+        <!-- social media dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="AnAnagramDetectionExample.html#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-share-alt" style="opacity: 0.9"></i>
+          </a>
+          <ul class="dropdown-menu social-menu">
+              <li>
+                <div>
+                  <b>Runestone in social media:</b>
+                </div>
+                <a href="https://twitter.com/iRunestone" class="twitter-follow-button" data-show-count="true">Follow @iRunestone</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+                <div class="fb-like" data-href="https://www.facebook.com/RunestoneInteractive" data-send="false" data-layout="button_count" data-width="300" data-show-faces="false" data-font="arial"></div>
+              </li>
+
+              <li class="divider"></li>
+              <li>
+                <div>
+                  <b>Help support us:</b>
+                </div>
+                <div>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                  <input type="hidden" name="cmd" value="_s-xclick">
+                  <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                  ">
+                  <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                  <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+
+                </div>
+              </li>
+          </ul>
+        </li>
+        <!-- end social media dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        <!-- search dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="AnAnagramDetectionExample.html#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-search" style='opacity:0.9;'></i>
+          </a>
+          <ul class='dropdown-menu'>
+            
+                <li><a href='../index.html'>Table of Contents</a></li>
+            
+            <li><a href='../genindex.html'>Book Index</a></li>
+            <li class="divider"></li>
+            <li id="scratch_ac_link"><a href="javascript:ACFactory.toggleScratchActivecode()">Scratch ActiveCode</a></li>
+            <li class="divider"></li>
+            <li style="width: 240px;">
+              <form class="navbar-search" style="margin:10px;" action="../search.html" method="get">
+                <div class="input-group">
+                  <input type="text" class="form-control" name="q" placeholder="Search this book" />
+                  <span class="input-group-btn">
+                    <button class="btn btn-primary" style="margin:0;" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </span>
+                </div><!-- /input-group -->
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+              </form>
+            </li>
+          </ul>
+        </li>
+        <!-- end search dropdown -->
+
+        <li class="divider-vertical"></li>
+
+        
+        <!-- user account dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="AnAnagramDetectionExample.html#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-user" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><span class='loggedinuser'></span></li>
+            <li class="divider"></li>
+            <li><a href='https://runestone.academy/runestone/default/courses'>Change Course</a></li>
+            <!--
+            <li class="divider"></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/initiateGroup' id="joinGroupLink">Join a Study Group</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/schedule' id="groupScheduleLink">Group Schedule</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/newschedule' id="newChapterLink">Schedule New Chapter</a></li>
+            <li><a href='https://runestone.academy/runestone/mygroup/manageGroup' id="manageGroupLink">Manage Group</a></li> -->
+			<li class="divider"></li>
+            <li><a href='https://runestone.academy/runestone/admin/index'>Instructor's Page</a></li>
+            <li><a href='https://runestone.academy/runestone/assignments/index'>Progress Page</a></li>
+            <li class="divider"></li>
+            <li><a href="https://runestone.academy/runestone/default/user/profile" id="profilelink">Edit Profile</a></li>
+            <li><a href="https://runestone.academy/runestone/default/user/change_password" id="passwordlink">Change Password</a></li>
+            <li><a href="https://runestone.academy/runestone/default/user/register" id="registerlink">Register</a></li>
+            <li class='loginout'><a href='AnAnagramDetectionExample.html#'>Login</a></li> <!-- correct link populated by addNavbarLoginLink() -->
+          </ul>
+        </li>
+        <!-- end user account dropdown -->
+        
+        <li class="divider-vertical"></li>
+
+        <!-- help menu dropdown -->
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="AnAnagramDetectionExample.html#" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-question-sign" style="opacity:0.9;"></i>
+          </a>
+          <ul class="dropdown-menu user-menu">
+            <li><a href='https://runestone.academy/runestone/static/pythonds/navhelp.html'>Navigation Help</a></li>
+            <li><a href='https://runestone.academy/runestone/static/overview/instructor.html'>Help for Instructors</a></li>
+            <li class="divider"></li>
+            <li><a href='http://runestoneinteractive.org'>About Runestone</a></li>
+            <li><a href='https://runestone.academy/runestone/default/reportabug?course=pythonds&amp;page=AnAnagramDetectionExample'>Report A Problem</a></li>
+          </ul>
+        </li>
+        <!-- end help menu dropdown -->
+
+        <li class="divider-vertical"></li>
+
+      </ul>
+
+      <ul class="nav navbar-nav">
+        <li class="divider-vertical"></li>
+        
+          <li class="dropdown globaltoc-container">
+  <a href="../index.html"
+     class="dropdown-toggle"
+     data-toggle="dropdown">Chapters <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+    ><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Introduction/toctree.html">1. Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="toctree.html">2. Analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../BasicDS/toctree.html">3. Basic Data Structures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Recursion/toctree.html">4. Recursion</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../SortSearch/toctree.html">5. Sorting and Searching</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Trees/toctree.html">6. Trees and Tree Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Graphs/toctree.html">7. Graphs and Graph Algorithms</a></li>
+</ul>
+</ul>
+</li>
+          <li class="divider-vertical"></li>
+        
+        <!--
+        
+          
+  <li id="relations-prev" title="Previous Chapter - 2.3. Big-O Notation" data-toggle="tooltip">
+    <a href="BigONotation.html" >
+      <i class='glyphicon glyphicon-backward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  
+  <li id="relations-next" title='Next Chapter - 2.5. Performance of Python Data Structures' data-toggle="tooltip" >
+    <a href="PerformanceofPythonDataStructures.html" >
+      <i class='glyphicon glyphicon-forward' style='opacity:0.9;'></i>
+    </a>
+  </li>
+  <li class="divider-vertical"></li>
+
+<script type="text/javascript">
+  opts = {'placement':'bottom',
+          'selector': '',
+          'delay': { show: 100, hide: 50}
+         };
+
+  $('#relations-prev').tooltip(opts);
+  $('#relations-next').tooltip(opts);
+</script>
+        -->
+        
+          <li></li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container" id="continue-reading"></div>
+
+<div class="container" id="main-content">
+  
+  <div class="section" id="an-anagram-detection-example">
+<h1>2.4. An Anagram Detection Example<a class="headerlink" href="AnAnagramDetectionExample.html#an-anagram-detection-example" title="Permalink to this headline">¶</a></h1>
+<p>A good example problem for showing algorithms with different orders of
+magnitude is the classic anagram detection problem for strings. One
+string is an anagram of another if the second is simply a rearrangement
+of the first. For example, <code class="docutils literal notranslate"><span class="pre">'heart'</span></code> and <code class="docutils literal notranslate"><span class="pre">'earth'</span></code> are anagrams. The
+strings <code class="docutils literal notranslate"><span class="pre">'python'</span></code> and <code class="docutils literal notranslate"><span class="pre">'typhon'</span></code> are anagrams as well. For the sake
+of simplicity, we will assume that the two strings in question are of
+equal length and that they are made up of symbols from the set of 26
+lowercase alphabetic characters. Our goal is to write a boolean function
+that will take two strings and return whether they are anagrams.</p>
+<div class="section" id="solution-1-checking-off">
+<h2>2.4.1. Solution 1: Checking Off<a class="headerlink" href="AnAnagramDetectionExample.html#solution-1-checking-off" title="Permalink to this headline">¶</a></h2>
+<p>Our first solution to the anagram problem will check the lengths of the
+strings and then to see that each character in the first string actually
+occurs in the second. If it is possible to “checkoff” each character, then
+the two strings must be anagrams. Checking off a character will be
+accomplished by replacing it with the special Python value <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+However, since strings in Python are immutable, the first step in the
+process will be to convert the second string to a list. Each character
+from the first string can be checked against the characters in the list
+and if found, checked off by replacement.:ref:<cite>ActiveCode 1 &lt;lst_anagramSolution&gt;</cite> shows this function.</p>
+
+<div data-childcomponent="active5" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=active5 data-lang="python" 
+      data-timelimit=25000  data-codelens="true"  
+    data-audio=''    
+         data-caption='Checking Off' >
+def anagramSolution1(s1,s2):
+    if len(s1) != len(s2):
+        stillOK = False
+
+    alist = list(s2)
+
+    pos1 = 0
+    stillOK = True
+
+    while pos1 < len(s1) and stillOK:
+        pos2 = 0
+        found = False
+        while pos2 < len(alist) and not found:
+            if s1[pos1] == alist[pos2]:
+                found = True
+            else:
+                pos2 = pos2 + 1
+
+        if found:
+            alist[pos2] = None
+        else:
+            stillOK = False
+
+        pos1 = pos1 + 1
+
+    return stillOK
+
+print(anagramSolution1('abcd','dcba'))
+</textarea>
+</div>
+<p>To analyze this algorithm, we need to note that each of the <em>n</em>
+characters in <code class="docutils literal notranslate"><span class="pre">s1</span></code> will cause an iteration through up to <em>n</em>
+characters in the list from <code class="docutils literal notranslate"><span class="pre">s2</span></code>. Each of the <em>n</em> positions in the
+list will be visited once to match a character from <code class="docutils literal notranslate"><span class="pre">s1</span></code>. The number
+of visits then becomes the sum of the integers from 1 to <em>n</em>. We stated
+earlier that this can be written as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sum_{i=1}^{n} i &amp;= \frac {n(n+1)}{2} \\
+                 &amp;= \frac {1}{2}n^{2} + \frac {1}{2}n\end{split}\]</div>
+<p>As <span class="math notranslate nohighlight">\(n\)</span> gets large, the <span class="math notranslate nohighlight">\(n^{2}\)</span> term will dominate the
+<span class="math notranslate nohighlight">\(n\)</span> term and the <span class="math notranslate nohighlight">\(\frac {1}{2}\)</span> can be ignored.
+Therefore, this solution is <span class="math notranslate nohighlight">\(O(n^{2})\)</span>.</p>
+</div>
+<div class="section" id="solution-2-sort-and-compare">
+<h2>2.4.2. Solution 2: Sort and Compare<a class="headerlink" href="AnAnagramDetectionExample.html#solution-2-sort-and-compare" title="Permalink to this headline">¶</a></h2>
+<p>Another solution to the anagram problem will make use of the fact that
+even though <code class="docutils literal notranslate"><span class="pre">s1</span></code> and <code class="docutils literal notranslate"><span class="pre">s2</span></code> are different, they are anagrams only if
+they consist of exactly the same characters. So, if we begin by sorting
+each string alphabetically, from a to z, we will end up with the same
+string if the original two strings are anagrams. <a class="reference internal" href="AnAnagramDetectionExample.html#lst-ana2"><span class="std std-ref">ActiveCode 2</span></a> shows
+this solution. Again, in Python we can use the built-in <code class="docutils literal notranslate"><span class="pre">sort</span></code> method
+on lists by simply converting each string to a list at the start.</p>
+
+<div data-childcomponent="active6" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=active6 data-lang="python" 
+      data-timelimit=25000  data-codelens="true"  
+    data-audio=''    
+         data-caption='Sort and Compare' >
+def anagramSolution2(s1,s2):
+    alist1 = list(s1)
+    alist2 = list(s2)
+
+    alist1.sort()
+    alist2.sort()
+
+    pos = 0
+    matches = True
+
+    while pos < len(s1) and matches:
+        if alist1[pos]==alist2[pos]:
+            pos = pos + 1
+        else:
+            matches = False
+
+    return matches
+
+print(anagramSolution2('abcde','edcba'))
+</textarea>
+</div>
+<p>At first glance you may be tempted to think that this algorithm is
+<span class="math notranslate nohighlight">\(O(n)\)</span>, since there is one simple iteration to compare the <em>n</em>
+characters after the sorting process. However, the two calls to the
+Python <code class="docutils literal notranslate"><span class="pre">sort</span></code> method are not without their own cost. As we will see in
+a later chapter, sorting is typically either <span class="math notranslate nohighlight">\(O(n^{2})\)</span> or
+<span class="math notranslate nohighlight">\(O(n\log n)\)</span>, so the sorting operations dominate the iteration.
+In the end, this algorithm will have the same order of magnitude as that
+of the sorting process.</p>
+</div>
+<div class="section" id="solution-3-brute-force">
+<h2>2.4.3. Solution 3: Brute Force<a class="headerlink" href="AnAnagramDetectionExample.html#solution-3-brute-force" title="Permalink to this headline">¶</a></h2>
+<p>A <strong>brute force</strong> technique for solving a problem typically tries to
+exhaust all possibilities. For the anagram detection problem, we can
+simply generate a list of all possible strings using the characters from
+<code class="docutils literal notranslate"><span class="pre">s1</span></code> and then see if <code class="docutils literal notranslate"><span class="pre">s2</span></code> occurs. However, there is a difficulty
+with this approach. When generating all possible strings from <code class="docutils literal notranslate"><span class="pre">s1</span></code>,
+there are <em>n</em> possible first characters, <span class="math notranslate nohighlight">\(n-1\)</span> possible
+characters for the second position, <span class="math notranslate nohighlight">\(n-2\)</span> for the third, and so
+on. The total number of candidate strings is
+<span class="math notranslate nohighlight">\(n*(n-1)*(n-2)*...*3*2*1\)</span>, which is <span class="math notranslate nohighlight">\(n!\)</span>. Although some
+of the strings may be duplicates, the program cannot know this ahead of
+time and so it will still generate <span class="math notranslate nohighlight">\(n!\)</span> different strings.</p>
+<p>It turns out that <span class="math notranslate nohighlight">\(n!\)</span> grows even faster than <span class="math notranslate nohighlight">\(2^{n}\)</span> as
+<em>n</em> gets large. In fact, if <code class="docutils literal notranslate"><span class="pre">s1</span></code> were 20 characters long, there would
+be <span class="math notranslate nohighlight">\(20!=2,432,902,008,176,640,000\)</span> possible candidate strings.
+If we processed one possibility every second, it would still take us
+77,146,816,596 years to go through the entire list. This is probably not
+going to be a good solution.</p>
+</div>
+<div class="section" id="solution-4-count-and-compare">
+<h2>2.4.4. Solution 4: Count and Compare<a class="headerlink" href="AnAnagramDetectionExample.html#solution-4-count-and-compare" title="Permalink to this headline">¶</a></h2>
+<p>Our final solution to the anagram problem takes advantage of the fact
+that any two anagrams will have the same number of a’s, the same number
+of b’s, the same number of c’s, and so on. In order to decide whether
+two strings are anagrams, we will first count the number of times each
+character occurs. Since there are 26 possible characters, we can use a
+list of 26 counters, one for each possible character. Each time we see a
+particular character, we will increment the counter at that position. In
+the end, if the two lists of counters are identical, the strings must be
+anagrams. <a class="reference internal" href="AnAnagramDetectionExample.html#lst-ana4"><span class="std std-ref">ActiveCode 3</span></a> shows this solution.</p>
+
+<div data-childcomponent="active7" class="runestone explainer ac_section alert alert-warning">
+
+<textarea data-component="activecode" id=active7 data-lang="python" 
+      data-timelimit=25000  data-codelens="true"  
+    data-audio=''    
+         data-caption='Count and Compare' >
+def anagramSolution4(s1,s2):
+    c1 = [0]*26
+    c2 = [0]*26
+
+    for i in range(len(s1)):
+        pos = ord(s1[i])-ord('a')
+        c1[pos] = c1[pos] + 1
+
+    for i in range(len(s2)):
+        pos = ord(s2[i])-ord('a')
+        c2[pos] = c2[pos] + 1
+
+    j = 0
+    stillOK = True
+    while j<26 and stillOK:
+        if c1[j]==c2[j]:
+            j = j + 1
+        else:
+            stillOK = False
+
+    return stillOK
+
+print(anagramSolution4('apple','pleap'))
+</textarea>
+</div>
+<p>Again, the solution has a number of iterations. However, unlike the
+first solution, none of them are nested. The first two iterations used
+to count the characters are both based on <em>n</em>. The third iteration,
+comparing the two lists of counts, always takes 26 steps since there are
+26 possible characters in the strings. Adding it all up gives us
+<span class="math notranslate nohighlight">\(T(n)=2n+26\)</span> steps. That is <span class="math notranslate nohighlight">\(O(n)\)</span>. We have found a
+linear order of magnitude algorithm for solving this problem.</p>
+<p>Before leaving this example, we need to say something about space
+requirements. Although the last solution was able to run in linear time,
+it could only do so by using additional storage to keep the two lists of
+character counts. In other words, this algorithm sacrificed space in
+order to gain time.</p>
+<p>This is a common occurrence. On many occasions you will need to make
+decisions between time and space trade-offs. In this case, the amount of
+extra space is not significant. However, if the underlying alphabet had
+millions of characters, there would be more concern. As a computer
+scientist, when given a choice of algorithms, it will be up to you to
+determine the best use of computing resources given a particular
+problem.</p>
+<div class="admonition-self-check admonition">
+<p class="first admonition-title">Self Check</p>
+
+            <div class="runestone alert alert-warning">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="analysis_1">
+            <p>Q-1: Given the following code fragment, what is its Big-O running time?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+   <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+      <span class="n">test</span> <span class="o">=</span> <span class="n">test</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span>
+</pre></div>
+</div>
+
+            <li data-component="answer"  id="analysis_1_opt_a">O(n)</li><li data-component="feedback" id="analysis_1_opt_a">In an example like this you want to count the nested loops. especially the loops that are dependent on the same variable, in this case, n.</li>
+            
+            <li data-component="answer" data-correct id="analysis_1_opt_b">O(n^2)</li><li data-component="feedback" id="analysis_1_opt_b">A singly nested loop like this is O(n^2)</li>
+            
+            <li data-component="answer"  id="analysis_1_opt_c">O(log n)</li><li data-component="feedback" id="analysis_1_opt_c">log n typically is indicated when the problem is iteratvely made smaller</li>
+            
+            <li data-component="answer"  id="analysis_1_opt_d">O(n^3)</li><li data-component="feedback" id="analysis_1_opt_d">In an example like this you want to count the nested loops. especially the loops that are dependent on the same variable, in this case, n.</li>
+            
+
+            </ul>
+            </div>
+            
+            <div class="runestone alert alert-warning">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="analysis_2">
+            <p>Q-2: Given the following code fragment what is its Big-O running time?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">test</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+   <span class="n">test</span> <span class="o">=</span> <span class="n">test</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+   <span class="n">test</span> <span class="o">=</span> <span class="n">test</span> <span class="o">-</span> <span class="mi">1</span>
+</pre></div>
+</div>
+
+            <li data-component="answer" data-correct id="analysis_2_opt_a">O(n)</li><li data-component="feedback" id="analysis_2_opt_a">Even though there are two loops they are not nested.  You might think of this as O(2n) but we can ignore the constant 2.</li>
+            
+            <li data-component="answer"  id="analysis_2_opt_b">O(n^2)</li><li data-component="feedback" id="analysis_2_opt_b">Be careful, in counting loops you want to make sure the loops are nested.</li>
+            
+            <li data-component="answer"  id="analysis_2_opt_c">O(log n)</li><li data-component="feedback" id="analysis_2_opt_c">log n typically is indicated when the problem is iteratvely made smaller</li>
+            
+            <li data-component="answer"  id="analysis_2_opt_d">O(n^3)</li><li data-component="feedback" id="analysis_2_opt_d">Be careful, in counting loops you want to make sure the loops are nested.</li>
+            
+
+            </ul>
+            </div>
+            
+            <div class="runestone alert alert-warning">
+            <ul data-component="multiplechoice" data-multipleanswers="false"  id="analysis_3">
+            <p>Q-3: Given the following code fragment what is its Big-O running time?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">i</span> <span class="o">=</span> <span class="n">n</span>
+<span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+   <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
+   <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">//</span> <span class="mi">2</span>
+</pre></div>
+</div>
+
+            <li data-component="answer"  id="analysis_3_opt_a">O(n)</li><li data-component="feedback" id="analysis_3_opt_a">Look carefully at the loop variable i.  Notice that the value of i is cut in half each time through the loop.  This is a big hint that the performance is better than O(n)</li>
+            
+            <li data-component="answer"  id="analysis_3_opt_b">O(n^2)</li><li data-component="feedback" id="analysis_3_opt_b">Check again, is this a nested loop?</li>
+            
+            <li data-component="answer" data-correct id="analysis_3_opt_c">O(log n)</li><li data-component="feedback" id="analysis_3_opt_c">The value of i is cut in half each time through the loop so it will only take log n iterations.</li>
+            
+            <li data-component="answer"  id="analysis_3_opt_d">O(n^3)</li><li data-component="feedback" id="analysis_3_opt_d">Check again, is this a nested loop?</li>
+            
+
+            </ul>
+            </div>
+            </div>
+</div>
+</div>
+
+
+  
+      
+  <li id="relations-prev" class="navLink" title='Previous Section - 2.3. Big-O Notation' data-toggle="tooltip">
+    <a href="BigONotation.html" >
+      <i class='prevNav glyphicon glyphicon-chevron-left'></i>
+    </a>
+  </li>
+  <a class="navLinkBg" id="navLinkBgLeft"  href="BigONotation.html" ></a>
+  
+  <li id="relations-next" class="navLink" title='Next Section - 2.5. Performance of Python Data Structures' data-toggle="tooltip" >
+    <a href="PerformanceofPythonDataStructures.html" >
+      <i id="relationsNextIcon" class='nextNav glyphicon glyphicon-chevron-right'></i>
+    </a>
+  </li>
+  <a class="navLinkBg navLink" id="navLinkBgRight" href="PerformanceofPythonDataStructures.html" >Next Section - 2.5. Performance of Python Data Structures</a>
+
+<script type="text/javascript">
+
+  $('#relations-prev').tooltip({'placement':'right', 'selector': '', 'delay': { show: 100, hide: 50}});
+  $('#relations-next').tooltip({'placement':'left', 'selector': '', 'delay': { show: 100, hide: 50}});
+  
+</script>
+  
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      
+      <span id='numuserspan'></span> readers online now | <span class='loggedinuser'></span>
+      
+      | <a href="AnAnagramDetectionExample.html#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2014 Brad Miller, David Ranum.
+      Created using <a href="http://runestoneinteractive.org/">Runestone</a> 3.2.17.
+    </p>
+  </div>
+</footer>
+
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-32029811-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+<script type="text/javascript" >
+  {
+    var resizerTimeout = null; 
+    var initialTimerInterval = setInterval(function(){
+      if (window.annotator){ 
+        clearInterval(initialTimerInterval);
+        setInterval(resizeBook, 1000);
+      }
+    },300);
+
+
+    function resizeBook() {
+      setTimeout(function() {
+        var sidebarWidth = $(".annotator-toolbar").width(); 
+        if (window.annotator.isOpen()) {
+          sidebarWidth += $(".annotator-outer").width();
+        }
+
+        var windowWidth = $(window).width();
+        var bookWidth = windowWidth - sidebarWidth;
+
+        $(".navbar-default, .footer").css({width:bookWidth}); 
+        $("#relations-next").css({"right":sidebarWidth+"px"});  
+        // $(".container").css({"max-width": "none !important;"});
+
+        var currentMarginRight = parseInt($("#main-content").css("margin-right")); 
+        if (window.annotator.isOpen() && (currentMarginRight < sidebarWidth+10)) {
+          $("#main-content").css({"margin-right":sidebarWidth+"px"}); 
+        } else {
+          $("#main-content").css({"margin-right":""}); 
+        }
+      }, 100);
+    }
+  }
+</script>
+<script async src="https://hypothes.is/embed.js"></script>
+
+
+
+
+  </body>
+</html>
