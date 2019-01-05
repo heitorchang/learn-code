@@ -1,3 +1,18 @@
+solvers_comments = """
+
+liuyubobobo
+a day ago
+I felt quite satisfied after solving this challenge. In my opinion, this problem is more algorithmic than the newest weekly challenge, since this problem obviously combined more algorithm thinkings, and the nightSchoolEscape challenge is more like a complicate simulation problem :)
+
+
+darren_j2
+replied to heitorchang 2 days ago
+@heitorchang - thanks again - I hadn't realised I'd left that in there. I've PASSED all the tests - thanks a lot both of you, as I can go to bed happy that I've actually achieved something this evening! Actually at #2 on the leaderboard right now... (I know it won't last, but I don't care!)
+
+"""
+
+
+
 description = """
 You have given a multiple-choice oral exam and received a tip that two of your students cheated.
 
