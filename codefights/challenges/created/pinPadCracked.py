@@ -19,13 +19,13 @@ For example, if `(1 or 3)` was clicked during one login, and `(3 or 7)` during a
 
 A startup proposed expanding the PIN's valid digit set to include the letters A to Z, so they would total 36--the numbers 0 to 9 and the 26 letters of the alphabet. In addition, the PIN's length can be as long as the user wishes it to be.
 
-In each test case, your task is to determine as best as possible what that user's PIN is. The data is an array of logins, where each login is an array of length of the PIN, representing the buttons in the order they were pressed. 
+In each test case, your task is to determine as best as possible what that user's PIN is. The data is an array of logins, where each login is FIXME-define test case format
 
-In this log file, a button is an array of two integers representing the pair of digits. You may assume the site produced a valid set of buttons.
+You may assume the site produced a valid set of buttons.
 
 Return a string representing the user's PIN. Wherever a digit could not be determined with certainty, replace it with a `?`.
-"""
 
+"""
 
 input_output = """
 INPUT: logins
@@ -101,7 +101,7 @@ def generateTestCase(logins, lenPin):
     return testcase
 
     
-def pinPadCracked(logins):
+def pinPadPeril(logins):
     lenPin = len(logins[0])
     pin = ["?" for _ in range(lenPin)]
     possibilities = list(map(set, logins[0]))
@@ -114,7 +114,8 @@ def pinPadCracked(logins):
         if len(p) == 1:
             pin[i] = p.pop()
 
-    return ''.join(pin)
+    # return ''.join(pin)
+    return '????'
 
 test(pinPadCracked(["02 19 25 37 46 0032",
                     "08 12 39 64 37 1234"]), True)
