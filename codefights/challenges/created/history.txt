@@ -19,3 +19,8 @@ Halloween Theme
 Music Theme
 
 10 simpleASCIIGuitarTab
+11 rockBandMembers
+
+No more themes
+
+12 pinPadDiscovery
