@@ -1,0 +1,62 @@
+<html>
+<head>
+
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.7.0/brython.min.js">
+</script>
+
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.7.0/brython_stdlib.js">
+</script>
+
+</head>
+
+<body onload="brython(1)">
+
+<textarea rows="5" cols="80">from itertools import permutations
+
+s = "ROMA"
+for p in permutations(s):
+    print(p)
+</textarea>
+
+<br>
+<b>Problem: eval() only runs expressions, not for loops and imports</b>
+<br>
+Enter Your Code Here:<br>
+  <textarea id="code" rows="12" cols="80"></textarea>
+<br>
+  <button id="run">Run</button>
+<br>
+  <span id="output"></span>
+
+  
+  
+
+<script type="text/python">
+from browser import document, html
+from itertools import permutations
+
+
+outp = document["output"]
+
+outp <= "Your output appears here:"
+
+btn = document["run"]
+
+def print(s):
+    outp <= html.BR()
+    outp <= s
+
+def myeval(ev):
+    # outp <= document["code"].value
+	eval(document["code"].value)
+
+btn.bind("click", myeval)
+
+</script>
+
+
+</body>
+
+</html>
