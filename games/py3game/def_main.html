@@ -1,0 +1,64 @@
+<html>
+<head>
+
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.7.0/brython.min.js">
+</script>
+
+<script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.7.0/brython_stdlib.js">
+</script>
+
+</head>
+
+<body onload="brython(1)">
+
+<pre>
+import math
+from itertools import permutations
+</pre>
+
+def main(x):<br>
+  <textarea id="code" rows="12" cols="80">    for p in permutations(x):
+        print(p)</textarea>
+<br>
+main("ROMA")
+  <button id="runRoma">Run with input x = "ROMA"</button>
+  <button id="runTen">Run with input x = 10</button>
+<br>
+  <span id="output"></span>
+
+  
+  
+
+<script type="text/python">
+from browser import document, html
+
+import math
+from itertools import permutations
+
+
+outp = document["output"]
+
+outp <= "Your output appears here:"
+
+btnRoma = document["runRoma"]
+btnTen = document["runTen"]
+
+def print(s):
+    outp <= html.BR()
+    outp <= str(s)
+
+def myeval(arg):
+    # outp <= document["code"].value
+	eval("def main(x):\n" + document["code"].value + "\nmain(" + repr(arg) + ")")
+
+btnRoma.bind("click", lambda ev: myeval("ROMA"))
+btnTen.bind("click", lambda ev: myeval(10))
+
+</script>
+
+
+</body>
+
+</html>
