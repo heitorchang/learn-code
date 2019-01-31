@@ -15,3 +15,45 @@ remain that way.
 * Writing a challenge
 
 follow [this guide](https://app.codesignal.com/forum/NdAeQmRveXut7fgsj)
+
+
+Special guide to submitting a daily challenge!
+
+Hey codefriends,
+
+Have you ever had a great idea for a daily challenge, but not quite sure how to submit it? Here's an attempt at answering some frequently asked questions!
+
+How do I submit a challenge?
+This can be kinda complicated, but the basic process is to create a new task (by hitting the +CREATE button in the challenge section), then creating a challenge from that task.
+We go through the whole process in this quick video!
+
+How can I make it a great challenge?
+Here's a handy checklist for making a really great challenge:
+
+Include an author solution
+This is the clearest, most direct way to show the admins what you have in mind for your challenge. This is probably the most important thing, since it can allow the admins to consult your solution for adding new tests or refining the description.
+
+Specify your constraints
+This gives the users a clear idea of how efficient their algorithm will need to be. It also helps the admins in case they need to add more tests.
+
+Add a bunch of tests
+You'll need at least 3 tests to submit the challenge, but a great challenge usually has around 12 - 20 tests. The main thing is to try to cover all edge cases (and even the most obvious simple cases). The first half of the tests will be visible to users, and the rest will be hidden, so if you want a test to be hidden, move it down to the bottom half!
+
+Write a nice description
+Clarity is super important for making the challenge user-friendly. It can be fun to base the challenge around an interesting story, but the main goal is to strike a balance between a complete and concise description.
+
+Check out this longer video for a demonstration!
+
+How do I set the difficulty / coin value?
+Admins will handle this part, based on how complex the solution to your challenge is. The best way to ensure that it's categorized accurately is to go through the 4-point checklist above.
+
+Can I edit a challenge I've already submitted (before it gets published)?
+Yes! In the daily challenges section, there should be a drop-down with All statuses selected as the default option. Switch this to Created, and you should see your challenge.
+
+If my challenge isn't perfect / complete, should I even bother submitting it?
+Definitely! I'm always happy to help users develop their ideas into great challenges, so even if your challenge idea is just a basic outline, please feel free to submit it!
+
+I have another question that wasn't covered on this list
+Feel free to respond below with your question, or message @zero_cool directly!
+
+Remember to believe in yourself, anything is possible!

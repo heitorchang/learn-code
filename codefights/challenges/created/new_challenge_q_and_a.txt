@@ -1,0 +1,34 @@
+Title: How to Create a Private Challenge
+
+From the Main Menu at the top-left, go to Challenges, then at the right, click the blue link **+ CREATE** to take you to the **Task Library** page.
+
+First, click the big dashed box with the plus sign labeled **"Create New"**. You will fill in the form above later, when assigning the new task you are about to write to a new Challenge.
+
+Now, you will be at the *create-task* page. Even after your challenge is created, the corresponding task may be edited.
+
+A task has these components:
+
+* Name
+* Description
+* List of inputs
+* Output
+
+You must define the type of inputs and output. Test cases must conform to your choice of types.
+
+At the bottom right, you must write at least three test cases. The first half (rounded up) will be visible to solvers, and the rest, hidden.
+
+You are not required to write a solution for your task.
+
+Once you are done, click on **SAVE ALL** at the bottom-right.
+
+Finally, click on **DONE** at the top-right. You should now see the new task in the **Task Library** page.
+
+Now, choose the challenge settings in the form at the top. "Shortest solution" encourages golfing, while "Highest score" may be used for heavy optimization tasks, for example (where a suboptimal solution only solves part of the hidden tests).
+
+The duration is recommended to be **7 days**. At the end of this period, everyone's solutions will become visible.
+
+Finally, click the teal **CREATE CHALLENGE** button at the top-right, and save the given URL.
+
+So far I have not seen this URL become available anywhere after you leave the page. However, you may create a brand-new challenge using the new task. The task should remain accessible from the **Task Library** page.
+
+To edit your task later on, go to the Challenges' **+ CREATE** menu, click on **VIEW TASK**, and on the next page, click the three dots at the bottom-right, next to the thumbs up and down votes. 
