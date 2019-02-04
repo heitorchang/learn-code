@@ -35,6 +35,8 @@ Before starting your first crochet project, you want to measure how much effort 
 
 A pattern will be given to you as an **array of strings**, where each string represents a **row**. At the end of each row, you turn the piece around so that as you work, the row will always grow right-to-left (assuming you're right-handed).
 
+Assume the pattern is well-formed. That is, for any given row, there will be no gaps or extra loops left over in the previous row (except for the initial chain).
+
 __Examples__
 
 For
