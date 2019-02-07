@@ -1,6 +1,10 @@
 * T-shirts
 
-In this post, which I think was the most recent one about shirts, [Announcement Regarding Coins, Items and T-shirts](https://app.codesignal.com/forum/hmLhmmqyvaWre2JoJ), the admin wrote,
+In this post, which I think was the most recent one about shirts,
+
+[Announcement Regarding Coins, Items and T-shirts](https://app.codesignal.com/forum/hmLhmmqyvaWre2JoJ)
+
+the admin wrote,
 
 ```
 we will keep the store alive for the U.S. users who signed up

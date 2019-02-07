@@ -2,6 +2,8 @@ Update 29.jan.19
 
 No more submissions from users will be accepted :(
 
+* Befunge-Lite (2D arrows and stack pushing and popping)
+
 * gift giving graph, find nodes who don't get gifts and find shortest path? (weighted graph with shipping costs?)
 
 * gift giving, determine SCC
