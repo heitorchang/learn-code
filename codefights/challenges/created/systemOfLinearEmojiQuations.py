@@ -16,5 +16,9 @@ https://getemoji.com/
 
 from fractions import Fraction as fr
 
+def parseEq(s):
+    
+
+
 def emojiAlgebra(emojiQuations):
     pass
