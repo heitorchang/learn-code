@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  
+<body>
+  <pre style="float: left;">
+Q: ║   E: ═   =: ═
+
+       W: ╩
+A: ╣   S: ╦   D: ╠         
+
+R: ╔   T: ╗
+F: ╚   G: ╝
+
+X: ╬   +: ╬
+  </pre>
+  
+  <button onclick="copyToClipboard();">Copy to clipboard</button>
+  <br>
+  <textarea rows="15" cols="72" id="txt" style="font-family: Courier New;" autofocus></textarea>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+  <script>
+
+	var charMap = {
+	"q": "║", "w": "╩", "e": "═", "r": "╔", "t": "╗",
+	"a": "╣", "s": "╦", "d": "╠", "f": "╚", "g": "╝",
+	"x": "╬",
+	"Q": "║", "W": "╩", "E": "═", "R": "╔", "T": "╗",
+	"A": "╣", "S": "╦", "D": "╠", "F": "╚", "G": "╝",
+	"X": "╬",
+	"=": "═", "+": "╬", "|": "║",
+  	};
+	
+function replaceChars(text) {
+  var chars = text.split("");
+
+  // single characters
+  for (var i = 0; i < text.length; i++) {
+    chars[i] = charMap[chars[i]] || chars[i];
+  }
+  return chars.join("");
+}
+
+$("#txt").keyup(function(event) {
+  var code = (event.keyCode ? event.keyCode : event.which);
+
+  // left, right arrows, shift, home, end, tab
+  if (code === 37 || code == 39 || code == 16 || code == 35 || code == 36 || code == 9) {
+    return;
+  }
+  var caretPos = $(this)[0].selectionStart;
+
+  var text = $(this).val();
+  
+  $(this).val(replaceChars(text));
+
+  // keep caret position
+  $(this)[0].setSelectionRange(caretPos, caretPos);
+
+  //  }  // end if
+
+});
+
+function clearSelection()
+{
+ if (window.getSelection) {window.getSelection().removeAllRanges();}
+ else if (document.selection) {document.selection.empty();}
+}
+					  
+
+					  function copyToClipboard() {
+					  $('#txt').select(); document.execCommand('copy');
+					  clearSelection();
+					  }
+  </script>
+  
+</body>
+</html>
