@@ -48,3 +48,75 @@ Each row of this matrix is an array of integers representing a candidate, in thi
 ```
 
 """
+
+
+from collections import namedtuple
+from operator import attrgetter
+
+def megaSoftCorpHiring(candidates):
+    Candidate = namedtuple("Candidate", "id score challenges forum")
+
+    cs = [Candidate(*c) for c in candidates if c[1] >= 800]
+
+    cs.sort(key=attrgetter("id"))
+    cs.sort(key=attrgetter("score", "challenges", "forum"), reverse=True)
+    return [c.id for c in cs][:7]
+
+
+test(megaSoftCorpHiring(
+[[3, 729, 39, 3],
+ [4, 832, 112, 93],
+ [2, 690, 22, 0],
+ [1, 798, 5, 0]]
+
+), [4],
+
+     megaSoftCorpHiring(
+[[3, 620, 0, 0],
+ [1, 721, 3, 0],
+ [2, 752, 92, 221]]
+
+     ), [],
+
+     megaSoftCorpHiring(
+[[4, 800, 0, 0], 
+ [2, 800, 0, 0], 
+ [5, 840, 1, 1], 
+ [1, 800, 0, 0], 
+ [3, 720, 1, 1], 
+ [6, 803, 1, 1], 
+ [8, 838, 1, 1], 
+ [10, 832, 1, 1], 
+ [9, 763, 1, 1], 
+ [7, 800, 0, 0]]
+
+     ),  [5, 8, 10, 6, 1, 2, 4],
+
+     )
+
+import random
+
+def generateCand(lSc, uSc, chall, forum):
+    return [random.randint(lSc, uSc), random.randint(0, chall), random.randint(0, forum)]
+
+def generateExact(sc, c, f):
+    return [sc, c, f]
+    
+def generateRandomTestCase(lim):
+    ids = list(range(1, lim+1))
+    random.shuffle(ids)
+
+    test = []
+    for i in range(lim):
+        test.append(generateCand(650, 839, 20, 6))
+
+    random.shuffle(test)
+
+    for i in range(lim):
+        test[i] = [ids[i]] + test[i]
+        
+    return test
+
+
+def generateEdgeCase(lim):
+    pass
