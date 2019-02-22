@@ -42,6 +42,9 @@ You have to attend a ceremony located at the given coordinates `(x, y)`. You may
 
 kov_js = """
 
+// not exactly correct, because it returns 4 if all else fails
+// but there are boards with expected values of 5 
+
 primeKnight = (size, [Ay, Ax], [By, Bx]) => {
     console.log([Ay, Ax], [By, Bx])
     console.time()
@@ -109,27 +112,123 @@ console.log(primeKnight(size = 1e4, [Math.random() * size | 0, Math.random() * s
 """
 
 
-kov_board = """
 
-primeKnightBoard = (y, x) => {
-    a = Array(y * 2).fill(0).map(r => Array(x * 2).fill(0))
-    q = [[y, x, 0]]
-    a[y][x] = false
+gen = """
+
+primeKnightBoard = (size) => {
+    console.time()
+    sieve = new Uint8Array(size + 1)
+    for (i = 2; i * i <= size; i++)
+        if (sieve[i] == 0) 
+            for (j = i + i; j <= size; j += i)
+                sieve[j] = 1
+    primes = []
+    for (i = 3; i < size; i++)
+        sieve[i] || primes.push(i)
+
+    size = size + 1 >> 1
+    a = Array(size).fill(0).map(r => Array(size).fill(0))
+    q = [[0, 0, 0]]
+    a[0][0] = "x"
     for ([y, x, d] of q) {
         i = 2
-        for (j of [3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283, 293, 307, 311, 313, 317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487, 491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661, 673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859, 863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997,  1009]) {
-
-            [[y + i, x - j], [y + i, x + j], [y - i, x - j], [y - i, x + j], [y + j, x - i], [y + j, x + i], [y - j, x - i], [y - j, x + i]]
-                .map(([Y, X]) => {
-                    if ((a[Y] || 0)[X] === 0)
-                        a[Y][X] = d + 1,
-                        q.push([Y, X, d + 1])
-                })
+        for (j of primes) {
+            for ([Y, X] of [[i, j], [i, -j], [-i, j], [-i, -j], [j, i], [j, -i], [-j, i], [-j, -i]]) {
+                Y += y
+                if (Y < 0) Y = -Y
+                X += x
+                if (X < 0) X = -X
+//                Y = Math.abs(Y + y)
+//                X = Math.abs(X + x)
+                if (Y < size && X < size && a[Y][X] === 0) 
+                    a[Y][X] = d + 1,
+                    q.push([Y, X, d + 1])
+            }
             i = j
         }
     }
-    a.map(r => console.log(r.join``))
+    a.map(r => console.log(r.join` `))
+    console.timeEnd()
 }
-primeKnightBoard(1000, 1000)
+
+for (size = 7; size < 21; size += 2)
+    console.log("---", size),
+    primeKnightBoard(size)
 
 """
+
+
+ans = """
+
+primeKnightNoGood = (size, [Ay, Ax], [By, Bx]) => {
+    console.log([Ay, Ax], [By, Bx])
+    console.time()
+
+    sieve = new Uint8Array(size)
+    for (i = 2; i * i <= size; i++)
+        if (sieve[i] == 0) 
+            for (j = i + i; j <= size; j += i)
+                sieve[j] = 1
+    primes = []
+    for (i = 3; i < size; i++)
+        sieve[i] || primes.push(i)
+
+    board = new Uint8Array(size * size)
+
+    A = Ay * size + Ax
+    B = By * size + Bx
+    q = []
+    r = []
+    i = 2
+    for (j of primes) {
+        for ([Y, X] of [[Ay + i, Ax - j], [Ay + i, Ax + j], [Ay - i, Ax - j], [Ay - i, Ax + j], [Ay + j, Ax - i], [Ay + j, Ax + i], [Ay - j, Ax - i], [Ay - j, Ax + i]]) {
+            C = Y * size + X
+            if (C == B) {
+                console.timeEnd()
+                return 1
+            }
+            if (board[C] != 1)
+                q.push([i, j])
+            if (board[C] == 0) 
+                board[C] = 1,
+                r.push([Y, X])
+            i = j
+        }
+    }
+    console.log(primes.length, q.length, r.length)
+
+    i = 2
+    for ([i, j] of q) {
+        C = (By + i) * size + Bx + j
+        if (board[C] == 1) {
+            console.timeEnd()
+            return 2
+        }
+        if (board[C] == 0) {
+            board[C] = 2
+        }
+    }
+    for ([Ay, Ax] of r) {
+        for ([i, j] of q) {
+            C = (Ay + i) * size + Ax + j
+            if (board[C] == 2) {
+                console.timeEnd()
+                return 3
+            }
+            if (board[C] == 0) 
+                board[C] = 3
+        }
+    }
+    console.timeEnd()
+    return 4
+}
+
+primeKnight = (n, x, y) => {
+  return primeKnightNoGood(size, [0, 0], [x, y])
+}
+
+
+"""
+
+testCases = """
+
