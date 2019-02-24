@@ -1,21 +1,13 @@
-def eqdig(r, m):
-    return ''.join([d for d, e in zip(str(r), m) if d != e])
-
-
-
-
 from itertools import product
 
 m = int(1e9+7)
-digs = [''] + list(map(str, range(10)))
-innerdigs = list(map(str, range(10)))
+digs = [' '] + list(map(str, range(10)))
 
 def repl(eq, vals):
     return eq.format(*vals)
 
 def substInto(eq, vals):
     ff = eq.replace("_", "{}")
-    # print(ff.format(*map(str, vals)))
     return ff.format(*map(str, vals))
 
     
@@ -30,19 +22,12 @@ def pick(real, missing):
     for p in product(digs, repeat=ct):
         try:
             if int(missing.format(*p)) == real:
-                return ''.join(p)
+                return ''.join(p).strip()
         except:
             pass
     
 
 def TTYPaperTape3(t):
-    print(t)
-    t = t.replace(" ", "")
-    
-    numsp = t.count("_")
-
-    digs = [""] + list(map(str, range(10)))
-
     t = t.replace("_", "{}")
 
     # split base, expt and rt (right)
@@ -53,14 +38,6 @@ def TTYPaperTape3(t):
     basesp = base.count("{}")
     exptsp = expt.count("{}")
     rightsp = right.count("{}")
-
-    maxbase = int(repl(base, ['9'] * basesp))
-
-    maxexpt = int(repl(expt, ['9'] * exptsp))
-
-
-    minright = int(repl(right, ['0'] * rightsp))
-    maxright = int(repl(right, ['9'] * rightsp))
 
     valright = set()
     
@@ -95,13 +72,11 @@ def TTYPaperTape3(t):
     valbase = [b for b in valbase if b > 0]
     valexpt = [b for b in valexpt if b > 0]
 
-    print(valbase, valexpt)
-    
     for b in valbase:
         found = False
         for e in valexpt:
             pp = pow(b, e, m)
-            if pp in valright and b + e > 0:
+            if pp in valright:
                 bans = b
                 eans = e
                 rans = pp
@@ -109,9 +84,6 @@ def TTYPaperTape3(t):
                 break
         if found:
             break
-
-    # print(str(bans) + "^" + str(eans) + "=" + str(rans))
-    # print("Base,expt,r", base, expt, right)
 
     if basesp:
         bi = pick(bans, base)
@@ -144,12 +116,5 @@ test(
 
 test(
     TTYPaperTape3("_1 ^ __ = 1_1"), 122,
-
-    )
-
-test(
-
-    pick(2102, "{}1{}02"), '2',
-    pick(1202, "{}1{}02"), '2',
-
+    TTYPaperTape3("_ ^_ _ = 25"), 52,
     )
