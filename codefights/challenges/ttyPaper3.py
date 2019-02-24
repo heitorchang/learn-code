@@ -92,6 +92,8 @@ def TTYPaperTape3(t):
             continue
         valexpt.append(cureint)
 
+    valbase = [b for b in valbase if b > 0]
+    valexpt = [b for b in valexpt if b > 0]
 
     for b in valbase:
         found = False
