@@ -8,7 +8,7 @@ from itertools import product
 
 m = int(1e9+7)
 digs = [''] + list(map(str, range(10)))
-       
+innerdigs = list(map(str, range(10)))
 
 def repl(eq, vals):
     return eq.format(*vals)
@@ -95,6 +95,8 @@ def TTYPaperTape3(t):
     valbase = [b for b in valbase if b > 0]
     valexpt = [b for b in valexpt if b > 0]
 
+    print(valbase, valexpt)
+    
     for b in valbase:
         found = False
         for e in valexpt:
@@ -129,6 +131,7 @@ def TTYPaperTape3(t):
     return int(bi + ei + ri)
     
 
+    """
 test(
     TTYPaperTape3(" _^ _ = 9"), 32,
     TTYPaperTape3("_ ^ _ _ = 25"), 52,
@@ -137,7 +140,12 @@ test(
 
     
 )
+"""
 
+test(
+    TTYPaperTape3("_1 ^ __ = 1_1"), 122,
+
+    )
 
 test(
 
