@@ -72,6 +72,9 @@ def TTYPaperTape3(t):
     valbase = [b for b in valbase if b > 0]
     valexpt = [b for b in valexpt if b > 0]
 
+    works = set()
+    
+
     for b in valbase:
         found = False
         for e in valexpt:
@@ -83,25 +86,23 @@ def TTYPaperTape3(t):
                 found = True
                 break
         if found:
-            break
+            if basesp:
+                bi = pick(bans, base)
+            else:
+                bi = ""
 
-    if basesp:
-        bi = pick(bans, base)
-    else:
-        bi = ""
+            if exptsp:
+                ei = pick(eans, expt)
+            else:
+                ei = ""
 
-    if exptsp:
-        ei = pick(eans, expt)
-    else:
-        ei = ""
-
-    if rightsp:
-        ri = pick(rans, right)
-    else:
-        ri = ""
-
-    return int(bi + ei + ri)
-    
+            if rightsp:
+                ri = pick(rans, right)
+            else:
+                ri = ""
+            works.add(int(bi + ei + ri))
+            found = False
+    return min(works)
 
     """
 test(
