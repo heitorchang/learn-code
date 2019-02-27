@@ -104,16 +104,16 @@ def TTYPaperTape3(t):
             found = False
     return min(works)
 
-    """
+
 test(
-    TTYPaperTape3(" _^ _ = 9"), 32,
-    TTYPaperTape3("_ ^ _ _ = 25"), 52,
-    TTYPaperTape3("_0 ^ 2 = _00"), 11,
-    TTYPaperTape3(" 3_^2=1_2_"), 204,
+    TTYPaperTape3(" _^ _ = 3"), 32,
+    #TTYPaperTape3("_ ^ _ _ = 9"), 52,
+    #TTYPaperTape3("_0 ^ 2 = _00"), 11,
+    #TTYPaperTape3(" 3_^2=1_2_"), 204,
 
     
 )
-"""
+
 
 test(
     TTYPaperTape3("_1 ^ __ = 1_1"), 122,
