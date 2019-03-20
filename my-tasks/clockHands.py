@@ -19,10 +19,24 @@ def closest():
             ans.append(((h, m), abs(angles[0] - angles[1])))
     ans.sort(key=itemgetter(1))
 
-    for t in ans:
-        print("{}:{} {}".format(t[0][0], t[0][1], t[1]))
+    # for t in ans:
+    #     print("{}:{} {}".format(t[0][0], t[0][1], t[1]))
         
     return ans
+
+
+def perHour():
+    allTimes = closest()
+    byHour = [-1] * 12
+    for i in range(12):
+        # brute force
+        for t in allTimes:
+            if t[0][0] == i:
+                if byHour[i] == -1:
+                    byHour[i] = t[0][1]
+                else:
+                    break
+    return byHour
         
 
 pairtest(handAngles(3, 0), (90, 0),
