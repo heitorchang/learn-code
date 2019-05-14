@@ -1,0 +1,36 @@
+Installing and running Django on NearlyFreeSpeech
+
+1. Create a new Apache 2.4 generic site
+2. ssh
+3. In /home/protected/, clone the Django site
+4. python3 -m venv virtualenv
+5. pip install django gunicorn
+6. create the file run-django.sh in the same directory as manage.py
+
+#!/bin/bash
+
+source /home/protected/virtualenv/bin/activate
+gunicorn MY_PROJECT_NAME.wsgi
+
+7. add daemon in NFS members' admin site
+  - tag: django
+  - command line: /home/protected/MY_PROJECT/run-django.sh
+  - working directory: /home/protected/MY_PROJECT/
+
+8. add a proxy
+  - protocol: http
+  - base URI: /
+  - Document Root: /
+  - target port: 8000
+  - Direct (bypass Apache entirely) if checked, Django handles the entire site
+      if checked, it's faster and scales better
+
+9. exclude (say) /images/ directory by leaving Direct unchecked and adding
+   another proxy. An images/ directory should be created in /home/public/
+
+  - protocol: none
+  - base URI: /images/
+  - Document root: /images/
+  - target port: 8080  (port does not matter for protocol: none)
+  
+10. If needed, restart daemon in NFS admin site (such as when settings change)
