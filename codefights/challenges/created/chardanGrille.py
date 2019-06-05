@@ -10,10 +10,10 @@ def cvt(s):
     for c in s:
         if c.isalpha() or c.isspace():
            ans += c
-    return wrap(ans)
+    return wrap(ans, 40)
 
 """
-all human beings are born free and equal in dignity and rights they
-are endowed with reason and conscience and should act towards one
-another in a spirit of brotherhood
+          1         2         3         4         5
+0123456789012345678901234567890123456789012345678901234567890123456
+all human beings are born free and equal in dignity and rights they are endowed with reason and conscience and should act towards one another in a spirit of brotherhood
 """
