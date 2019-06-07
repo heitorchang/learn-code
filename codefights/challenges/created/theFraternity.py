@@ -42,7 +42,7 @@ If a vertical thread is on top, record a `1` (one). Otherwise, record a `0` (zer
 
 You should proceed row-by-row and left-to-right within a row. 
 
-Once **7 digits** have been recorded, it can be converted from binary to a character (`A` to `Z` or an underscore `_`) corresponding to its ASCII code. These numbers are left-padded with zeros.
+Once **7 digits** have been recorded, it can be converted from binary to a character (`A` to `Z` or an underscore `_`) corresponding to its ASCII code. These numbers will always start with a `1` (one).
 
 Repeat this procedure until you reach the end of your piece of fabric.
 
