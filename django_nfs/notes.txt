@@ -4,8 +4,9 @@ Installing and running Django on NearlyFreeSpeech
 2. ssh
 3. In /home/protected/, clone the Django site
 4. python3 -m venv virtualenv
-5. pip install django gunicorn
-6. create the file run-django.sh in the same directory as manage.py
+5. source virtualenv/bin/activate
+6. pip install django gunicorn
+7. create the file run-django.sh in the same directory as manage.py
 
 #!/bin/bash
 
