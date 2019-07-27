@@ -1,3 +1,5 @@
+NOTE: Moved to "good-practice"
+
 Installing and running Django on NearlyFreeSpeech
 
 1. Create a new Apache 2.4 generic site
