@@ -1,4 +1,4 @@
-# See if there is a 
+# See if there is a cannon
 
 def chineseChessCannonAttack(board):
     rows = len(board)
@@ -18,7 +18,7 @@ def chineseChessCannonAttack(board):
             if board[r][gc] != '.':
                 found += 1
             if board[r][gc] == 'c' and found == 2:
-                return (r, gc)
+                return [r, gc]
 
     # left
     found = 0
@@ -27,7 +27,7 @@ def chineseChessCannonAttack(board):
             if board[gr][c] != '.':
                 found += 1
             if board[gr][c] == 'c' and found == 2:
-                return (gr, c)
+                return [gr, c]
 
     # right
     found = 0
@@ -36,7 +36,7 @@ def chineseChessCannonAttack(board):
             if board[gr][c] != '.':
                 found += 1
             if board[gr][c] == 'c' and found == 2:
-                return (gr, c)
+                return [gr, c]
 
     # bottom
     found = 0
@@ -45,36 +45,37 @@ def chineseChessCannonAttack(board):
             if board[r][gc] != '.':
                 found += 1
             if board[r][gc] == 'c' and found == 2:
-                return (r, gc)
+                return [r, gc]
             
-    return (-1, -1)
+    return [-1, -1]
 
 pairtest(chineseChessCannonAttack(
     # 012345678
     ["...c....",
-     "...x....",
+     "...c....",
      "c..g.x.c",
      "........",
-     "........"]), (0, 3),
+     "........"]), [0, 3],
         chineseChessCannonAttack(
             ["............",
              ".....c...c..",
              "............",
              "..x..c......",
-             ".....g......"]), (1, 5),
+             ".....g......"]), [1, 5],
          chineseChessCannonAttack(
             ["............",
              ".....c...c..",
              ".....c......",
              "..x..c......",
-             ".....g......"]), (2, 5),
+             ".....g......"]), [2, 5],
          chineseChessCannonAttack(
              ["...........",
               "...........",
               ".ccc.g.....",
               "...........",
               ".....c.....",
-              ".....x.....",]), (2, 2),
+              ".....x.....",])
+, [2, 2],
          
          chineseChessCannonAttack(
              [".....c.......",
@@ -86,7 +87,8 @@ pairtest(chineseChessCannonAttack(
               ".ccc.g.......",
               ".............",
               ".....c.......",
-              ".....x.......",]), (2, 5),
+              ".....x......."])
+, [2, 5],
 
          chineseChessCannonAttack(
              [".....x.......",
@@ -95,10 +97,11 @@ pairtest(chineseChessCannonAttack(
               ".............",
               ".....c.......",
               ".............",
-              "cx x.g..x.c..",
+              "cx.x.g..x.c..",
               ".............",
               ".....c.......",
-              ".....x.......",]), (6, 10),
+              ".....x......."])
+, [6, 10],
 
          chineseChessCannonAttack(
              ["cxg..x.......",
@@ -107,10 +110,11 @@ pairtest(chineseChessCannonAttack(
               ".............",
               ".....c.......",
               ".............",
-              "cx x....x.c..",
+              "cx.x....x.c..",
               ".............",
               ".....c.......",
-              ".....x.......",]), (0, 0),
+              ".....x......."])
+, [0, 0],
 
          chineseChessCannonAttack(
              [".....x....gxc",
@@ -119,10 +123,11 @@ pairtest(chineseChessCannonAttack(
               ".............",
               ".....c.......",
               ".............",
-              "cx x....x.c..",
+              "cx.x....x.c..",
               ".............",
               ".....c.......",
-              ".....x.......",]), (0, 12),
+              ".....x......."])
+, [0, 12],
          chineseChessCannonAttack(
              [".....c......c",
               "....cc......c",
@@ -130,10 +135,11 @@ pairtest(chineseChessCannonAttack(
               ".............",
               ".....c.......",
               ".............",
-              "cx x....x.c..",
+              "cx.x....x.c..",
               ".............",
               ".....c.......",
-              ".....x.......",]), (0, 12),
+              ".....x......."])
+, [0, 12],
          chineseChessCannonAttack(
              [".....x.......",
               "....c........",
@@ -141,10 +147,11 @@ pairtest(chineseChessCannonAttack(
               ".............",
               ".....c.......",
               ".............",
-              "cx x.x..x.c..",
+              "cx.x.x..x.c..",
               ".............",
               ".....c.......",
-              "gxc..x.......",]), (9, 2),
+              "gxc..x......."])
+, [9, 2],
          chineseChessCannonAttack(
              [".....x.......",
               "....c........",
@@ -152,10 +159,11 @@ pairtest(chineseChessCannonAttack(
               ".............",
               ".....c.......",
               ".............",
-              "cx x.x..x.c..",
+              "cx.x.x..x.c..",
               ".............",
               "x....c.......",
-              "gxc..x.......",]), (6, 0),
+              "gxc..x......."])
+, [6, 0],
          chineseChessCannonAttack(
              [".....x......g",
               "....c........",
@@ -163,10 +171,11 @@ pairtest(chineseChessCannonAttack(
               ".............",
               ".....c......x",
               ".............",
-              "cx x.x..x.c..",
+              "cx.x.x..x.c..",
               ".............",
               ".....c.......",
-              ".xc..x......c",]), (9, 12),
+              ".xc..x......c"])
+, [9, 12],
          chineseChessCannonAttack(
              ["c....x.......",
               "....c........",
@@ -174,10 +183,11 @@ pairtest(chineseChessCannonAttack(
               ".............",
               ".....c.......",
               ".............",
-              "cx x.x..x.c..",
+              "cx.x.x..x.c..",
               ".............",
               ".....c.......",
-              "gxc..x.......",]), (0, 0),
+              "gxc..x......."])
+, [0, 0],
          chineseChessCannonAttack(
              [".....x......c",
               "....c........",
@@ -185,10 +195,11 @@ pairtest(chineseChessCannonAttack(
               ".............",
               ".....c......c",
               ".............",
-              "cx x.x..x.c..",
+              "cx.x.x..x.c..",
               "............g",
               ".....c.......",
-              "cxc..x.......",]), (0, 12),
+              "cxc..x......."])
+, [0, 12],
          chineseChessCannonAttack(
              [".....x.......",
               "....c........",
@@ -196,10 +207,11 @@ pairtest(chineseChessCannonAttack(
               ".............",
               ".....c.......",
               ".............",
-              "cx x.x..x.c..",
+              "cx.x.x..x.c..",
               ".............",
               ".....c.......",
-              "cxg..x.......",]), (9, 0),
+              "cxg..x......."])
+, [9, 0],
          chineseChessCannonAttack(
              [".....x.......",
               "..xxc........",
@@ -207,10 +219,11 @@ pairtest(chineseChessCannonAttack(
               "....c..c.g...",
               ".....c.......",
               "........cc...",
-              "cx x.x..x.c..",
+              "cx.x.x..x.c..",
               ".......x.....",
               ".....c...c.x.",
-              ".xc..x.......",]), (3, 4),
+              ".xc..x......."])
+, [3, 4],
          chineseChessCannonAttack(
              [".....x.......",
               "....c....x...",
@@ -222,10 +235,11 @@ pairtest(chineseChessCannonAttack(
               ".c..x........",
               ".....c.......",
               "..c.c..gxxcc.",
-              "cx x.x..x.c..",
+              "cx.x.x..x.c..",
               ".............",
               ".....c.......",
-              ".xc..x.......",]), (9, 2),
+              ".xc..x......."])
+, [9, 2],
 
          chineseChessCannonAttack(
              [".....................................",
@@ -242,8 +256,19 @@ pairtest(chineseChessCannonAttack(
               ".......c.....c.......................",
               "................c....................",
               ".....................................",
-              "....................................."]), (6, 3),
-         
+              "....................................."])
+, [6, 3],
+
+         chineseChessCannonAttack(
+             ["..cccccccg"]), [0, 7],
+         chineseChessCannonAttack(
+             ["...gcccccc"]), [0, 5],
+         chineseChessCannonAttack(
+             [".",
+              "g",
+              "x",
+              "c",]), [3, 0],
+              
          )
 
 
