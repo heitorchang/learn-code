@@ -16,7 +16,9 @@ users who've signed up prior to July 30, 2017, and it will
 remain that way.
 ```
 
+* My challenge guide
 
+https://app.codesignal.com/forum/5upavw4AiYC8zHEX2
 
 * Writing a challenge
 
