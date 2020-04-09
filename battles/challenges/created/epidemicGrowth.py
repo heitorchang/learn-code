@@ -50,12 +50,13 @@ The absolute value of the difference is `0.162`, so we conclude the epidemic is 
 from statistics import mean
 
 def epidemicGrowth(dailyVictims):
+    dailyVictims = dailyVictims[-15:]
     assert len(dailyVictims) == 15
     ratios = [b/a for a, b in zip(dailyVictims, dailyVictims[1:])]
     newerAverage = mean(ratios[7:])
     olderAverage = mean(ratios[:7])
     absdiff = abs(newerAverage - olderAverage)
-    
+    print(olderAverage, newerAverage)
     if newerAverage > 1.25 and olderAverage > 1.25:
         return "uncontrolled growth"
     elif newerAverage - olderAverage > 0.1:
@@ -81,7 +82,7 @@ def generateTestData(init, rate):
         out.append(int(out[-1] * (1 + randlim(rate))))
     return out
 
-print(epidemicGrowth([9,15,22,30,40,48,58,68,84,98,113,136,164,188,219]))
+print(epidemicGrowth([9,15,22,30,40,48,58,68,84,98,113,136,164,188,219,260,275,304,371,428,496]))
 print(epidemicGrowth([120, 136, 179, 217, 263, 283, 345, 425, 527, 681, 695, 760, 829, 904, 1187]))
 print(epidemicGrowth([25, 28, 42, 50, 74, 79, 92, 142, 157, 225, 275, 400, 501, 580, 873]))
 print(epidemicGrowth([120, 122, 142, 160, 161, 162, 175, 204, 236, 258, 280, 296, 354, 419, 499]))
