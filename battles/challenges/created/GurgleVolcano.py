@@ -80,10 +80,14 @@ def GurgleVolcano(floor, hp):
     rp = np.array(row_ind)
     cp = np.array(col_ind)
     dp = np.array(data)
-                    
-    mat_coo = sparse.coo_matrix((dp, (rp, cp)))
-    d = dijkstra(mat_coo)
 
+    print()
+    print(len(rp), len(cp), len(dp))
+
+    mat_coo = sparse.coo_matrix((dp, (rp, cp)))
+    
+    d = dijkstra(mat_coo)
+    print(d)
     # find S and F
 
     sloc = floorstr.index('S')
@@ -221,11 +225,13 @@ e = ["SLGLGLG",
 #  [n,1,n,1,n,0],
 #  [n,n,1,n,0,n]]
 
+"""
 row_ind = np.array([0, 0, 1, 1, 1, 2, 2, 3, 3, 4, 4, 4, 5, 5]) # from
 col_ind = np.array([1, 3, 0, 2, 4, 1, 5, 0, 4, 1, 3, 5, 2, 4]) # to
 data =    np.array([1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 1, 0, 1, 0]) # lava?
 
 mat_coo = sparse.coo_matrix((data, (row_ind, col_ind)))
+"""
 
 #  0 1 2 3 4
 #  5 6 7 8 9
@@ -233,9 +239,12 @@ mat_coo = sparse.coo_matrix((data, (row_ind, col_ind)))
 # 1516171819
 
 pairtest(
-    GurgleVolcano(a, 100), 91,
+    GurgleVolcano(case3, 100), 90,
+    )
+
+"""
     GurgleVolcano(b, 100), 100,
     GurgleVolcano(c, 100), 100,
     GurgleVolcano(d, 100), 100,
     GurgleVolcano(e, 100), 95,
-    )
+"""
