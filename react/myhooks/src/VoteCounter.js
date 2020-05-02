@@ -17,7 +17,15 @@ export default function VoteCounter(props) {
             // document.title = `${props.candidate}minion detected`;
         }
     }, [votes]);
-        
+
+    const computePercentage = () => {
+        if (props.ballotBoxTotal === 0) {
+            return "0";
+        } else {
+            return Math.round(votes / props.ballotBoxTotal * 100);
+        }
+    }
+    
     return (
         <div>
         <button className="vote-button" onClick={() => {
@@ -27,7 +35,7 @@ export default function VoteCounter(props) {
         }}>
             Vote
             </button>
-        {props.candidate}: {votes} vote(s)
+        {props.candidate}: {votes} vote(s), {computePercentage()}%
         </div>
     );
 }

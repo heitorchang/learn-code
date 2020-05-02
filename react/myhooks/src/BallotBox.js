@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import VoteCounter from './VoteCounter';
+import './BallotBox.css';
+
 
 export default function BallotBox() {
     const [totalVotes, setTotalVotes] = useState(0);
-    const [voterLabel, setVoterLabel] = useState("You're an undecided minion.");
+    const [voterLabel, setVoterLabel] = useState("You're an undecided minion. Vote for someone.");
     
     const handleClick = (candidate) => {
         setTotalVotes(totalVotes + 1);
@@ -13,17 +15,21 @@ export default function BallotBox() {
     const changeVoterLabel = (candidate) => {
         setVoterLabel(candidate + "minion detected.");
     }
+
+    const candidates = ["Bolso", "Haddad", "Ciro", "Alckmin", "Marina", "Meirelles"];
     
     return (
         <div>
-        <p>
+        <p className="voter-label">
         {voterLabel}
         </p>
+        {
+            candidates.map(candidate =>
+                <VoteCounter candidate={candidate} onClick={handleClick} ballotBoxTotal={totalVotes} />)
+        }
+        <b>
         Total votes: {totalVotes}
-        <br />
-        <VoteCounter candidate="Ciro" onClick={handleClick} />
-        <VoteCounter candidate="Bolso" onClick={handleClick} />
-        <VoteCounter candidate="Marina" onClick={handleClick} />
+        </b>
         </div>
     );
 }

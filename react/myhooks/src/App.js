@@ -8,7 +8,9 @@ import BallotBox from './BallotBox';
 
 function App() {
     return (
+        <div className="ballot-box">
         <BallotBox />
+        </div>
     );
 }
 
