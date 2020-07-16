@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    
+    <body>
+        <div id="app">
+            {{ message }}
+            <ol>
+                <todo-item
+                    v-for="item in groceryList"
+                    v-bind:todo="item"
+                    v-bind:key="item.id"
+                ></todo-item>
+            </ol>
+        </div>
+        
+        <script src="js/vue-2.6.11.min.js"></script>
+        <script src="js/vue-composition-api-1.0.0-beta.3.min.js"></script>
+        <script src="js/hello_app.js"></script>
+    </body>
+
+    
+</html>
