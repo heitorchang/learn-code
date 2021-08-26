@@ -1,0 +1,1 @@
+(Programming Clojure, 3rd ed. p. xiii) Polymorphism usually means "take the class of the argument and dispatch a method based on that." Clojure's multimethods allow choosing any function of any argument and dispatch based on that.

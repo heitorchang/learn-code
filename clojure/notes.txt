@@ -1,0 +1,49 @@
+See also: good-practice/clojure.md
+
+Integer division: quot and rem
+
+BigDecimal: 0.0123M 
+BigInt: 100991N 
+(these are contagious)
+
+Collection types:
+list () : must be quoted or it will be interpreted as a function call
+vector []
+map {}
+set #{}
+
+regexp #""
+
+keywords begin with a colon (an advantage over strings is being able to look themselves up in a map)
+:points
+
+evaluating a lazy expression is called "realizing" the expression
+
+(declare x y z) creates these vars with no initial binding at the same time
+
+(defrecord Book [title author])
+(def anne-with-an-e
+  (->Book "Anne of Green Gables" "Lucy Maud Montgomery"))
+(:title anne-with-an-e)
+
+Book behaves almost like any regular map
+
+strings must use double quotes
+
+concatenate strings: (str "one plus two is " (+ 1 2))
+
+(println "some text")
+
+\a \b \c \space \return \newline (\r\n or CRLF)
+
+true, false are booleans
+
+in a Boolean context, only nil, false evaluate to "false"
+
+0 and () are not "false"
+
+(true? x) tests if x is exactly the "true" value (only true will return true)
+nil? and false? also only test for nil and false
+
+zero? works with 0 and 0.0
+
