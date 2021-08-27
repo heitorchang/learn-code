@@ -47,3 +47,4 @@ nil? and false? also only test for nil and false
 
 zero? works with 0 and 0.0
 
+a closure is a function that remembers the environment values associated with it when it was created.
