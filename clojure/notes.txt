@@ -48,3 +48,47 @@ nil? and false? also only test for nil and false
 zero? works with 0 and 0.0
 
 a closure is a function that remembers the environment values associated with it when it was created.
+
+(java.util.Random.) is the same as (new java.util.Random)
+
+(def rnd (java.util.Random.))
+
+. (dot special form) is used to call methods and access instance fields. It also works for static methods and fields
+in case both a method and field exist, the method is preferred. prefix with - to access the field.
+
+(. rnd nextInt)
+
+(.nextInt rnd) calls the instance method
+(.-field instance)
+(Class/method args)
+Class/field
+
+java.lang classes are imported automatically
+
+evaluate
+(import '(java.util Random Locale)
+	'(java.text MessageFormat))
+
+and the classes may be called directly (Random, Locale, MessageFormat
+
+;; comments
+
+(comment
+  this is a macro
+  )
+
+#_(this form is ignored)
+
+(do ...) is used to execute side effects
+
+(loop) sets a recursion point, targeted by (recur)
+
+(loop [result [] x 5]
+  (if (zero? x)
+    result
+    (recur (conj result x) (dec x))))
+
+recur can go back to the top of a function
+
+
+
