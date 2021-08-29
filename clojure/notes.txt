@@ -202,3 +202,19 @@ wrap the recursive part of a function body with (lazy-seq ...) to replace recurs
 (take 5 (iterate (fn [[a b]] [b (+ a b)]) [0 1]))
 
 (map first ...) takes the first value of each vector (pair of numbers)
+
+(partition size step? coll) divides a collection into equal sized chunks
+
+(comp f & fs) composes functions
+
+(declare my-odd? my-even?) will create both vars (with no initial binding) in a single line
+
+(trampoline f & partial-args) manages its own recur (to recursively call other functions). it is not widely used. one way of preparing functions for trampoline is adding # to the original recursive calls 
+
+to break a recursion, wrap it with lazy-seq
+
+(def m (memoize m)) will rebind m to a memoized version of itself
+
+to build the memoized function's cache, map the function over the range of possible inputs
+
+(def m-seq (map m (iterate inc 0)))
