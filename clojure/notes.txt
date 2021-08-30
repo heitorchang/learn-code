@@ -218,3 +218,11 @@ to break a recursion, wrap it with lazy-seq
 to build the memoized function's cache, map the function over the range of possible inputs
 
 (def m-seq (map m (iterate inc 0)))
+
+(into [] (map square) (range n)) places the result directly in an output vector. (map f) is a transducer (a function that represents a transformation without tying it to either the input or output collections.
+
+->> chains transformations
+
+comp may also be used
+
+eduction is a reducible/iterable application of transducer
