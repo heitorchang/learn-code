@@ -1,0 +1,6 @@
+PCL ch. 4 footnote 14
+literal objects such as quoted lists, strings, literal arrays and vectors must not be modified.
+lists to be manipulated should be created with LIST
+
+PCL ch. 5 footnote 7
+READ-FROM-STRING, PARSE-NAMESTRING, WRITE-LINE, and WRITE-STRING take both &optional and &key arguments, which may lead to unintended behavior
