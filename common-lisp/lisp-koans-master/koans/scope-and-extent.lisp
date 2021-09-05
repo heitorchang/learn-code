@@ -13,7 +13,7 @@
 ;;; limitations under the License.
 
 (define-test shadowing
-  (assert-equal ____ (let ((z 4)) (list z (let ((z 2)) z)))))
+  (assert-equal '(4 2) (let ((z 4)) (list z (let ((z 2)) z)))))
 
 (defun block-1 ()
   (block here
