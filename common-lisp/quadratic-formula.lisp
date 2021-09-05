@@ -1,0 +1,13 @@
+(defun quad-form (a b c)
+  (let* ((b-float (coerce b 'float))
+         (discr-code `(sqrt (- ,(expt b-float 2) ,(* 4 a c))))
+         (discr (eval discr-code))
+         (pair-code `(list (/ (+ ,(- b-float) ,discr) ,(* 2 a))
+                           (/ (- ,(- b-float) ,discr) ,(* 2 a))))
+         (ans (eval pair-code)))
+    (progn
+      (print discr-code)
+      (princ "discr = ")
+      (princ (eval discr-code))
+      (print pair-code)
+      ans)))
