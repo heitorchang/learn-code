@@ -1,0 +1,43 @@
+<body>
+    <button onclick="play()" autofocus>Play</button>
+</body>
+
+<script>
+ function play() {
+   const values = ['re', 'hi', 'fu', 'mi', 'yo', 'i', 'mu', 'na', 'ya', 'ko', 'to'];
+   const correct = new Set();
+   let number = null;
+   while (true) {
+     if (correct.size == 11) {
+       break;
+     }
+     while (true) {
+       if (correct.size == 11) {
+         break;
+       }
+       const trial = Math.floor(Math.random() * 11);
+       if (!correct.has(trial)) {
+         number = trial;
+         break;
+       }
+     }
+     
+     console.log(number);
+     const ans = values[number];
+
+     const user = window.prompt(number);
+     if (user == "q") {
+       break;
+     }
+     
+     if (user == ans) {
+       correct.add(number);
+       if (correct.size == 11) {
+         break;
+       }
+     } else {
+       window.alert("Iie: " + ans);
+     }
+   }
+ }
+</script>
