@@ -18,12 +18,12 @@ The basics of the game are as follows:
     - Items that are used for a task can be used ONLY ONCE.  After use they should be removed from a players inventory
 3) Players can interact with the world by use of text commands.  
     - The expected commands are
-        - LOOK
+      OK- LOOK
         - TAKE
         - READ
         - USE $A ON $B
-        - GO $DIRECTION
-        - INVENTORY
+      OK- GO $DIRECTION
+      OK- INVENTORY
     - What these commands should do is outlined below
 4) Using commands on items can produce effects
     - Expected effects are
@@ -156,119 +156,6 @@ Rooms represent areas of the world.  Each room may have up to 4 doors (One in ea
 }
 ```
 ​
-​
-# Example of a valid adventure (3 rooms, 2 items, 3 effects, and one simple puzzle):
-
-{
-    "items" : [
-        {
-            "id" : "1",
-            "name" : "Book",
-            "commands" : [
-                {
-                    "command" : "LOOK",
-                    "text" : "An old book, worn with time."
-                },
-                {
-                    "command" : "TAKE"
-                },
-                {
-                    "command" : "READ",
-                    "text" : "The old book is filled with mostly useless, outdated information"
-                }
-            ],
-            "visible" : true
-        },
-        {
-            "id" : "2",
-            "name" : "Book Shelf",
-            "commands" : [
-                {
-                    "command" : "LOOK",
-                    "text" : "An old dusty bookshelf full of tomes.  One seems to be missing."
-                },
-                {
-                    "command" : "USE",
-                    "acceptedItem" : [
-                        {
-                            "itemId" : "1",
-                            "text" : "You place the book into it's place on the shelf",
-                            "effectIds" : ["1", "2", "3"]
-                        }
-                    ]
-                }
-            ],
-            "visible" : true
-        }
-    ],
-    "effects" : [
-        {
-            "id" : "1",
-            "type": "UNLOCK_DOOR",
-            "doorIds" : ["2"],
-            "text": "The door to the east makes a satisfying click."
-        },
-        {
-            "id" : "2",
-            "type": "LOCK_DOOR",
-            "doorIds" : ["2"],
-            "text": "The door to the south makes a unsatisfying click."
-        },
-        {
-            "id" : "3",
-            "type" : "CHANGE_ITEM_TEXT",
-            "itemIds" : ["2"],
-            "text" :"An old dusty bookshelf full of tomes."
-        }
-    ],
-    "doors" : [
-        {
-            "id" : "1",
-            "locked" : false 
-        },
-        {
-            "id" : "2",
-            "locked" : true
-        }
-    ], 
-    "rooms" : [
-        {
-            "id": "1",
-            "text" : "A simple room with a bed and a side table.",
-            "itemIds" : ["1"],
-            "doors" : [
-                {
-                    "doorId" : "1",
-                    "direction" : "NORTH",
-                    "connectedRoomId" : "2"
-                }
-            ]
-        },
-        {
-            "id" : "2",
-            "text" : "A simple room with some furniture.",
-            "itemIds" : ["2"],
-            "doors" : [
-                {
-                    "doorId" : "2",
-                    "direction" : "EAST",
-                    "connectedRoomId" : "3"
-                },
-                {
-                    "doorId" : "1",
-                    "direction" : "SOUTH",
-                    "connectedRoomId" : "1"
-                }
-            ]
-        },
-        {
-            "id" : "3",
-            "text" : "The world outside is bright, you have escaped the dungeon!"
-        }
-    ],
-    "startingRoomId" : "1",
-    "endingRoomId" : "3"
-}
 """
 
 
@@ -279,28 +166,23 @@ class Player:
     def __init__(self, world):
         self.inventory = []
 
-        
-class World:
-    def __init__(self, jsonFilename):
-        with open(jsonFilename, encoding="utf-8") as json_in:
-            self.state = json.load(json_in)        
-
             
 class Game:
     def __init__(self, jsonFilename):
-        self.world = World(jsonFilename)
+        with open(jsonFilename, encoding="utf-8") as json_in:
+            self.world = json.load(json_in)
         self.player = Player(self.world)
 
         # store a reference to the entire room where the player is
-        self.playerRoom = self.lookUpRoom(self.world.state['startingRoomId'])
+        self.playerRoom = self.getRoom(self.world['startingRoomId'])
 
 
     def showState(self):
-        print(json.dumps(self.world.state, indent=2, sort_keys=True))
+        print(json.dumps(self.world, indent=2, sort_keys=True))
 
 
     def showTopLevel(self, key):
-        print(json.dumps(self.world.state[key], indent=2, sort_keys=True))
+        print(json.dumps(self.world[key], indent=2, sort_keys=True))
         
         
     def parseAction(self, textCommand):
@@ -308,33 +190,52 @@ class Game:
         tokens = textCommand.split()
         if tokens[0] == "LOOK":
             self.look(textCommand)
+        elif tokens[0] == "INVENTORY":
+            print("You have:")
+            if len(self.player.inventory) == 0:
+                print("Nothing.")
+            else:
+                print("\n".join(self.player.inventory))
+        elif tokens[0] == "GO":
+            self.go(tokens[1])
+        elif tokens[0] == "TAKE":
+            self.take(textCommand)
 
             
-    def lookUpCommand(self, item, playerCommand):
+    def getCommand(self, item, playerCommand):
         """Check if the command can be used on the item."""
         for command in item['commands']:
             if command['command'] == playerCommand:
                 return command
-        return f"lookUpCommand ERROR: {playerCommand} not found for {item['text']}"
+        return f"getCommand ERROR: {playerCommand} not found for {item['text']}"
 
     
     def lookAtItem(self, itemName):
         """Return the text describing the item."""
-        for item in self.world.state['items']:
+        for item in self.world['items']:
             if item['name'].lower() == itemName.lower():
-                if command := self.lookUpCommand(item, "LOOK"):
+                if command := self.getCommand(item, "LOOK"):
                     return command['text']
 
+
+    def describeItemById(self, itemId):
+        for item in g.world['items']:
+            if item['id'] == itemId:
+                print(f"There is an item: '{item['name']}'.", end=" ")
+                for command in item['commands']:
+                    if command['command'] == 'LOOK':
+                        print(command['text'])
+                        
                 
-    def lookUpRoom(self, roomId):
+    def getRoom(self, roomId):
         """Find the room with the given ID"""
-        for room in self.world.state['rooms']:
+        for room in self.world['rooms']:
             if room['id'] == roomId:
                 return room
 
 
     def isDoorLocked(self, doorId):
-        for door in self.world.state['doors']:
+        for door in self.world['doors']:
             if door['id'] == doorId:
                 return door['locked']
 
@@ -348,32 +249,53 @@ class Game:
                 else:
                     print("tryDoor: door is locked.")
                     return False
-            else:
-                print(f"tryDoor: no door going {direction}.")
-                return False
+        print(f"tryDoor: no door going {direction}.")
+        return False
                 
                 
     def look(self, textCommand):
         tokens = textCommand.split()
         if len(tokens) == 1:
             room = self.playerRoom
-            print(room['text'])
-            
+            print("The room is:", room['text'])
+
+            # print items in room
+            for itemId in room['itemIds']:
+                self.describeItemById(itemId)
+                
             # check for doors
+            print()
             for door in room['doors']:
                 print("There is a door going", door['direction'])
         elif len(tokens) == 2:
-            item = tokens[1]
+            item = " ".join(tokens[1:])
             print(self.lookAtItem(item))
 
             
     def go(self, direction):
         if door := self.tryDoor(direction):
-            self.playerRoom = self.lookUpRoom(door['connectedRoomId'])
+            self.playerRoom = self.getRoom(door['connectedRoomId'])
             print(f"You have moved {direction}.")
-            if self.playerRoom['id'] == self.world.state['endingRoomId']:
+            if self.playerRoom['id'] == self.world['endingRoomId']:
                 print("A WINNER IS YOU!!!!!11")
 
+
+    def getItemId(self, itemName):
+        for item in self.world['items']:
+            if item['name'].lower() == itemName.lower():
+                return item['id']
+        print(f"getItemId ERROR: {itemName} not found.")
+        
+    
+    def take(self, itemName):
+        room = self.playerRoom
+        roomItems = room['itemIds']
+        itemId = getItemId(itemName)
+        if itemId in roomItems:
+            self.player.inventory.append(itemId)
+            roomItems.remove(itemId)
+        print(f"{itemName} is in hand.")
+        
 
 def sampleGame():
     return Game("sample_world.json")
