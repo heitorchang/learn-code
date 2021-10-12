@@ -57,7 +57,7 @@
             "id" : "3",
             "type" : "CHANGE_ITEM_TEXT",
             "itemIds" : ["2"],
-            "text" :"An old dusty bookshelf full of tomes."
+            "text" :"An old dusty bookshelf full of tomes.  Nothing is missing."
         }
     ],
     "doors" : [
