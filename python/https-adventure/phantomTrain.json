@@ -1,0 +1,177 @@
+// idea: you are near the train's engine and need to put keys in keyholes 3 (2 opens treasure room)
+// In treasure room: a Phoenix Down, Key 1
+/*
+            [D]K[Q]
+             |   
+[W]x[E]Q[K]J[ ]-[B]-[S]
+                 |
+                [J]
+ */
+
+{
+  "items": [
+    {
+      "id": "1",
+      "name": "Key J",
+      "commands": [
+        {
+          "command": "LOOK",
+          "text": "A bronze key."
+        },
+        {
+          "command": "TAKE",
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "2",
+      "name": "Key K",
+      "commands": [
+        {
+          "command": "LOOK",
+          "text": "A gold key."
+        },
+        {
+          "command": "TAKE",
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "3",
+      "name": "Key Q",
+      "commands": [
+        {
+          "command": "LOOK",
+          "text": "A silver key."
+        },
+        {
+          "command": "TAKE",
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "4",
+      "name": "Machinist's Manual",
+      "commands": [
+        {
+          "command": "LOOK",
+          "text": "A large, heavy, worn-out book."
+        },
+        {
+          "command": "READ",
+          "text": "The gold key will lead to treasure, while bronze and silver open the way."
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "5",
+      "name": "J Opening",
+      "commands": [
+        {
+          "command": "LOOK",
+          "text": "A keyhole with a J symbol."
+        },
+        {
+          "command": "USE",
+          "acceptedItem": [
+            {
+              "itemId": "1",
+              "text": "You place the J key into the keyhole",
+              "effectIds": ["1"]
+            }
+          ]
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "6",
+      "name": "K Opening",
+      "commands": [
+        {
+          "command": "LOOK",
+          "text": "A keyhole with a K symbol."
+        },
+        {
+          "command": "USE",
+          "acceptedItem": [
+            {
+              "itemId": "1",
+              "text": "You place the K key into the keyhole",
+              "effectIds": ["2"]
+            }
+          ]
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "7",
+      "name": "Q Opening",
+      "commands": [
+        {
+          "command": "LOOK",
+          "text": "A keyhole with a Q symbol."
+        },
+        {
+          "command": "USE",
+          "acceptedItem": [
+            {
+              "itemId": "1",
+              "text": "You place the Q key into the keyhole",
+              "effectIds": ["3"]
+            }
+          ]
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "8",
+      "name": "Phoenix Down",
+      "commands": [
+        {
+          "command": "LOOK",
+          "text": "Feathers from a mystical bird."
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "9",
+      "name": "Phantom Engine",
+      "commands": [
+        {
+          "command": "LOOK",
+          "text": "A terrifying ghoul who cannot be defeated with plain weaponry."
+        },
+        {
+          "command": "USE",
+          "acceptedItem": [
+            {
+              "itemId": "1",
+              "text": "You place the Q key into the keyhole",
+              "effectIds": ["3"]
+            }
+          ]
+        }
+      ],
+      "visible": true
+    },
+  ],
+  "effects": [
+
+  ],
+  "doors": [
+
+  ],
+  "rooms": [
+
+  ],
+  "startingRoomId": "1",
+  "endingRoomId": "9"
+}

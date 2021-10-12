@@ -50,7 +50,7 @@
         {
             "id" : "2",
             "type": "LOCK_DOOR",
-            "doorIds" : ["2"],
+            "doorIds" : ["1"],
             "text": "The door to the south makes a unsatisfying click."
         },
         {
