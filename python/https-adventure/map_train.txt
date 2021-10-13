@@ -1,0 +1,19 @@
+// idea: you are near the train's engine and need to put keys in keyholes 3 (2 opens treasure room)
+// In treasure room: a Phoenix Down, Key 1
+/*
+                5   6
+               [H]K[P]
+ 9   8      7  4|   2      1
+[W]x[E, K]Q[ ]J[ ]-[B, J]-[S]
+                    |
+                   [Q]
+                    3
+
+Doors             5
+               [H]K[P]
+   8      7   64| 2      1  
+[W]x[E, K]Q[ ]J[ ]-[B, J]-[S]
+                   3|
+                   [Q]
+                     
+ */

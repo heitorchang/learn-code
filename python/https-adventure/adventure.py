@@ -234,22 +234,4 @@ def playGame(world="sample_world.json"):
             break
 
 
-def testSample():
-    g = sampleGame()
-    g.act("look")
-    g.act("look book")
-    g.act("read book")
-    g.act("take book")
-    g.act("inventory")
-    g.act("look")
-    g.act("go north")
-    g.act("go south")
-    g.act("go east")
-    g.act("go north")
-    g.act("look")
-    g.act("use book on book shelf")
-    g.act("look")
-    g.act("go south")
-    g.act("go south")
-    g.act("go east")
     

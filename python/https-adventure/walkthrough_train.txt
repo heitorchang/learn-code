@@ -1,0 +1,63 @@
+Welcome to HTTPS Adventure, enjoy the game! Type 'q' and Enter to quit.
+
+? go west
+You have moved west.
+? take key j
+key j is in hand.
+? go south
+You have moved south.
+? take key q
+key q is in hand.
+? go north
+You have moved north.
+? go west
+You have moved west.
+? go north
+You have moved north.
+? use key j on j opening
+Using key j on j opening
+You place the J key into the keyhole
+You hear a click to the southwest.
+? use key q on q opening
+Using key q on q opening
+You place the Q key into the keyhole
+You hear a faint click to the southwest.
+? go south
+You have moved south.
+? go west
+You have moved west.
+? go west
+You have moved west.
+? take key k
+key k is in hand.
+? go east
+You have moved east.
+? go east
+You have moved east.
+? go north
+You have moved north.
+? use key k on k opening
+Using key k on k opening
+You place the K key into the keyhole
+You hear a click to the east.
+? go east
+You have moved east.
+? take phoenix down
+phoenix down is in hand.
+? go west
+You have moved west.
+? go south
+You have moved south.
+? go west
+You have moved west.
+? go west
+You have moved west.
+? use phoenix down on phantom engine
+Using phoenix down on phantom engine
+You drop the Phoenix Down on the Phantom Engine. There is a bright flash of light and the latch behind it clicks!
+You hear a click behind the engine.
+? go west
+You have moved west.
+Your surroundings are: You have alighted from the Phantom Train!
+
+A WINNER IS YOU!!!!!11
