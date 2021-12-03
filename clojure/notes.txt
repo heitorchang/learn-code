@@ -226,3 +226,13 @@ to build the memoized function's cache, map the function over the range of possi
 comp may also be used
 
 eduction is a reducible/iterable application of transducer
+
+
+# Concurrency and parallelism
+
+Coordination. A coordinated operation is one where multiple actors must cooperate (or, at a minimum, be properly sequestered so as to not interfere with each other) in order to yield correct results. A classic example is any banking transaction: a process that aims to transfer monies from one account to another must ensure that the credited account not reflect an increased balance prior to the debited account reflecting a decreased balance, and that the transaction fail entirely if the latter has insufficient funds. Along the way, many other processes may provoke similar transactions involving the same accounts. Absent methods to coordinate the changes, some accounts could reflect incorrect balances for some periods, and transactions that should have failed (or should have succeeded) would succeed (or fail) improperly.
+(Clojure programming by Chas Emerick Ch. 4)
+
+             coordinated  uncoordinated
+ synchronous   Refs         Atoms
+asynchronous   --           Agents
