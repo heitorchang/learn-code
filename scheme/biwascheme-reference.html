@@ -412,15 +412,16 @@ BiwaScheme resumes running the rest of the code. </li>
 <li><code>(element-focus! elem)</code></li>
 <li><code>(element-content elem)</code> =&gt; string (html content or input value)</li>
 <li><code>(element-append-child! elem child)</code></li>
-<li><code>(element-new spec</code>)</li>
+<li><code>(element-new spec)</code></li>
 </ul>
 </li>
 </ul>
-<pre><code>  (element-new &#39;(div &quot;foo&quot;))        =&gt; &lt;div&gt;foo&lt;/div&gt;
+<pre><code> (element-new &#39;(div &quot;foo&quot;))        =&gt; &lt;div&gt;foo&lt;/div&gt;
   (element-new &#39;(&quot;div#main&quot; &quot;foo&quot;)) =&gt; &lt;div id=&#39;main&#39;&gt;foo&lt;/div&gt;
   (element-new &#39;(&quot;div.red&quot; &quot;foo&quot;))  =&gt; &lt;div class=&#39;red&#39;&gt;foo&lt;/div&gt;
   (element-new &#39;(div align &quot;right&quot; &quot;foo&quot;))  =&gt; &lt;div align=&#39;right&#39;&gt;foo&lt;/div&gt;
   (element-new &#39;(div (span &quot;foo&quot;))  =&gt; &lt;div&gt;&lt;span&gt;foo&lt;/span&gt;&lt;/div&gt;</code></pre><ul>
+<li><code>(dom-element selector)</code></li>
 <li><p><code>(getelem selector)</code> = <code>($ selector)</code></p>
 <ul>
 <li>Same as <code>jQuery(selector)</code> except returns <code>#f</code> when no element is found</li>
