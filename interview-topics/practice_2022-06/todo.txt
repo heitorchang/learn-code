@@ -1,0 +1,7 @@
+study reading-list/learning_sql/grouping_and_aggregates.py
+study reading-list/learning_sql/joins_revisited.py
+study reading-list/learning_sql/querying_multiple_tables.py
+study reading-list/learning_sql/query_primer.py
+study reading-list/learning_sql/sets_working_with.py
+study reading-list/learning_sql/subqueries.py
+study reading-list/learning_sql/views.py

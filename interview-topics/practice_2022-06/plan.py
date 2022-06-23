@@ -28,18 +28,51 @@ def find_pi(desired_estimate):
         print(current_estimate, 'did not converge')
 
 
-# SQL
+### SQL
 
-# create: insert
+# create: insert INTO
+"""
+insert into employees (id, name)
+values (%s, %s);
+"""
 
-# read: select
+# read: select FROM
+"""
+select a.id, a.name, sum(t.amount) as credits
+from account as a join txns as t
+on t.credit = a.id
+group by a.id;
+"""
 
-# update: update
+# update: update WHERE
+"""
+update person
+set fname = 'John'
+where person_id = 1;
+"""
 
-# delete: delete
+# delete: delete FROM ... WHERE
+"""
+delete from person
+where person_id < 10;
+"""
+
+# case -> when CONDITION then VALUE else ALTERNATIVE
+
+# cast: created::date
+# cast('2022-06-20' as date)
 
 
-# join
+
+### Table: create
+"""
+create table my_tbl (
+  id integer primary key,
+  name text
+);
+"""
+
+### join
 
 # left join
 
@@ -47,8 +80,24 @@ def find_pi(desired_estimate):
 
 # outer join
 
+# cross join
+
+# json_object_agg
+
+# Common Table Expressions (CTE)
+"""
+with params as (
+  select a, b, c from tbl
+  cross join
+), model_agg as (
+  select a, b, c from params
+)
+select json_object_agg(b, val) as b_val
+from model_agg;
+"""
 
 
+### DATA STRUCTURES
 # linked list
 # mention collections.deque
 # keep that Lisp muscle on the down low
@@ -71,45 +120,6 @@ class LinkedList:
         while temp:
             print(temp.value)
             temp = temp.next_node
-
-
-### Lisp Style Linked List: List is either empty or is a sequence of conses
-
-class Cons:
-    """DO NOT USE. Every example I found uses two classes: Node and LinkedList"""
-    def __init__(self, value, next_node=None):
-        self.value = value
-        self.next_node = next_node
-
-    def __str__(self):
-        return str(self.value)
-
-    def print_next_nodes(self):
-        print(self.value, end='')
-        if self.next_node:
-            print(', ', end='')
-            self.next_node.print_next_nodes()
-        else:
-            print()
-
-
-def reverseLispStyleList(source):
-    source_head = source
-    reversed = Cons(source_head.value)
-    while source_head.next_node:
-        source_head = source_head.next_node
-        reversed_new_node = Cons(source_head.value, reversed)
-        reversed = reversed_new_node
-    return reversed
-
-
-def testLispStyleList():
-    hend = Cons(3)
-    hmid = Cons(2, hend)
-    hstart = Cons(1, hmid)
-    hstart.print_next_nodes()
-    hmid.print_next_nodes()
-
 
 
 ### TODO reverse, add, remove methods
