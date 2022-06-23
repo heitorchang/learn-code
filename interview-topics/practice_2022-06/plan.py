@@ -28,6 +28,26 @@ def find_pi(desired_estimate):
         print(current_estimate, 'did not converge')
 
 
+# SQL
+
+# create: insert
+
+# read: select
+
+# update: update
+
+# delete: delete
+
+
+# join
+
+# left join
+
+# right join
+
+# outer join
+
+
 
 # linked list
 # mention collections.deque
