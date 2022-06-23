@@ -96,6 +96,7 @@ select json_object_agg(b, val) as b_val
 from model_agg;
 """
 
+# Tricky queries (greatest n-per-group)
 
 ### DATA STRUCTURES
 # linked list
