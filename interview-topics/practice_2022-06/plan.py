@@ -2,7 +2,19 @@
 topics off the top of my head that are important
 """
 
-# Read pythonds3.py
+# FizzBuzz
+
+def fizzbuzz(n):
+    for i in range(1, n+1):
+        if i % 15 == 0:
+            print("FizzBuzz")
+        elif i % 5 == 0:
+            print("Buzz")
+        elif i % 3 == 0:
+            print("Fizz")
+        else:
+            print(i)
+
 
 # calculate pi
 # check code/learn-code/common-lisp/find-pi.lisp
@@ -28,6 +40,14 @@ def find_pi(desired_estimate):
     else:
         # reached end, did not converge
         print(current_estimate, 'did not converge')
+
+
+# Euclid's GCD algorithm
+
+def euclid_gcd(lg, sm):
+    if sm == 0:
+        return lg
+    return euclid_gcd(sm, lg % sm)
 
 
 ### SQL
