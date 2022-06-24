@@ -1,0 +1,4 @@
+9[  ] review pythonds3
+
+7[  ] review learning-sql notes
+6[  ] find SQL self-tests

@@ -2,6 +2,8 @@
 topics off the top of my head that are important
 """
 
+# Read pythonds3.py
+
 # calculate pi
 # check code/learn-code/common-lisp/find-pi.lisp
 # returns index 136120
