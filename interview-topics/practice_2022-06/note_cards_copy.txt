@@ -1,0 +1,149 @@
+# PYTHON LANGUAGE
+
+## Primitive types and collections
+
+Primitive: int, float, boolean
+Primitive collections: str, list, tuple, dict, set
+
+from collections module: Counter, namedtuple, OrderedDict, deque, UserDict
+
+
+## Immutable vs. mutable
+
+immutable: tuple, str, bytes
+mutable: list, deque, bytearray, array.array, memoryview
+
+
+## Classes, inheritance
+
+A class is a type, a blueprint for creating objects.
+Created objects are called instances.
+
+a class and instances have attributes and methods.
+
+nonlocal: looks up variable in enclosing scope
+
+class Dog:
+  kind = 'canine' # class attribute
+
+  def __init__(self, name):
+    self.name = name
+
+d = Dog('Fido')
+
+class Derived(BaseClass):
+  ...
+
+isinstance(obj, str/list/int)
+
+super() returns a proxy object
+
+class Rect:
+  def __init__(self, length, width):
+    self.length = length
+    self.width = width
+
+  def area(self):
+    return self.length * self.width
+
+
+class Square(Rect):
+  def __init__(self, side):
+    super().__init__(side, side)
+
+
+## Regex
+
+import re
+pat = re.compile(r'[0-9]+')
+
+pat.findall('3 apples 2 cherries')
+pat.sub('some', '3 apples 2 cherries'')
+
+
+# SQL
+
+## CRUD
+
+select COL from TBL where COL2 = VAL;
+insert into TBL (COL1, COL2) values (VAL1, VAL2);
+update TBL set COL1 = VAL1 where COL2 = VAL2;
+delete from TBL where COL = VAL;
+
+## Grouping and Aggregates
+
+select count(*) as ct ... group by user_id
+having ct > 3;
+
+max, min, avg, sum
+use HAVING for aggregates (WHERE cannot be used)
+
+## Joins
+
+select ... from game g
+join session s
+using(game_id)
+
+when column names do not match:
+
+on player_one = g.gamer_id
+
+left/right (outer) joins
+full join
+
+it's ok to repeat the table, using aliases (self join)
+
+CROSS JOIN: Cartesian product
+
+
+## Primary key, foreign key, index
+
+PK: column that uniquely identifies a record (row)
+FK: column(s) that refer to the PK of another table
+Index: special lookup table that speeds up retrieval
+
+
+## Sets
+
+union all
+intersect
+not in
+
+union removes duplicates
+
+
+## subqueries
+
+select ...
+where name in (select ... from ...)
+
+... where id = (select ... from ... where ...)
+
+
+## Common Table Expression (CTE) vs. View
+
+with my_cte as (
+  select ...
+), data_cte as (
+  select ...
+)
+select ... from data_cte
+
+CTE = disposable view
+view takes up disk space
+view can be indexed
+CTE can be recursive
+
+
+## Window functions
+
+uses 'OVER' clause
+
+select duration, sum(duration) over (order by start)
+as running_total
+from bikeshare
+
+
+# DATA STRUCTURES
+
+## Stack, queue, deque

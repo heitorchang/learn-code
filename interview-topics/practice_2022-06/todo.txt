@@ -1,6 +1,7 @@
 TODO
 ----
-9[  ] review pythonds3
+9[  ] review pythonds3 algorithms
+8[  ] try binary heap code
 
 
 DONE
