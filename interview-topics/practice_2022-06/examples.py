@@ -94,18 +94,6 @@ create table my_tbl (
 );
 """
 
-### join
-
-# left join
-
-# right join
-
-# outer join
-
-# cross join
-
-# json_object_agg
-
 # Common Table Expressions (CTE)
 """
 with params as (
@@ -119,6 +107,20 @@ from model_agg;
 """
 
 # Tricky queries (greatest n-per-group)
+"""
+select r.name, r.dept, r.salary
+from (select e.*,
+  dense_rank() over
+  (partition by e.dept order by e.salary desc) as pos
+  from employees e) as r
+where r.pos <= 3
+order by r.dept, r.salary desc;
+"""
+
+
+### PostgreSQL
+# json_object_agg
+
 
 ### DATA STRUCTURES
 # linked list

@@ -1,4 +1,5 @@
-9[  ] review pythonds3
+14.jun  Devin McIntyre asked if anyone was interested in a Python job
+22.jun  Interview with Kyle Webb (interest in job, experience)
+25.jun  Weekend preparation
 
-7[  ] review learning-sql notes
-6[  ] find SQL self-tests
+29.jun  Interview with Mike Conley (Devin's team)

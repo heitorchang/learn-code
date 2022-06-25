@@ -1,12 +1,13 @@
-OK study reading-list/learning_sql/grouping_and_aggregates.py
-OK study reading-list/learning_sql/joins_revisited.py
-OK study reading-list/learning_sql/querying_multiple_tables.py
-OK study reading-list/learning_sql/query_primer.py
-OK study reading-list/learning_sql/sets_working_with.py
-OK study reading-list/learning_sql/subqueries.py
-OK study reading-list/learning_sql/views.py
+TODO
+----
+9[  ] review pythonds3
 
-   read about SQL window functions
-   read about SQL PARTITION BY
 
-   study pythonds3.py
+DONE
+----
+7[OK] review learning-sql notes
+
+
+LOW PRIORITY
+------------
+6[  ] find SQL self-tests
