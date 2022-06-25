@@ -169,19 +169,4 @@ def binary_search(lst, item):
     return found
 
 
-# merge sort
-
-
-# quicksort
-
-
-# adjacency list
-
-
-# BFS
-
-
-# DFS
-
-
-# Priority Queue
+# See sorting.py
