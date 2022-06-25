@@ -1,13 +1,9 @@
 # Python Data Structures and Algorithms
-# need to review
-
-# primitives vs. collections
-# immutable vs. mutable (look in Fluent Python)
 
 # 1.13 OOP - Classes
 
-# 2.1 Classes
-# 2.2 Make your class comparable
+OK # 2.1 Classes
+OK # 2.2 Make your class comparable
 
 # 3.6 Analysis of Lists' performance
 "pop(0) is O(n) because all items have to be shifted towards the beginning"
@@ -35,3 +31,9 @@
 # 7.16 - 7.17 AVL tree
 
 # 8.5 Graphs: Adjacency Lists
+# 8.9 Breadth-First Search
+# 8.15 Depth-First Search
+# 8.17 Topological Sorting
+# 8.19 Shortest Path
+# 8.20 Dijkstra's algorithm
+# 8.22 Prim's spanning tree
