@@ -147,3 +147,157 @@ from bikeshare
 # DATA STRUCTURES
 
 ## Stack, queue, deque
+
+Use a list. Technically, a Python list is already a stack
+
+class Stack:
+  def __init__(self):
+    self._items = []
+
+  def push(self, item):
+    self._items.append(item)
+
+  def pop(self):
+    return self._items.pop()
+
+  def peek(self):
+    return self._items[-1]
+
+queue: insert(0, item)
+
+deque: collections.deque
+there are appendleft and popleft methods
+
+
+## Linked list
+
+class Node:
+  def __init__(self, data):
+    self._data = data
+    self._next = None
+
+class LinkedList:
+  def __init__(self):
+    self.head = None
+
+  def add(self, item):
+    temp = Node(item)
+    temp._next = self.head
+    self.head = temp
+
+
+## Priority Queue with a Binary heap
+
+(with 0-based list)
+left child of item at p:  2p + 1
+right child of item at p: 2p + 2
+parent: (p - 1) // 2
+
+class BinaryHeap:
+  def __init__(self):
+  self._heap = []
+
+to insert: add to end of list, then perc_up
+delete: remove first item, move last item to top then perc_down.
+perc_down uses get_min_child
+
+to build heap: start with the unordered list.
+iterate from end to 0, running perc_down(index)
+
+
+## Graph adjacency list
+
+{
+  "v0": {
+    "v1": weight0_1,
+    "v5": weight0_5
+  },
+  "v1": { ... },
+  "v5": { ... }
+}
+
+or
+
+{
+  0: [1, 3, 4],
+  1: [3, 4],
+  3: [0],
+  4: []
+}
+
+# ALGORITHMS
+
+## Euclid's GCD
+
+def euclid_gcd(lg, sm):
+  if sm == 0:
+    return lg
+  return euclid_gcd(sm, lg % sm)
+
+sm takes place of lg
+lg becomes the remainder
+
+
+## Tower of Hanoi
+
+def move(height, from, to, with):
+  if height > 0:
+    move(height - 1, from, with, to)
+    print(f"moving {from} to {to})
+    move(height - 1, with, to, from)
+
+
+## Tree Traversal
+
+(from interviewkickstart.com)
+
+class Node:
+  def __init__(self, data):
+    self.left = None
+    self.right = None
+    self.data = data
+
+n1 = Node(1)
+n2 = Node(2)
+...
+n1.left = n2
+...
+
+result = []
+def pre_order_traversal(root):
+  if root:
+    result.append(root.data)
+    pre_order_traversal(root.left)
+    pre_order_traversal(root.right)
+
+post_order_traversal:
+left, right, root.data
+
+in_order_traversal:
+left, root.data, right
+
+
+## Binary search
+
+def binary_search(alist, item):
+  first = 0
+  last = len(alist) - 1
+  while first <= last:
+    midpoint = (first + last) // 2
+    if alist[midpoint] == item:
+      return True
+    elif item < alist[midpoint]:
+      last = midpoint - 1
+    else:
+      first = midpoint + 1
+  return False
+
+
+## See sorting.py
+## Bubble sort
+
+def bubble_sort(alist):
+  for i in range(len(alist) - 1, 0, -1):
+    for j in range(i):
+      if alist[j] > alist[j+1]:
+        alist[j], alist[j+1] = alist[j+1], alist[j]
