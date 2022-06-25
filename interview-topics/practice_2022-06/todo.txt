@@ -1,6 +1,5 @@
 TODO
 ----
-9[  ] review pythonds3 algorithms
 8[  ] try binary heap code
 7[  ] try linked list operations: add, delete, reverse
 
@@ -8,6 +7,7 @@ TODO
 DONE
 ----
 7[OK] review learning-sql notes
+9[OK] review pythonds3 algorithms
 
 
 LOW PRIORITY

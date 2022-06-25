@@ -54,6 +54,7 @@ def merge_sort(alist):
 
 
 ## Quicksort
+
 def quick_sort(a_list):
     quick_sort_helper(a_list, 0, len(a_list) - 1)
 

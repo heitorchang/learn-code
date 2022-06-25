@@ -29,9 +29,9 @@ OK # 7.11 Binary Search Trees: bad. can be heavily unbalanced
 NO # 7.16 - 7.17 AVL tree: balanced binary search tree
 
 OK # 8.5 Graphs: Adjacency Lists
-# 8.9 Breadth-First Search
-# 8.15 Depth-First Search
-# 8.17 Topological Sorting
-# 8.19 Shortest Path
-# 8.20 Dijkstra's algorithm
-# 8.22 Prim's spanning tree
+OK # 8.9 Breadth-First Search
+OK # 8.15 Depth-First Search
+OK # 8.17 Topological Sorting
+OK # 8.19 Shortest Path
+OK # 8.20 Dijkstra's algorithm
+OK # 8.22 Prim's spanning tree
