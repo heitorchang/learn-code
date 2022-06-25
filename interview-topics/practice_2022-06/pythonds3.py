@@ -14,21 +14,21 @@ OK # 4.15 Deque
 OK # 4.20 - 4.21 Linked List (arbitrary values)
 OK # 4.22 Ordered list (sorted)
 
-# 5.10 Tower of Hanoi
-# 5.12 Dynamic programming
+OK # 5.10 Tower of Hanoi
+OK # 5.12 Dynamic programming
 
-# 6.4 Binary Search
-# 6.5 Hashing
-# 6.7 Bubble Sort
-# 6.9 Insertion Sort
-# 6.11 Merge Sort
-# 6.12 Quicksort
+OK # 6.4 Binary Search
+OK # 6.5 Hashing
+OK # 6.7 Bubble Sort
+OK # 6.9 Insertion Sort
+OK # 6.11 Merge Sort
+OK # 6.12 Quicksort
 
 OK # 7.8 Priority Queues with Binary Heaps
 OK # 7.11 Binary Search Trees: bad. can be heavily unbalanced
-# 7.16 - 7.17 AVL tree: balanced binary search tree
+NO # 7.16 - 7.17 AVL tree: balanced binary search tree
 
-# 8.5 Graphs: Adjacency Lists
+OK # 8.5 Graphs: Adjacency Lists
 # 8.9 Breadth-First Search
 # 8.15 Depth-First Search
 # 8.17 Topological Sorting

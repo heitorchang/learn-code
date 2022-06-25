@@ -110,7 +110,7 @@ class Graph:
     def __str__(self):
         return str(self.adj)
 
-    
+
 class Digraph:
     adj = {}
 
@@ -134,7 +134,7 @@ def depth_first_search(G, s):
     numv = G.v()
     marked = [False] * numv
     found = False
-    
+
     def dfs(G, v):
         nonlocal s, found
         print("visiting", v)
@@ -180,10 +180,10 @@ def directed_cycle(G):
     edgeTo = [0] * numv
     cycle = None
     marked = [False] * numv
-        
+
     def dfs(G, v):
         nonlocal cycle
-        
+
         onStack[v] = True
         marked[v] = True
         for w in G.adj[v]:
@@ -212,12 +212,8 @@ def directed_cycle(G):
             dfs(G, v)
         v += 1
     return hasCycle()
-    
+
 
 ## Topological sorting
 
 """Call dfs(G) and compute the finish times for each vertex (the point where all edges for that vertex have been explored). Then, sort the list in decreasing order of finish time."""
-
-
-## Dijkstra's Algorithm
-

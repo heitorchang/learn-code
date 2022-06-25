@@ -7,6 +7,9 @@ Primitive collections: str, list, tuple, dict, set
 
 from collections module: Counter, namedtuple, OrderedDict, deque, UserDict
 
+math.isnan(float('nan'))
+float('inf')
+
 
 ## Immutable vs. mutable
 
@@ -34,6 +37,7 @@ d = Dog('Fido')
 class Derived(BaseClass):
     ...
 
+type(obj)
 isinstance(obj, str/list/int)
 
 super() returns a proxy object
@@ -205,6 +209,15 @@ to build heap: start with the unordered list.
 iterate from end to 0, running perc_down(index)
 
 
+## Graphs
+
+G(V, E)
+
+Vertex / node can have a payload
+
+Edge can have a weight
+
+
 ## Graph adjacency list
 
 {
@@ -293,7 +306,8 @@ def binary_search(alist, item):
     return False
 
 
-## See sorting.py
+### from: sorting.py
+
 ## Bubble sort
 
 def bubble_sort(alist):
@@ -301,3 +315,190 @@ def bubble_sort(alist):
         for j in range(i):
             if alist[j] > alist[j+1]:
                 alist[j], alist[j+1] = alist[j+1], alist[j]
+
+
+## Insertion sort
+
+def insertion_sort(alist):
+    for i in range(1, len(alist)):
+        curval = alist[i]
+        curpos = i
+
+        while curpos > 0 and alist[curpos-1] > curval:
+            # shift items
+            alist[curpos] = alist[curpos-1]
+            curpos -= 1
+        alist[curpos] = curval
+
+
+## merge sort
+
+def merge_sort(alist):
+    if len(alist) > 1:
+        mid = len(alist) // 2
+        left = alist[:mid]
+        right = alist[mid:]
+
+        merge_sort(left)
+        merge_sort(right)
+
+        i, j, k = 0, 0, 0
+        while i < len(left) and j < len(right):
+            if left[i] < right[j]:
+                alist[k] = left[i]
+                i += 1
+            else:
+                alist[k] = right[j]
+                j += 1
+            k += 1
+
+        while i < len(left):
+            alist[k] = left[i]
+            i += 1
+            k += 1
+
+        while j < len(right):
+            alist[k] = right[j]
+            j += 1
+            k += 1
+
+
+## Quicksort
+def quick_sort(a_list):
+    quick_sort_helper(a_list, 0, len(a_list) - 1)
+
+
+def quick_sort_helper(a_list, first, last):
+    if first < last:
+        split = partition(a_list, first, last)
+        quick_sort_helper(a_list, first, split - 1)
+        quick_sort_helper(a_list, split + 1, last)
+
+
+def partition(a_list, first, last):
+    pivot_val = a_list[first]
+    left_mark = first + 1
+    right_mark = last
+    done = False
+
+    while not done:
+        while left_mark <= right_mark and a_list[left_mark] <= pivot_val:
+            left_mark = left_mark + 1
+        while left_mark <= right_mark and a_list[right_mark] >= pivot_val:
+            right_mark = right_mark - 1
+        if right_mark < left_mark:
+            done = True
+        else:
+            a_list[left_mark], a_list[right_mark] = (
+                a_list[right_mark],
+                a_list[left_mark],
+            )
+    a_list[first], a_list[right_mark] = a_list[right_mark], a_list[first]
+
+    return right_mark
+
+
+## Hashing
+
+a hash table is a collection of items stored in slots so that it's easier
+to find a given item.
+
+hash function: maps an item to the slot where it belongs.
+Example: h(item) = item % 11
+(with 11 slots in the hashtable)
+
+
+## Breadth-First Search (BFS)
+
+from collections import deque
+
+
+class Graph:
+    adj = {}
+
+    def __init__(self, vertices):
+        for v in vertices:
+            self.adj[v] = []
+
+    def addEdge(self, v, w):
+        self.adj[v].append(w)
+        self.adj[w].append(v)
+
+    def v(self):
+        return len(self.adj)
+
+    def __str__(self):
+        return str(self.adj)
+
+
+def bfsConnectedComponent(G, v):
+    queue = deque([v])
+    visited = set()
+    component = set()
+
+    while len(queue) > 0:
+        current = queue.popleft()
+        visited.add(current)
+        component.add(current)
+        for v in G.adj[current]:
+            if v not in visited:
+                queue.append(v)
+
+    return component
+
+
+def test_bfs():
+    graph = Graph([1, 2, 3, 4, 5, 6])
+    graph.addEdge(1, 2)
+    graph.addEdge(2, 3)
+    graph.addEdge(2, 4)
+    graph.addEdge(3, 4)
+    graph.addEdge(5, 6)
+
+    print(bfsConnectedComponent(graph, 1))
+
+
+## Depth-First Search (DFS)
+
+def dfsConnectedComponent(G, v):
+    stack = [v]
+    visited = set()
+    component = set()
+
+    while len(stack) > 0:
+        current = stack.pop()
+        print(current)
+        visited.add(current)
+        component.add(current)
+        for v in G.adj[current]:
+            if v not in visited:
+                stack.append(v)
+
+    return component
+
+
+def test_dfs():
+    graph = Graph([1, 2, 3, 4, 5, 6])
+    graph.addEdge(1, 2)
+    graph.addEdge(2, 3)
+    graph.addEdge(2, 4)
+    graph.addEdge(3, 4)
+    graph.addEdge(5, 6)
+
+    print(dfsConnectedComponent(graph, 1))
+
+
+## Dijkstra's Algorithm (shortest path)
+
+online implementation uses the module "heapq"
+
+from scipy.sparse.csgraph import dijkstra
+
+(algorithm is pretty complicated, study
+
+
+## Prim's Spanning Tree
+
+Uses Priority Queue
+
+No code (too complex)
