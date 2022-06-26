@@ -1,5 +1,6 @@
 14.jun  Devin McIntyre asked if anyone was interested in a Python job
 22.jun  Interview with Kyle Webb (interest in job, experience)
 25.jun  Weekend preparation
+26.jun  froze when trying to explain Dijkstra's algorithm to Key
 
 29.jun  Interview with Mike Conley (Devin's team)
