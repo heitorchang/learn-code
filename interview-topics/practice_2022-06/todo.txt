@@ -1,6 +1,5 @@
 TODO
 ----
-7[  ] try linked list operations: add, delete, reverse
 
 
 DONE
@@ -8,3 +7,4 @@ DONE
 7[OK] review learning-sql notes
 9[OK] review pythonds3 algorithms
 8[OK] try binary heap code
+7[OK] try linked list operations: add, delete, reverse
