@@ -1,3 +1,10 @@
+### REVIEW
+
+* Quicksort
+* Binary search
+* BFS/DFS
+
+
 # PYTHON LANGUAGE
 
 ## Primitive types and collections
