@@ -1,15 +1,12 @@
 TODO
 ----
-8[  ] Quicksort
 4[  ] Binary search
 4[  ] BFS/DFS
-6[  ] linked list add and remove
+8[  ] Quicksort
 
 
 
 DONE
 ----
-7[OK] review learning-sql notes
-9[OK] review pythonds3 algorithms
+6[OK] linked list add and remove
 8[OK] try binary heap code
-7[OK] try linked list operations: add, delete, reverse
