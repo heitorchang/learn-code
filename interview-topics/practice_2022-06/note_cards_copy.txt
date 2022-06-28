@@ -1,10 +1,3 @@
-### REVIEW
-
-* Quicksort
-* Binary search
-* BFS/DFS
-
-
 # PYTHON LANGUAGE
 
 ## Primitive types and collections
@@ -73,6 +66,17 @@ pat.sub('some', '3 apples 2 cherries'')
 
 
 # SQL
+
+## DSN, Connection
+
+DSN = "host=127.0.0.1 port=5432 dbname=mydb user=heitor password=secret123"
+
+with psycopg2.connect(DSN) as conn:
+    with conn.cursor() as cur:
+        cur.execute("select * from tbl;")
+	for row in cur.fetchall():
+	    print(row)
+
 
 ## CRUD
 

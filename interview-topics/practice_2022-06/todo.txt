@@ -1,5 +1,10 @@
 TODO
 ----
+8[  ] Quicksort
+4[  ] Binary search
+4[  ] BFS/DFS
+6[  ] linked list add and remove
+
 
 
 DONE

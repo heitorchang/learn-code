@@ -16,6 +16,45 @@ def fizzbuzz(n):
             print(i)
 
 
+# fibonacci
+
+def fib_linrec(n):
+    return fib_helper(n, 0, 1)
+
+
+def fib_helper(rest, a, b):
+    if rest == 0:
+        return a
+    return fib_helper(rest - 1, b, a + b)
+
+
+def fib_for(n):
+    a, b = 0, 1
+    for i in range(n):
+        a, b = b, a + b
+    return a
+
+
+def fib_treerec(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fib_treerec(n - 1) + fib_treerec(n - 2)
+
+
+# cached
+from functools import lru_cache
+
+@lru_cache
+def fib_treerec_cached2(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fib_treerec_cached2(n - 1) + fib_treerec_cached2(n - 2)
+
+
 # calculate pi
 # check code/learn-code/common-lisp/find-pi.lisp
 # returns index 136120
