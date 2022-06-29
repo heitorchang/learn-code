@@ -56,7 +56,9 @@ def merge_sort(alist):
 ## Quicksort
 
 def quick_sort(a_list):
-    quick_sort_helper(a_list, 0, len(a_list) - 1)
+    temp_list = a_list[:]
+    quick_sort_helper(temp_list, 0, len(a_list) - 1)
+    return temp_list
 
 
 def quick_sort_helper(a_list, first, last):
@@ -80,10 +82,12 @@ def partition(a_list, first, last):
         if right_mark < left_mark:
             done = True
         else:
-            a_list[left_mark], a_list[right_mark] = (
-                a_list[right_mark],
-                a_list[left_mark],
-            )
+            a_list[left_mark], a_list[right_mark] = a_list[right_mark], a_list[left_mark]
     a_list[first], a_list[right_mark] = a_list[right_mark], a_list[first]
 
     return right_mark
+
+
+def test_sort(fn):
+    ainput = [34,1,4,1,2,3,2983,1,3,24,1,3,-192,3,-2,319,0,0,0,0]
+    return fn(ainput) == sorted(ainput)
