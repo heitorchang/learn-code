@@ -156,8 +156,16 @@ uses 'OVER' clause
 
 select duration, sum(duration) over (order by start)
 as running_total
-from bikeshare
+from bikeshare;
 
+
+## sample SQL query that combines several clauses
+
+select g.name game_name, sum(hours_played) hrs from session
+join game g using(game_id)
+where g.name like 'S%'
+group by game_name
+having sum(hours_played) > 3;
 
 # DATA STRUCTURES
 

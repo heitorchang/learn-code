@@ -1,0 +1,77 @@
+Py prim:int,float,bool,tuple seq:str,list,dict,set,deque,Counter,namedtp
+
+class Rect:;class Sq(Rect): __init__:super().__init__(side, side)
+
+re:pat=re.compile(r'[0-9]+') pat.findall(), pat.sub(repl, astr)
+
+w/ psyc2.connect(DSN) as conn:w/ conn.cursor() as cur: cur.exec,fetch
+
+create table TBL (row_id int pk, col_id ref. tbl2(col2_id)) alter table
+
+select COL from TBL where... insert into TBL (col) values (val)
+
+update TBL set col = val where... delete from TBL where ...
+
+with my_cte as (select ...) select * from my_cte. cte is disposable
+view takes up disk space but can be indexed
+
+select game g, sum(hrs) from tbl t using(game_id) where g.name like '%s'
+group by game having sum(hrs) > 3; aggs. max, min, sum, avg
+
+left, right, full, cross join; ok to repeat table, using diff. aliases
+
+primary key: column that uniquely identifies records (rows).
+fk: col(s) that refer to pk(s) in a different table
+
+sets: union all, intersect, not in. union removes duplicates
+
+subquery: select ... from ... where name in (select ...)
+
+window fns: uses 'OVER' clauses
+
+psql: select json_agg(game) from game; json_build_object(k1, v1, k2, v2)
+-> get elem of array inside JSON if int, otherwise get key. ->> as text
+
+Graphs: (V)ertex/Node (E)dge. Edges can have weights
+
+stack: push, pop (list is a stack). queue: FIFO, use coll.deque popleft
+
+linked list: class Node: value, next; class LinkList: self.head = None
+add: new_node=Node(item); new_node.next=self.head; self.head=new_node
+
+priority queue/binary heap: left:2p+1, right:2p+2, parent:(p-1) // 2
+insert: add to end and perc_up. delete: pop front. pop end, insert end
+to front. perc_down. perc_down calls min_child (left or right)
+
+gcd: gcd(lg, sm): if sm==0: return lg; return gcd(sm, lg % sm)
+
+bin_search: first=0; last=len-1; while first<=last: midpt. check midpt.
+if to_del < alist[midpt]: last = midpt - 1; else first = midpt + 1
+
+hanoi:move(ht,from,to,with);if ht>0: move(ht-1,f,w,t);p;move(ht-1,w,t,f)
+
+insert.sort:divide in two halves, first half is sorted list. get first
+item on right half and place it in correct place in the first list
+(keep shifting)
+
+bubble sort:two for loops, keep swapping if left item is < right item
+
+mergesort:if len(lst)>1: midpt=len//2;
+return merge(mergesort(lst[:midpt]), mergesort(lst[midpt:]))
+
+quicksort: find pivot. els to the left are < pivot, to right are > pivot
+
+tree traversal:class Node: L, R.
+preorder: print root, preord(L), preord(R), in-order: L,root,R, post:LRr
+
+hashtbl: coll of items kept in slots. fn maps el to slot fn(el)=el % 11
+
+bfs:queue(use a deque);visited=set();while len(q) > 0: cur=q.popleft()
+process(cur); for v in adj[cur]: if v not in visited: q.append(v),
+visited.add(v)
+
+dfs: use stack (list)
+
+dijkstra:shortest path, uses min priority q and bfs
+
+prim's spanning tree: uses bfs, is a greedy algorithm
