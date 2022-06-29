@@ -449,11 +449,11 @@ def bfsConnectedComponent(G, v):
 
     while len(queue) > 0:
         current = queue.popleft()
-        visited.add(current)
         component.add(current)
         for v in G.adj[current]:
             if v not in visited:
                 queue.append(v)
+	        visited.add(v)
 
     return component
 
@@ -479,11 +479,11 @@ def dfsConnectedComponent(G, v):
     while len(stack) > 0:
         current = stack.pop()
         print(current)
-        visited.add(current)
         component.add(current)
         for v in G.adj[current]:
             if v not in visited:
                 stack.append(v)
+	        visited.add(v)
 
     return component
 
