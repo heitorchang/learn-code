@@ -1,0 +1,253 @@
+libraries: numpy, pandas, matplotlib.pyplot, scipy
+
+if a is None:, technically isinstance(a, type(None)) works too
+
+d = datetime.now()
+d.replace(day=15)
+
+main built-in data structures: tuple, list, dict, set
+
+destructuring/unpacking: a, b* = alist
+
+a_list.extend(another_list)
+
+a_dict.update({'b': 2})
+dict(zip(['a', 'b', 'c'], range(1, 4)))
+
+a generator is defined with 'yield' instead of 'return'
+genexp uses ()
+
+Numpy
+-----
+ndarray: multi-dimensional array with broadcasting
+vectorized operations
+do NOT create arrays with ndarray, use array, zeros or empty
+
+np.arange(n)
+np.random.randn(2, 3)
+
+npdata.shape  .ndim  .dtype
+np.array(A_SEQUENCE)
+np.zeros((3, 6))
+np.ones()
+np.empty() can contain junk values
+np.eye(N)
+
+np.asarray converts to ndarray but does not copy if input is already an ndarray
+
+dtypes: int, uint, float, complex, bool, object, string, unicode
+
+astype(float) converts types. it always creates a new array
+
+STOP p 218
+array slices are views, not copies
+
+arr2d[0][2] === arr2d[0, 2]
+
+axis 0 = "rows", axis 1 = "cols". There can only be one axis.
+iterate over the other axis' values
+
+arr2d[:2] slices along axis 0 (rows) = select first two lines.
+arr2d[:2, :1] selects along both axes
+
+a = np.array([[1, 2, 3], [4, 5, 6]])
+array([[1, 2, 3],
+       [4, 5, 6]])
+
+a[1] => [4, 5, 6]
+a[:1] => [1, 2, 3]
+a[:, 1] => [2, 5]
+
+a[a > 2] => [3, 4, 5, 6]
+a[[0, 1], [1]] => [2, 5] (fancy indexing; always returns a copy)
+
+a.T returns the transposition as a view
+a.transpose((1, 0, 2))
+a.swapaxes(1, 2)
+
+ufuncs (universal functions) operate on all elements. examples: sqrt, modf (remainder, whole), isnan, sin, cos
+
+fmin ignore NaN, while minimum propagates NaN
+
+xs, ys = meshgrid(np.arange(-5, 5, 0.01), np.arange(0, 10, 0.01))
+
+plt.imshow(z)
+
+np.where is vectorized form of x if cond else y
+
+np.where(cond, xarr, yarr) === [(x if c else y) for x, y, c in zip(xarr, yarr, cond)]
+np.where(arr > 0, 2, arr)
+
+aggregates/reductions: sum, mean, std
+
+arr = np.random.randn(5, 4) => 5 lines, 4 cols
+arr.sum(axis=0) => array of length 4: sum by lines, return sums of 4 columns
+arr.mean(axis=1) => 5 elements: average by columns
+
+cumsum, cumprod
+
+booleans True = 1, False = 0. can use sum to count total number of Trues
+
+bools.any(), all()
+arr.sort(1) === axis 1, sorts individual lines
+arr[int(0.05 * len(arr))] => 5% quantile. arr must be sorted
+
+np.unique(names)
+
+one-dimensional arrays
+np.in1d(values, [1, 3, 6])
+intersect1d, union1d, setdiff1d, setxor1d
+
+np.savez(outfile, x=x, y=y)
+
+x.dot(y) === np.dot(x, y) === x @ y
+
+x.T.dot(x) === xTx
+
+np.random.seed(123)
+np.random.normal(size=(4, 4))
+permutation, shuffle, rand, randint, randn, binomial, normal, beta, chisquare, gamma, uniform
+
+argmax: first index of the max value (not performant)
+
+pandas processes data without for loops. data can be heterogeneous
+main data structures: Series, DataFrame
+
+Series: a 1-d array of data and index (default: 0 to N-1)
+obj.values, obj.index
+
+pd.Series([4, 6, 5, 3], index=['a', 'd', 'b', 'c'])
+obj['a'], obj[['c', 'a']]
+obj[obj > 0]
+
+Series is like an ordered dict
+obj = pd.Series(adict)
+index keyword arg may be passed
+pd.Series(adict, index=['CA', 'WY'])
+pd.isnull(obj), pd.notnull(obj) === obj.isnull(), obj.notnull()
+a + b lines up by index
+
+Series and their index have the attribute 'name'
+obj.name = 'population'
+obj.index may be altered in-place
+
+a DataFrame is a rectangular table with an ordered collection of columns.
+it has indices both for lines and columns. it is like a dict of Series,
+all of which share a common index
+
+data = {
+  'state': ['OH', 'NV', 'NV'],
+  'year': [2000, 2000, 2001],
+  'pop': [1.5, 1.7, 2.9]
+}
+frame = pd.DataFrame(data)
+
+a dict of dicts can be used to create a DataFrame
+
+frame.head() => first 5 lines
+pass columns = ['a', 'b', 'c'] to reorder the columns of the df
+
+frame.year === frame['year'] => returns a Series with the df's index
+pass index = ['one', 'two', 'four'] to set the df's index
+df.loc['two'] gets the line with index 'two'
+
+assigning values to a column (Series) will use the existing df's index
+
+del df['eastern'] => deletes that column
+
+indexing a df returns a view. use Series.copy() to make a copy
+
+df.index and columns may have a .name attribute
+
+index objects are immutable. it behaves like a multi-set. can check if 'val in index'
+
+obj.reindex(['a', 'b', 'c'])
+
+obj.drop('c')
+
+obj['b':'c'] includes 'c'
+
+data[data['three'] > 5]
+data[data < 5]
+data < 5
+
+data.loc['label']
+data.loc[val]
+data.loc[val1, val2] => lines and cols
+
+iloc uses ints
+data.iloc[3]
+data.iloc[2, [3, 0, 1]]
+data.iloc[:, 3][data.three > 5]
+
+data.iat[0, 1]
+
+use loc and iloc to avoid ambiguity
+
+arithmetic results in NaN when values are missing. use fill_value to avoid NaNs
+
+df1.add(df2, fill_value=0)
+1 / df1 === df1.rdiv(1) (r stands for 'right' side of operator)
+
+df.sub(series3, axis='index')
+
+ufuncs work on dfs.
+np.abs(frame)
+
+frame.apply(lambda x: x.max() - x.min()) => Series with the columns of frame as its index
+frame.apply(f, axis='columns') calls f once per row
+
+f may return scalars or Series
+
+frame.applymap(lambda x: '% 2f' % x)
+
+Series have the map method:
+frame['e'].map(fn)
+
+obj.sort_index()
+obj.sort_index(axis=1)
+obj.sort_values() places NaN at the bottom
+obj.sort_values(by='b')
+obj.rank(), passing method='first' does not take averages in case of ties. tied values appearing first have a lower value
+also: ascending=False, method="max" (or min, dense)
+
+df.sum(axis='columns') returns sums of each row
+skipna = False
+level: grouped aggregate by level (for multi-indices)
+
+df.describe produces many summary statistics all at once
+
+a.corr() computes correlations of a with itself
+a.corrwith(b) pairwise correlation between rows or columns of a and b
+
+ser.value_counts()
+
+match returns int indices for each value in an array in another array of unique values. used in joins
+
+histogram: data.apply(pd.value_counts).fillna(0)
+
+read_ csv, table, fwf, clipboard, excel, hdf, etc.
+
+pass index_col=['key1', 'key2']
+na_values=['NULL']
+chunksize=1000
+
+read_json, to_json
+
+df = pd.read_excel('ex.xlsx', 'Sheet1')
+frame.to_excel(ExcelWriter obj or filename)
+
+dealing with nulls: dropna, fillna, isnull, notnull
+
+data.drop_duplicates()
+
+binning: bins = [18, 25, 50, 60, 100]
+categories = pd.cut(ages, bins)
+pass right=False for closed interval
+qcut: quantiles
+
+s = np.random.permutation(5)
+df.take(s)
+df.sample(n=3) => a subset
+
+pd.get_dummies(df['key'])
