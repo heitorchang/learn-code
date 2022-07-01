@@ -39,7 +39,6 @@ dtypes: int, uint, float, complex, bool, object, string, unicode
 
 astype(float) converts types. it always creates a new array
 
-STOP p 218
 array slices are views, not copies
 
 arr2d[0][2] === arr2d[0, 2]
@@ -251,3 +250,5 @@ df.take(s)
 df.sample(n=3) => a subset
 
 pd.get_dummies(df['key'])
+
+STOP p 274
