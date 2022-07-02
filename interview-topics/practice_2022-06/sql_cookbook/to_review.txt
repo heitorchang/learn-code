@@ -1,6 +1,14 @@
 -- MUST REVIEW: interesting recipes
+-- HINT: typing \gdesc at the end of the interactive console shows the type of the result
+
 -- 7.9
 -- 7.11
+-- 8.5 (how to pick a specific name from a list)
+-- select current_date; for "now()"
+-- date_trunc('year', current_date) returns a timestamp with time zone (might want to cast it as date)
+-- 9.3
+-- 9.10
+-- 9.13
 
 
 -- selecting from an integer range
@@ -19,7 +27,19 @@ on i = j;
 
 -- create range of dates
 select * from generate_series('15-jan-1999'::date, '15-dec-1999'::date, '1 month');
+-- PROBLEM: looks like because of daylight savings, a day is not included at the end
 
+-- all days of a month
+select * from generate_series('2022-07-01'::date, '2022-07-01'::date + interval '1 month' - interval '1 day', '1 day');
+
+-- all first of months
+select * from generate_series(date_trunc('year', current_date), date_trunc('year', current_date) + interval '1 year' - interval '1 day', '1 month');
+
+-- alternative method
+select '2020-01-15'::date + gs.id - 1 from generate_series(1, 15) as gs(id);
+-- subtract 1 to avoid off-by-one error. This returns 15 rows.
+
+-- to_char(hiredate, 'month')
 
 -- casting
 select cast('123' as integer);
