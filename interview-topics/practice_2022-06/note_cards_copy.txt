@@ -80,10 +80,11 @@ with psycopg2.connect(DSN) as conn:
 
 ## CRUD
 
-select COL from TBL where COL2 = VAL;
-insert into TBL (COL1, COL2) values (VAL1, VAL2);
-update TBL set COL1 = VAL1 where COL2 = VAL2;
-delete from TBL where COL = VAL;
+SELECT col FROM tbl where col2 = val;
+INSERT INTO tbl (col1, col2) values (val1, val2);
+UPDATE tbl set col1 = val1 where col2 = val2;
+DELETE FROM tbl where col = val;
+
 
 ## Grouping and Aggregates
 
@@ -92,6 +93,7 @@ having ct > 3;
 
 max, min, avg, sum
 use HAVING for aggregates (WHERE cannot be used)
+
 
 ## Joins
 

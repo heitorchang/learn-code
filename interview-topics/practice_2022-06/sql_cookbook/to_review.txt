@@ -1,1 +1,53 @@
+-- selecting from an integer range
+select i from
+  (select generate_series(1, 10) as i) x
+where i between 3 and 6;
+
+
 3.4 NOT EXISTS
+
+3.6 scalar subquery
+
+-- group hires by year and month (similar to first technical interview)
+
+with cte as (
+  select ename, hiredate, extract(year from hiredate) || '-' || extract(month from hiredate) as yrmo
+  from emp
+)
+select ename, yrmo, count(*) over (partition by yrmo),
+-- PROBLEM: without ename, partition will only sum 11 rows, because there are only 11 unique yrmos. window functions run last.
+count(*) over () as total
+from cte
+group by yrmo; -- culprit, was grouping by before the window function
+
+
+select distinct extract(month from hiredate), count(*) over (partition by extract(month from hiredate)) from emp;
+
+
+-- solution: use DISTINCT
+select distinct extract(yr from hiredate) as yr, extract(month from hiredate) as mo, count(*) over (partition by extract(yr from hiredate), extract(month from hiredate))
+from emp;
+
+-- cleaner
+with formatted_dates as (
+  select to_char(hiredate, 'yyyy-mm') as yrmo
+  from emp
+), totals as (
+  select yrmo,
+  count(*) over (partition by yrmo) as ct
+  from formatted_dates
+)
+select distinct yrmo, ct from totals
+order by yrmo;
+
+
+-- without window function
+-- select table with values as outer table, and counts of data as subquery
+with cte as (
+select yrmo,
+(select count(*) from emp e where to_char(hiredate, 'yyyy-mm') = yrmo) as ct
+from year_months
+)
+select yrmo, ct from cte
+where ct > 0
+order by yrmo;
