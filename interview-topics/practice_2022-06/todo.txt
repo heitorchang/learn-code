@@ -2,7 +2,7 @@ TODO
 ----
 6[  ] 02.jul Read about async/await in Py Fluent 2
 8[  ] 29.jun Quicksort
-
+5[  ] 02.jul go back to SQL Cookbook's 6.12
 
 
 DONE

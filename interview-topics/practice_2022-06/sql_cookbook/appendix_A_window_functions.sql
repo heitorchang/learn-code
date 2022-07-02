@@ -205,3 +205,7 @@ select deptno,
    from emp
    ) x
 group by deptno, emp_cnt, total;
+
+
+-- remove duplicates
+select distinct deptno, count(*) over (partition by deptno) emp_count from emp;

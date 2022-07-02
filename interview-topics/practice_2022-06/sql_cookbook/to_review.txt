@@ -3,6 +3,30 @@ select i from
   (select generate_series(1, 10) as i) x
 where i between 3 and 6;
 
+-- better range
+select i from generate_series(1, 10) as t(i) -- or 'select t.i ...'
+where i between 3 and 6;
+
+-- join ranges
+select i, j from generate_series(1, 10) as t(i)
+join (select j from generate_series(5, 19) as t(j)) x
+on i = j;
+
+-- create range of dates
+select * from generate_series('15-jan-1999'::date, '15-dec-1999'::date, '1 month');
+
+
+-- casting
+select cast('123' as integer);
+select total::text;
+select '02-feb-2020'::date;
+
+-- replace string
+replace(source, old, new);
+
+-- substr index is 1-based
+substr(str, from, count)
+
 
 3.4 NOT EXISTS
 
