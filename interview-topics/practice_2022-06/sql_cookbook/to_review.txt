@@ -1,3 +1,8 @@
+-- MUST REVIEW: interesting recipes
+-- 7.9
+-- 7.11
+
+
 -- selecting from an integer range
 select i from
   (select generate_series(1, 10) as i) x
@@ -47,6 +52,8 @@ group by yrmo; -- culprit, was grouping by before the window function
 
 select distinct extract(month from hiredate), count(*) over (partition by extract(month from hiredate)) from emp;
 
+-- over () is actually over (rows between unbounded preceding and current row)
+-- use primary keys in over (order by x, pk) to avoid adding repeated values
 
 -- solution: use DISTINCT
 select distinct extract(yr from hiredate) as yr, extract(month from hiredate) as mo, count(*) over (partition by extract(yr from hiredate), extract(month from hiredate))
@@ -75,3 +82,7 @@ from year_months
 select yrmo, ct from cte
 where ct > 0
 order by yrmo;
+
+
+-- figure out:
+-- sum(sales) over (order by date1 rows between 2 preceding and current row) should only be valid when there are 3 available rows (first two rows should be NULL)
