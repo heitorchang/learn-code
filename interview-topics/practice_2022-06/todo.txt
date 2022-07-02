@@ -1,7 +1,7 @@
 TODO
 ----
+6[  ] 02.jul Read about async/await in Py Fluent 2
 8[  ] 29.jun Quicksort
-8[  ] 29.jun try binary heap code
 
 
 
@@ -10,3 +10,4 @@ DONE
 6[OK]        linked list add and remove
 4[OK] 29.jun Binary search
 4[OK] 29.jun BFS/DFS
+8[OK] 29.jun try binary heap code
