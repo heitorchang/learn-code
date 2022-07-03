@@ -1,13 +1,17 @@
 TODO
 ----
-6[  ] 02.jul Read about async/await in Py Fluent 2
-8[  ] 29.jun Quicksort
-5[  ] 02.jul go back to SQL Cookbook's 6.12
+4[  ] 03.jul review asyncawait.py
+7[  ] 03.jul review sql_cookbook's chapter files, make note of interesting recipes in to_review.txt
+8[  ] 03.jul review problems in battles/
 
 
-DONE
+DONE (add to end)
 ----
-6[OK]        linked list add and remove
-4[OK] 29.jun Binary search
-4[OK] 29.jun BFS/DFS
-8[OK] 29.jun try binary heap code
+6[OK] ??.???/29.jun linked list add and remove
+4[OK] 29.jun/29.jun Binary search
+4[OK] 29.jun/29.jun BFS/DFS
+8[OK] 29.jun/29.jun try binary heap code
+5[OK] 02.jul/02.jul go back to SQL Cookbook's 6.12
+6[OK] 02.jul/03.jul Read about async/await in Py Fluent 2
+5[OK] 03.jul/03.jul review learning-sql code
+8[OK] 29.jun/03.jul Quicksort
