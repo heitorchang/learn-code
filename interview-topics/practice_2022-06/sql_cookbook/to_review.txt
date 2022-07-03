@@ -1,6 +1,8 @@
 -- MUST REVIEW: interesting recipes
 -- HINT: typing \gdesc at the end of the interactive console shows the type of the result
 
+-- rn: row number
+
 -- 7.9
 -- 7.11
 -- 8.5 (how to pick a specific name from a list)
@@ -9,6 +11,8 @@
 -- 9.3
 -- 9.10
 -- 9.13
+-- LAG, LEAD
+-- 10.4 (generate_series solution)
 
 
 -- selecting from an integer range
