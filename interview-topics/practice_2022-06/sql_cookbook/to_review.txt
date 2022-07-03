@@ -13,6 +13,12 @@
 -- 9.13
 -- LAG, LEAD
 -- 10.4 (generate_series solution)
+-- 11.5
+-- 11.6
+
+
+-- adding an 'index' column
+select row_number() over (order by empno), ename from emp;
 
 
 -- selecting from an integer range

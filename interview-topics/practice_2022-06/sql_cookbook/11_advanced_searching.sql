@@ -65,4 +65,67 @@ from emp
 where sal in (min_sal, max_sal);
 
 
--- 11.7
+-- 11.7 investigating future rows
+
+-- find employees who earn less than the one hired immediately after them
+
+select ename, sal, hiredate
+from (
+select ename, sal, hiredate,
+lead(sal) over (order by hiredate) next_sal
+from emp
+) x
+where sal < next_sal;
+
+
+-- 11.8 shifting row values
+
+select ename, sal,
+coalesce(lead(sal) over (order by sal), min(sal) over ()) fwd,
+coalesce(lag(sal) over (order by sal), max(sal) over ()) rew
+from emp;
+
+
+-- 11.9 ranking results
+
+select dense_rank() over (order by sal) rnk,
+sal
+from emp;
+
+
+-- 11.10 suppressing duplicates
+
+select distinct job from emp;
+
+
+-- 11.11 finding knight values (like a chess knight that jumps)
+
+select deptno, ename, sal, hiredate, max(latest_sal) over (partition by deptno) latest_sal
+from (
+select deptno, ename, sal, hiredate, case when hiredate = max(hiredate) over (partition by deptno) then sal else 0 end latest_sal
+from emp
+) x
+order by deptno, hiredate;
+
+
+-- 11.12 generating simple forecasts
+
+-- return additional rows and columns representing future actions
+
+select id, order_date, process_date,
+case
+  when gs.n >= 2
+    then process_date + 1
+    else null
+  end as verified,
+  case when gs.n = 3
+    then process_date + 2
+    else null
+  end as shipped
+from (
+  select gs.id,
+    current_date + gs.id as order_date,
+    current_date + gs.id + 2 as process_date
+  from generate_series(1, 3) gs(id)
+) orders,
+generate_series(1, 3) gs(n);
