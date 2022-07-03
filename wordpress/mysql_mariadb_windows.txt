@@ -60,12 +60,13 @@ EDITING THE SITE
 
 MYSQL
 -----
-1. cd heitor/Desktop/mariadb-10.8.3-winx64/bin
+1. cd heitor\Desktop\mariadb-10.8.3-winx64\bin
 2. run 'mysqld'
 
 PHP
 ---
-1. cd heitor/work/wordpress/myproject/wordpress
+1. cd heitor\work\wordpress\myproject\wordpress
 2. php -S 127.0.0.1:8080
 3. open in browser
 4. admin is in 127.0.0.1:8080/wp-admin/
+5. local credentials: admin/word33
