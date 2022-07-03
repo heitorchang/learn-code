@@ -1,3 +1,5 @@
+-- see also: insert_rows_pivot.py
+
 insert into dept
 (deptno, dname,    loc) values
 (10, 'ACCOUNTING', 'NEW YORK'),

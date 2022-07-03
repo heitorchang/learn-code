@@ -1,3 +1,5 @@
+-- see also: create_tables_pivot.sql
+
 create table dept (
 deptno integer primary key,
 dname text,
