@@ -1,0 +1,71 @@
+INSTALLATION
+------------
+1. run 'mysql_install_db'
+
+2. Do not start the server with just 'mysql'. it is impossible to connect.
+
+start with 'mysqld --skip-grant-tables'. The console will become unresponsive.
+
+To kill the process, open the Run prompt (Win+R), type taskmgr then press Ctrl+Shift+Enter to run as Admin.
+
+3. Open a new console and type 'mysql -u root'
+
+use mysql;
+
+flush privileges;
+
+alter user 'root'@'localhost' identified by 'mysql33';
+
+exit
+
+4. mysql -u root -p
+
+create database mywp1;
+
+use mywp1;
+
+5. create a directory heitor/work/wordpress
+
+6. copy wordpress-6.0.zip to the directory above
+
+7. create a subdirectory 'mytut'. copy wordpress-6.0.zip and unzip it there.
+
+8. start a server: php -S 127.0.0.1:8080
+
+9. edit wp-config-sample.php, setting the db properties and save as wp-config.php
+
+10. install wordpress
+
+11. admin is in 127.0.0.1:8080/wp-admin/
+
+12. save new theme in wp-content/themes/my-theme
+
+13. there must be a style.css and index.php
+
+14. style.css:
+
+/*
+Theme Name: My WP Theme
+Author: Tina Branford
+Description:  Blog template
+Version: 0.0.1
+Tags: blog
+*/
+
+15. index.php: an HTML file
+
+
+EDITING THE SITE
+----------------
+
+MYSQL
+-----
+1. cd heitor/Desktop/mariadb-10.8.3-winx64/bin
+2. run 'mysqld'
+
+PHP
+---
+1. cd heitor/work/wordpress/myproject/wordpress
+2. php -S 127.0.0.1:8080
+3. open in browser
+4. admin is in 127.0.0.1:8080/wp-admin/
