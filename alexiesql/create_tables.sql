@@ -9,7 +9,8 @@ create table acct_type (
 create table acct (
   acct_id serial primary key,
   acct_type_id integer references acct_type,
-  name text
+  name text,
+  budget money
 );
 
 create table txn (
