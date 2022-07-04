@@ -1,8 +1,23 @@
 -- MUST REVIEW: interesting recipes
--- HINT: typing \gdesc at the end of the interactive console shows the type of the result
+-- HINT: typing \gdesc instead of ; at the end of the interactive console shows the type of the result
+-- \d  shows tables (no ; needed)
+-- \d emp  describes emp (no ; needed)
 
 -- rn: row number
 
+-- 1.3
+-- 1.7
+-- 1.12
+-- 1.13a
+-- 1.13b
+-- 2.5
+-- 2.6
+-- 3.2
+-- 3.3
+-- 3.4
+-- 3.5
+--** 3.6
+-- 3.8
 -- 7.9
 -- 7.11
 -- 8.5 (how to pick a specific name from a list)
@@ -16,6 +31,9 @@
 -- 11.5
 -- 11.6
 
+
+-- conditional
+select ename, hiredate, case when hiredate < '2006-01-01' then 'old' else 'new' end as emp_time from emp;
 
 -- adding an 'index' column
 select row_number() over (order by empno), ename from emp;

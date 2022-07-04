@@ -5,7 +5,7 @@ from emp
 where deptno = 10
 union all
 select '----------', null
-from t1
+from t1 -- returns one row
 union all
 select dname, deptno
 from dept;
