@@ -15,5 +15,5 @@ def commonCharacterCount(s1, s2):
     c1 = Counter(s1)
     c2 = Counter(s2)
     common = c1 & c2
+    print(common)
     return sum(common.values())
-    

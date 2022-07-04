@@ -2,6 +2,9 @@ TODO
 ----
 8[  ] 03.jul review problems in battles/
 8[  ] 04.jul review recipes in sql_cookbook/to_review.txt
+6[  ] 04.jul review note_cards txt
+4[  ] 04.jul review linkedlist.py
+5[  ] 04.jul review sorting.py
 
 
 DONE (add to end)
