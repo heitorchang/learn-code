@@ -50,7 +50,7 @@ from (select date_trunc('month', current_date) as firstday) x;
 --SKIP-- too specific
 
 
--- 9.7 create a calenda
+-- 9.7 create a calendar
 --SKIP-- ugly code
 
 

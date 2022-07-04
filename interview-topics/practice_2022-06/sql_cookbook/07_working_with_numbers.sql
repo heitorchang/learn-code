@@ -115,6 +115,29 @@ from emp
 where deptno = 20;
 
 
+-- with cte
+with indexed as (
+  select (row_number() over (order by sal)) - 1 as idx, sal from emp
+  where deptno = 10
+), row_ct as (
+  select count(*) as max_idx from emp
+  where deptno = 10
+), odd_even as (
+  select mod(row_ct.max_idx, 2) as odd_even
+  from row_ct
+), odd_even_cases as (
+  select indexed.sal as result, 1 as is_odd, max_idx from indexed, row_ct where idx = max_idx / 2
+  union all
+  select sum(indexed.sal) / 2.0 as result, 0 as is_odd, max_idx from indexed, row_ct where idx in (max_idx / 2, max_idx / 2 + 1)
+  group by max_idx
+)
+select odd_even_cases.result from odd_even_cases, odd_even where is_odd = odd_even.odd_even;
+
+-- NOTE:
+-- variables can be defined in subqueries
+select (select count(*) from emp) as total, (select mod(count(*), 2) from emp) as is_odd;
+
+
 -- 7.11 percentage of a total
 
 -- my window function (DO NOT GROUP BY at the end!)
@@ -125,6 +148,7 @@ from emp;
 -- simpler solution
 select 100.0 * sum(case when deptno = 10 then sal end) / sum(sal) as pct -- 100.0 comes first to promote values to float
 from emp;
+
 
 -- all depts
 select d1.deptno, 100.0 * sum(case when d1.deptno = e.deptno then sal end) / sum(sal) as pct

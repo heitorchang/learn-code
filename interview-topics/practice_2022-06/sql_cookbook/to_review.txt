@@ -1,4 +1,6 @@
 -- MUST REVIEW: interesting recipes
+
+-- METADATA (Ch. 5)
 -- HINT: typing \gdesc instead of ; at the end of the interactive console shows the type of the result
 -- \d  shows tables (no ; needed)
 -- \d emp  describes emp (no ; needed)
@@ -10,30 +12,98 @@
 -- 1.12
 -- 1.13a
 -- 1.13b
+
 -- 2.5
 -- 2.6
 -- 3.2
 -- 3.3
+
 -- 3.4
 -- 3.5
 --** 3.6
 -- 3.8
+-- 3.9
+-- 3.10
+
+-- 4.1
+-- 4.16
+
+-- 6.1 CTE
+-- 6.4
+
+-- 7.1
+-- 7.4, 7.5
+-- 7.8
 -- 7.9
+-- 7.10
 -- 7.11
--- 8.5 (how to pick a specific name from a list)
+-- 7.12
+-- 7.13
+-- 7.14
+
 -- select current_date; for "now()"
 -- date_trunc('year', current_date) returns a timestamp with time zone (might want to cast it as date)
+-- 8.1
+-- 8.4
+-- 8.5 (how to pick a specific name from a list)
+-- 8.7
+
+-- 9.2
 -- 9.3
 -- 9.10
+-- 9.12
 -- 9.13
--- LAG, LEAD
+
+-- 10.1
+-- 10.2
 -- 10.4 (generate_series solution)
+-- 10.5
+
+-- 11.1
+-- 11.3
 -- 11.5
 -- 11.6
+-- 11.9
+-- 11.10
+-- 11.12
 
+-- 12.15
+-- 12.17
+-- 12.19
+
+-- 13.1
+-- 13.3
+-- 13.4
+
+-- window function() over (...)
+-- framing clause
+select hiredate, sal, sum(sal) over (order by hiredate
+                                     range between unbounded preceding and current row) from emp;
+
+select hiredate, sal, sum(sal) over (order by hiredate
+                                     rows between unbounded preceding and current row) from emp;
+
+select hiredate, sal, sum(sal) over (order by hiredate
+		                     rows between current row and unbounded following) from emp;
+
+-- frame exclusion
+exclude current row
+exclude group
+exclude ties
+
+
+-- regexp where
+select empno from emp where empno::text similar to '7[0-9][0-5]{2}';
+
+-- LAG leaves space on top (see past)
+select hiredate, lag(hiredate) over (order by hiredate), lag(hiredate, 2) over (order by hiredate) from emp;
+
+-- LEAD leaves space on on bottom (see future)
+select hiredate, lead(hiredate) over (order by hiredate), lead(hiredate, 2) over (order by hiredate) from emp;
 
 -- conditional
-select ename, hiredate, case when hiredate < '2006-01-01' then 'old' else 'new' end as emp_time from emp;
+select ename, hiredate, case when hiredate < '2006-01-01' then 'old' else 'new' end emp_time from emp;
+
 
 -- adding an 'index' column
 select row_number() over (order by empno), ename from emp;
@@ -44,9 +114,11 @@ select i from
   (select generate_series(1, 10) as i) x
 where i between 3 and 6;
 
--- better range
-select i from generate_series(1, 10) as t(i) -- or 'select t.i ...'
+-- OR
+
+select i from generate_series(1, 10) g(i)
 where i between 3 and 6;
+
 
 -- join ranges
 select i, j from generate_series(1, 10) as t(i)
@@ -100,7 +172,8 @@ group by yrmo; -- culprit, was grouping by before the window function
 
 select distinct extract(month from hiredate), count(*) over (partition by extract(month from hiredate)) from emp;
 
--- over () is actually over (rows between unbounded preceding and current row)
+-- over (order by col) is actually over (rows between unbounded preceding and current row)
+-- over () considers all rows
 -- use primary keys in over (order by x, pk) to avoid adding repeated values
 
 -- solution: use DISTINCT
@@ -131,6 +204,10 @@ select yrmo, ct from cte
 where ct > 0
 order by yrmo;
 
+-- use coalesce to replace NULLs with a real value
+select coalesce(comm, 0) from emp;
 
 -- figure out:
 -- sum(sales) over (order by date1 rows between 2 preceding and current row) should only be valid when there are 3 available rows (first two rows should be NULL)
+
+-- pivot: crosstab()

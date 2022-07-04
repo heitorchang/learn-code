@@ -16,10 +16,12 @@ from (select hiredate as ward_hd from emp where ename = 'WARD') x,
 
 
 -- 8.3 number of business days between two dates
---SKIP-- book code looks buggy, should not be 30 because the dates are a bit below one calendar month
+--WARNING-- book code looks buggy, should not be 30 because the dates are a bit below one calendar month
+-- PROBLEM: holidays: keep a separate table that identifies holidays
+
+-- idea: use dow to filter out weekends
 
 -- use the T500 pivot table to generate days between two dates, then count each day that is not a weekend
--- PROBLEM: holidays
 
 select sum(case when trim(to_char(jones_hd + t500.id - 1, 'day'))
             in ('SATURDAY', 'SUNDAY')
