@@ -91,6 +91,8 @@ exclude current row
 exclude group
 exclude ties
 
+select distinct extract(month from hiredate), count(*) over (partition by extract(month from hiredate)) from emp;
+
 
 -- regexp where
 select empno from emp where empno::text similar to '7[0-9][0-5]{2}';
@@ -104,6 +106,8 @@ select hiredate, lead(hiredate) over (order by hiredate), lead(hiredate, 2) over
 -- conditional
 select ename, hiredate, case when hiredate < '2006-01-01' then 'old' else 'new' end emp_time from emp;
 
+-- use coalesce to replace NULLs with a real value
+select coalesce(comm, 0) from emp;
 
 -- adding an 'index' column
 select row_number() over (order by empno), ename from emp;
@@ -119,6 +123,7 @@ where i between 3 and 6;
 select i from generate_series(1, 10) g(i)
 where i between 3 and 6;
 
+-- pivot: crosstab()
 
 -- join ranges
 select i, j from generate_series(1, 10) as t(i)
@@ -204,10 +209,9 @@ select yrmo, ct from cte
 where ct > 0
 order by yrmo;
 
--- use coalesce to replace NULLs with a real value
-select coalesce(comm, 0) from emp;
 
 -- figure out:
 -- sum(sales) over (order by date1 rows between 2 preceding and current row) should only be valid when there are 3 available rows (first two rows should be NULL)
 
--- pivot: crosstab()
+select sal, sum(sal) over w, count(sal) over w from emp
+window w as (order by sal rows between current row and 2 following);
