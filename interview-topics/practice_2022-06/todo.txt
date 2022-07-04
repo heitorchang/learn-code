@@ -1,8 +1,7 @@
 TODO
 ----
-4[  ] 03.jul review asyncawait.py
-7[  ] 03.jul review sql_cookbook's chapter files, make note of interesting recipes in to_review.txt
 8[  ] 03.jul review problems in battles/
+8[  ] 04.jul review recipes in sql_cookbook/to_review.txt
 
 
 DONE (add to end)
@@ -15,3 +14,5 @@ DONE (add to end)
 6[OK] 02.jul/03.jul Read about async/await in Py Fluent 2
 5[OK] 03.jul/03.jul review learning-sql code
 8[OK] 29.jun/03.jul Quicksort
+4[OK] 03.jul/04.jul review asyncawait.py
+7[OK] 03.jul/04.jul review sql_cookbook's chapter files, make note of interesting recipes in to_review.txt

@@ -20,7 +20,7 @@
 
 -- 3.4
 -- 3.5
---** 3.6
+-- 3.6
 -- 3.8
 -- 3.9
 -- 3.10
@@ -93,6 +93,10 @@ exclude ties
 
 select distinct extract(month from hiredate), count(*) over (partition by extract(month from hiredate)) from emp;
 
+-- over (order by col) is actually over (rows between unbounded preceding and current row)
+-- over () takes all rows
+-- use primary keys in over (order by x, pk) to avoid adding repeated values
+
 
 -- regexp where
 select empno from emp where empno::text similar to '7[0-9][0-5]{2}';
@@ -154,32 +158,33 @@ select '02-feb-2020'::date;
 -- replace string
 replace(source, old, new);
 
+-- replace characters in string
+-- Latin originally did not have J or U, replace them with I and V
+select translate('JULIUS', 'JU', 'IV');
+
 -- substr index is 1-based
 substr(str, from, count)
+select substr('banana', 2); --> anana
 
+select lpad('2', 3, '0'); --> '002'
 
-3.4 NOT EXISTS
-
-3.6 scalar subquery
+-- check if any row is returned in a subquery
+select exists(select * from emp where sal = 5000); --> t
+select exists(select * from emp where sal > 9000); --> f
 
 -- group hires by year and month (similar to first technical interview)
-
 with cte as (
   select ename, hiredate, extract(year from hiredate) || '-' || extract(month from hiredate) as yrmo
   from emp
 )
 select ename, yrmo, count(*) over (partition by yrmo),
--- PROBLEM: without ename, partition will only sum 11 rows, because there are only 11 unique yrmos. window functions run last.
 count(*) over () as total
-from cte
-group by yrmo; -- culprit, was grouping by before the window function
+from cte;
+-- PROBLEM: without ename, partition will only sum 11 rows, because there are only 11 unique yrmos. window functions run last.
+-- group by yrmo; -- culprit, was grouping by before the window function
 
 
 select distinct extract(month from hiredate), count(*) over (partition by extract(month from hiredate)) from emp;
-
--- over (order by col) is actually over (rows between unbounded preceding and current row)
--- over () considers all rows
--- use primary keys in over (order by x, pk) to avoid adding repeated values
 
 -- solution: use DISTINCT
 select distinct extract(yr from hiredate) as yr, extract(month from hiredate) as mo, count(*) over (partition by extract(yr from hiredate), extract(month from hiredate))
@@ -210,8 +215,8 @@ where ct > 0
 order by yrmo;
 
 
--- figure out:
 -- sum(sales) over (order by date1 rows between 2 preceding and current row) should only be valid when there are 3 available rows (first two rows should be NULL)
 
 select sal, sum(sal) over w, count(sal) over w from emp
 window w as (order by sal rows between current row and 2 following);
+-- then filter out count < 3
