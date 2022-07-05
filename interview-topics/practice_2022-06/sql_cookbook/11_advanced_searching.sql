@@ -9,6 +9,8 @@ where rn between 1 and 5;
 -- 'between 6 and 10' for those rows
 -- there is no IndexError
 
+-- also:
+select ename, sal from emp order by sal limit 3 offset 5;
 
 -- 11.2 skipping n rows from a table
 
@@ -113,8 +115,7 @@ order by deptno, hiredate;
 -- return additional rows and columns representing future actions
 
 select id, order_date, process_date,
-case
-  when gs.n >= 2
+  case when gs.n = 2
     then process_date + 1
     else null
   end as verified,

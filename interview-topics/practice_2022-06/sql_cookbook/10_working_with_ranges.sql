@@ -62,7 +62,7 @@ on (y.yr = x.yr);
 -- generate_series solution
 
 with yrs as (
-select i from generate_series(2000, 2009) as g(i)
+select generate_series(2000, 2009) as i
 )
 select yrs.i, count(hiredate) from yrs
 left join emp on extract(year from hiredate) = i

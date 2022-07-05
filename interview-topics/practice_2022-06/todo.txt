@@ -1,10 +1,14 @@
 TODO
 ----
-8[  ] 03.jul review problems in battles/
 8[  ] 04.jul review recipes in sql_cookbook/to_review.txt
-6[  ] 04.jul review note_cards txt
+6[  ] 04.jul review note_cards.txt
 4[  ] 04.jul review linkedlist.py
 5[  ] 04.jul review sorting.py
+4[  ] 05.jul review longestpalindrome.py
+3[  ] 05.jul review pandas_example.py
+8[  ] 03.jul review problems in battles/
+5[  ] 05.jul re-read starred sql cookbook recipes
+
 
 
 DONE (add to end)
@@ -19,3 +23,5 @@ DONE (add to end)
 8[OK] 29.jun/03.jul Quicksort
 4[OK] 03.jul/04.jul review asyncawait.py
 7[OK] 03.jul/04.jul review sql_cookbook's chapter files, make note of interesting recipes in to_review.txt
+6[OK] 04.jul/05.jul quicksort
+6[OK] 04.jul/05.jul dijkstra
