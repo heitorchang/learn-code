@@ -85,6 +85,7 @@ from emp;
 
 -- 12.17 group rows by units of time
 
+-- assume one id is one second
 select ceil(trx_id/5.0) as grp,
 min(trx_date) as trx_start,
 max(trx_date) as trx_end,

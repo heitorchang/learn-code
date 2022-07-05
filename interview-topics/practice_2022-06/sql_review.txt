@@ -1,6 +1,3 @@
-
--- NOTE: copied to subdirectory: practice_2022-06/sql_review.txt
-
 -- MUST REVIEW: interesting recipes
 
 -- METADATA (Ch. 5)
@@ -117,9 +114,6 @@ select hiredate, lead(hiredate) over (order by hiredate), lead(hiredate, 2) over
 -- conditional
 select ename, hiredate, case when hiredate < '2006-01-01' then 'old' else 'new' end emp_time from emp;
 
--- conditional on column
-select ename, case sal when 5000 then 'a lot' else 'ok' end from emp;
-
 -- use coalesce to replace NULLs with a real value
 select coalesce(comm, 0) from emp;
 
@@ -230,6 +224,3 @@ order by yrmo;
 select sal, sum(sal) over w, count(sal) over w from emp
 window w as (order by sal rows between current row and 2 following);
 -- then filter out count < 3
-
--- choose range of results
-select * from emp order by sal limit 3 offset 5;

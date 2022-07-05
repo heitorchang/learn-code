@@ -20,7 +20,6 @@ where to_char(tmp2.dy + x.id, 'MM') = tmp2.mnth;
 select cur_year + interval '1 year' - cur_year
 from (
 select date_trunc('year', current_date)::date as cur_year
-from t1
 ) x;
 
 

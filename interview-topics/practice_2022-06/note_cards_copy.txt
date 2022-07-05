@@ -515,7 +515,7 @@ online implementation uses the module "heapq"
 
 from scipy.sparse.csgraph import dijkstra
 
-(algorithm is pretty complicated, study
+(algorithm is pretty complicated, study dijkstra.py)
 
 
 ## Prim's Spanning Tree
