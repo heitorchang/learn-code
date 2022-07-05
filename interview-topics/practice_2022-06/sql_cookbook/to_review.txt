@@ -23,8 +23,8 @@
 -- 3.4 select deptno from dept except select deptno from emp;
 -- 3.5 select d.* from dept d left join emp e on d.deptno = e.deptno where e.deptno is null;
 -- 3.6 select e.ename, eb.received from emp e join dept d on e.deptno = d.deptno left join emp_bonus eb on e.empno = eb.empno
-** 3.9 (see file)
-** 3.10 (see file)
+-- 3.9 (see file)
+-- 3.10 (see file)
 
 -- 4.1 insert into dept (ename, loc) values ('Joe', 'Los Angeles');
 -- 4.16 delete from dupes where id not in (select min(id) from dupes group by name);
@@ -38,7 +38,7 @@
 -- 7.8 with cte as (select lag(sales, 1) as lag1, lag(sales, 2) as lag2 ...) select (sales + lag1 + lag2) / 3.0 as moving_avg
 -- 7.9 select sal from (select sal, dense_rank() over (order by cnt desc) as rnk from (select sal, count(*) as cnt from emp) x ) y
          where rnk = 1;
-** 7.10 select percentile_cont(0.5) within group (order by sal) from emp;
+-- 7.10 select percentile_cont(0.5) within group (order by sal) from emp; -- the only recipe that uses WITHIN GROUP
 -- 7.11 select d.deptno, 100.0 * sum(case when d.deptno = e.deptno then sal end) / sum(sal) as pct from dept d, emp e group by d.deptno;
 -- 7.13 select avg(sal) from emp where sal not in ((select min(sal) from emp), (select max(sal) from emp));
 
@@ -233,3 +233,9 @@ window w as (order by sal rows between current row and 2 following);
 
 -- choose range of results
 select * from emp order by sal limit 3 offset 5;
+
+-- generate_series as range
+with rng as (
+ select generate_series(1, 10) as i
+)
+select i, i*i as square from rng;

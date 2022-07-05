@@ -1,7 +1,5 @@
 TODO
 ----
-8[  ] 03.jul review problems in battles/
-5[  ] 05.jul re-read starred sql cookbook recipes
 
 
 SCHEDULED
@@ -10,6 +8,9 @@ SCHEDULED
 4[  ] 05.jul for 06.jul review longestpalindrome.py
 3[  ] 05.jul for 06.jul review pandas_example.py
 6[  ] 04.jul for 06.jul review note_cards.txt
+5[  ] 04.jul for 06.jul review dfscycle.py
+
+4[  ] 04.jul for 07.jul review dfscycle.py
 
 
 DONE (add to end)
@@ -28,3 +29,5 @@ DONE (add to end)
 6[OK] 04.jul/05.jul dijkstra
 8[OK] 04.jul/05.jul review recipes in sql_cookbook/to_review.txt
 5[OK] 04.jul/05.jul review sorting.py
+8[OK] 03.jul/05.jul review problems in battles/
+5[OK] 05.jul/05.jul re-read starred sql cookbook recipes
