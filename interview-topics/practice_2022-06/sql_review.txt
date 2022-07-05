@@ -1,6 +1,3 @@
-
--- NOTE: copied to subdirectory: practice_2022-06/sql_review.txt
-
 -- MUST REVIEW: interesting recipes
 
 -- METADATA (Ch. 5)

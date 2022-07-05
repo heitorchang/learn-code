@@ -1,6 +1,5 @@
 TODO
 ----
-8[  ] 04.jul review recipes in sql_cookbook/to_review.txt
 6[  ] 04.jul review note_cards.txt
 4[  ] 04.jul review linkedlist.py
 5[  ] 04.jul review sorting.py
@@ -13,15 +12,16 @@ TODO
 
 DONE (add to end)
 ----
-6[OK] ??.???/29.jun linked list add and remove
-4[OK] 29.jun/29.jun Binary search
+6[OK] 29.jun/29.jun linked list add and remove
+4[OK] 29.jun/29.jun binary search
 4[OK] 29.jun/29.jun BFS/DFS
 8[OK] 29.jun/29.jun try binary heap code
 5[OK] 02.jul/02.jul go back to SQL Cookbook's 6.12
-6[OK] 02.jul/03.jul Read about async/await in Py Fluent 2
+6[OK] 02.jul/03.jul read about async/await in Py Fluent 2
 5[OK] 03.jul/03.jul review learning-sql code
-8[OK] 29.jun/03.jul Quicksort
+8[OK] 29.jun/03.jul quicksort
 4[OK] 03.jul/04.jul review asyncawait.py
 7[OK] 03.jul/04.jul review sql_cookbook's chapter files, make note of interesting recipes in to_review.txt
 6[OK] 04.jul/05.jul quicksort
 6[OK] 04.jul/05.jul dijkstra
+8[OK] 04.jul/05.jul review recipes in sql_cookbook/to_review.txt
