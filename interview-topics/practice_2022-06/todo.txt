@@ -1,12 +1,12 @@
 TODO
 ----
-6[  ] 04.jul review note_cards.txt
+8[  ] 03.jul review problems in battles/
 4[  ] 04.jul review linkedlist.py
 5[  ] 04.jul review sorting.py
 4[  ] 05.jul review longestpalindrome.py
 3[  ] 05.jul review pandas_example.py
-8[  ] 03.jul review problems in battles/
 5[  ] 05.jul re-read starred sql cookbook recipes
+6[  ] 04.jul review note_cards.txt
 
 
 
