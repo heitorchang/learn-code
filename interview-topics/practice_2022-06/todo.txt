@@ -1,7 +1,7 @@
 TODO
 ----
-4[  ] 06.jul review python_fluente
-6[  ] 06.jul review sql_review
+4[  ] 06.jul review books/python_fluente
+6[  ] 06.jul review notes/sql_review
 
 
 DONE (add to end)
