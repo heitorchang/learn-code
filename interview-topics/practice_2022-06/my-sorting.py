@@ -2,7 +2,7 @@
 
 def selsort(alist):
     """pick smallest item from each run and place it in position i"""
-    for i in range(len(alist)):
+    for i in range(len(alist) - 1):
         minval = alist[i]
         minpos = i
         for j in range(i, len(alist)):
