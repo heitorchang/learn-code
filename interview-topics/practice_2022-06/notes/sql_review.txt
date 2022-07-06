@@ -35,7 +35,7 @@
 -- 7.8 with cte as (select lag(sales, 1) as lag1, lag(sales, 2) as lag2 ...) select (sales + lag1 + lag2) / 3.0 as moving_avg
 -- 7.9 select sal from (select sal, dense_rank() over (order by cnt desc) as rnk from (select sal, count(*) as cnt from emp) x ) y
          where rnk = 1;
-** 7.10 select percentile_cont(0.5) within group (order by sal) from emp;
+-- 7.10 select percentile_cont(0.5) within group (order by sal) from emp;
 -- 7.11 select d.deptno, 100.0 * sum(case when d.deptno = e.deptno then sal end) / sum(sal) as pct from dept d, emp e group by d.deptno;
 -- 7.13 select avg(sal) from emp where sal not in ((select min(sal) from emp), (select max(sal) from emp));
 

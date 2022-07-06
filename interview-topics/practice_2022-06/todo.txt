@@ -1,7 +1,5 @@
 TODO
 ----
-4[  ] 06.jul review books/python_fluente
-6[  ] 06.jul review notes/sql_review
 
 
 DONE (add to end)
@@ -26,3 +24,5 @@ DONE (add to end)
 4[OK] 05.jul/06.jul review longestpalindrome.py
 3[OK] 05.jul/06.jul review pandas_example.py
 5[OK] 04.jul/06.jul review dfscycle.py
+4[OK] 06.jul/06.jul review books/python_fluente
+6[OK] 06.jul/06.jul review notes/sql_review
