@@ -454,7 +454,7 @@ class Graph:
 
 def bfsConnectedComponent(G, v):
     queue = deque([v])
-    visited = set()
+    visited = set([v])
     component = set()
 
     while len(queue) > 0:
@@ -483,7 +483,7 @@ def test_bfs():
 
 def dfsConnectedComponent(G, v):
     stack = [v]
-    visited = set()
+    visited = set([v])
     component = set()
 
     while len(stack) > 0:

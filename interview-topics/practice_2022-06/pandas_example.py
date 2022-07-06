@@ -1,6 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
+# keywords: groupby, loc, resample, rolling(window=30), mean, plot
+
 def plot_monthly(df, codigo):
     dfcod = df.groupby(['codigo', 'data']).sum().loc[codigo]
     dfmonth = dfcod.groupby(pd.Grouper(freq="M")).sum()

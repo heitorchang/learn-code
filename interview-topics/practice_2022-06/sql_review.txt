@@ -101,6 +101,10 @@ select distinct extract(month from hiredate), count(*) over (partition by extrac
 -- over () takes all rows
 -- use primary keys in over (order by x, pk) to avoid adding repeated values
 
+-- views
+create view my_view as
+select ename || ' ' || deptno as info
+from emp;
 
 -- regexp where
 select empno from emp where empno::text similar to '7[0-9][0-5]{2}';

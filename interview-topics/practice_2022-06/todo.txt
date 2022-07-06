@@ -2,16 +2,6 @@ TODO
 ----
 
 
-SCHEDULED
----------
-4[  ] 04.jul for 06.jul review linkedlist.py
-4[  ] 05.jul for 06.jul review longestpalindrome.py
-3[  ] 05.jul for 06.jul review pandas_example.py
-6[  ] 04.jul for 06.jul review note_cards.txt
-5[  ] 04.jul for 06.jul review dfscycle.py
-
-4[  ] 04.jul for 07.jul review dfscycle.py
-
 
 DONE (add to end)
 ----
@@ -31,3 +21,7 @@ DONE (add to end)
 5[OK] 04.jul/05.jul review sorting.py
 8[OK] 03.jul/05.jul review problems in battles/
 5[OK] 05.jul/05.jul re-read starred sql cookbook recipes
+4[OK] 04.jul/06.jul review linkedlist.py
+4[OK] 05.jul/06.jul review longestpalindrome.py
+3[OK] 05.jul/06.jul review pandas_example.py
+5[OK] 04.jul/06.jul review dfscycle.py
