@@ -1,0 +1,45 @@
+select d.dname || ': ' || d.deptno, count(*) from dept d join emp e using(deptno) group by deptno order by dname;
+select ename, coalesce(comm, 0) as comm from emp where substr(ename, 1, 1) in ('A', 'B', 'S') order by comm;
+select ename, case when length(ename) > 5 then 'long name' else 'short name' end as name_size from emp;
+select ename, case job when 'CLERK' then 'C.job' else 'Other' end as job_abbrev from emp;
+select d.deptno, d.dname from dept d left join emp e using(deptno) where e.deptno is null;
+select e.ename, d.dname from emp e left join dept d using(deptno);
+insert into emp (empno, ename) values (1382, 'Tina');
+select g.i, substr(e.name, g.i, 1) as c from (select 'TINA' as name) e, generate_series(1, length('TINA')) as g(i);
+select row_number() over (order by ename) as row, ename from emp;
+select dense_rank() over (order by sal desc) as rank, ename from emp;
+select ename, replace(translate(ename, 'AEIOU', '*'), '*', '') as no_vowels from emp;
+select ename, lead(sal) over (order by sal desc), sal, lag(sal) over (order by sal desc) from emp;
+select ename, deptno, count(ename) over (partition by deptno) as headcount from emp;
+select ename, deptno, sal, dense_rank() over (partition by deptno order by sal desc) dept_rank from emp;
+select percentile_cont(0.5) within group (order by sal) from emp;
+select d.deptno, 100.0 * sum(case when d.deptno = e.deptno then sal end) / sum(sal) as pct from dept d, emp e group by d.deptno;
+select deptno, 100.0 * sum(sal) over (partition by deptno) / sum(sal) over () as pct from emp e;
+select date_trunc('year', current_date);
+select extract(year from current_date);
+select current_date - interval '6 months';
+with dates as (select generate_series('2006-01-01'::date, '2006-12-31'::date, '1 month') as firstday)
+  select d.firstday, count(hiredate) from dates d
+  left join emp on to_char(firstday, 'YYYY-MM') = to_char(hiredate, 'YYYY-MM') group by firstday order by firstday;
+select a.ename, b.ename from emp a, emp b where to_char(a.hiredate, 'month') = to_char(b.hiredate, 'month') and a.empno < b.empno;
+select i from generate_series(0, 20, 2) as g(i);
+select ename, sal from emp order by sal limit 3 offset 5;
+select ename, sal from (select ename, sal, dense_rank() over (order by sal desc) rank from emp) x where rank <= 5;
+select distinct job from emp;
+select e.hiredate, e.sal, (select sum(sal) from emp d where d.hiredate between e.hiredate - 90 and e.hiredate) as spend from emp e
+  order by hiredate;
+select child.ename || ' works for ' || parent.ename from emp child, emp parent where child.mgr = parent.empno;
+with recursive x (ename, empno) as (select ename, empno from emp where mgr is null union all select x.ename || '->' || e.ename,
+  e.empno from emp e, x where e.mgr = x.empno) select ename as emp_tree from x order by ename;
+select sum(sal) over (order by hiredate range between unbounded preceding and current row) from emp;
+select sum(sal) over (order by hiredate range between current row and unbounded following) from emp;
+select sum(sal) over (order by hiredate rows between unbounded preceding and current row) from emp;
+select i, sum(i) over (order by i rows between 2 preceding and 1 following) from generate_series(1, 10) as g(i);
+create view view_dept_info as select ename || ' ' || deptno as info from emp;
+select empno from emp where empno::text similar to '7[0-9][0-5]{2}';
+pivot: use crosstab(), tablefunc extension must be enabled
+select sum(case when deptno = 10 then 1 else 0 end) as dept_10,
+       sum(case when deptno = 20 then 1 else 0 end) as dept_20,
+       sum(case when deptno = 30 then 1 else 0 end) as dept_30 from emp; -- headcount
+select lpad('2', 3, '0');
+select exists(select * from emp where sal = 5000);

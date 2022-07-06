@@ -1,6 +1,12 @@
 14.jun  Devin McIntyre asked if anyone was interested in a Python job
-22.jun  Interview with Kyle Webb (interest in job, experience)
+22.jun* Interview with Kyle Webb (interest in job, experience) was very enthusiastic describing my experiences at Pontual and Tempo OK
 25.jun  Weekend preparation
-26.jun  froze when trying to explain Dijkstra's algorithm to Key
+26.jun  Froze when trying to explain Dijkstra's algorithm to Key
+27.jun  Bought Weleda's bryophyllum because I was freaking out
+29.jun* Interview w/ Mike Conley (Devin's team) passed after solving Py count letter occurrences and SQL group by year-month in last 5 mins
+01.jul  looked for SQL books in Martins Fontes Paulista, after disappointment, got SQL Cookbook on Kindle
+03.jul  Finished copying interesting recipes from SQL Cookbook
+05.jul  Skimmed through Sedgewick Algorithms chapter on Graphs
+06.jul  Organized various experimental files in this directory
 
-29.jun  Interview with Mike Conley (Devin's team)
+07.jul* Panel interview with Mike, Devin, Reuben and Xiaonuo
