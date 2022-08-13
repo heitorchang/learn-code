@@ -1,0 +1,22 @@
+tag
+---
+name
+
+language
+--------
+name
+
+post
+----
+title
+date (and time - see vertfolia)
+url (optional, blank, null true)
+body
+tags = many-to-many, see howifeel
+votes (integer)
+
+sample
+------
+post = many-to-one (foreign key)
+language
+code
