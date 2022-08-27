@@ -21,6 +21,12 @@
     </style>
   </head>
   <body>
+    <i>Instructions: Start a local web server, then load this page.</i><br>
+    All three code textareas are shared by the interpreter. Keep <code>(define)</code>s in the top one because changing them will trigger re-evaluation of the <span style="font-family: sans-serif;">Eval</span> textareas.
+    <p>
+      To-do: button to save definitions
+    </p>
+
     <div class="code-wrapper">
       Definitions
       <pre onkeyup="reEvalAll()"><code class="language-klipse-scheme">
