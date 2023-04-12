@@ -1,0 +1,25 @@
+<body>
+  Type the first 16 digits of pi (include the decimal point)
+  <p>
+    <input id="pi-in" size="16" autofocus>
+  </p>
+
+  <p>
+    <button id="check" onclick="check()">Check</button>
+  </p>
+
+  <p id="result">
+  </p>
+
+  <script>
+    function check() {
+      if (document.getElementById("pi-in").value === "3.141592653589793") {
+        document.getElementById("result").innerText = "Great!";
+      } else {
+        document.getElementById("result").innerText = "Try again";
+        document.getElementById("pi-in").value = "";
+        document.getElementById("pi-in").focus();
+      }
+    }
+  </script>
+</body>
