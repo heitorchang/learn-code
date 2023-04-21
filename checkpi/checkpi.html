@@ -1,5 +1,5 @@
 <body>
-  Type the first 16 digits of pi (include the decimal point)
+  Type the first 16 digits of pi (without the decimal point)
   <p>
     <input id="pi-in" size="16" autofocus>
   </p>
@@ -13,7 +13,7 @@
 
   <script>
     function check() {
-      if (document.getElementById("pi-in").value === "3.141592653589793") {
+      if (document.getElementById("pi-in").value.replace(".", "") === "3141592653589793") {
         document.getElementById("result").innerText = "Great!";
       } else {
         document.getElementById("result").innerText = "Try again";
